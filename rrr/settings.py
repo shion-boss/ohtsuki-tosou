@@ -207,29 +207,25 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-
-
-
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'hlbrfvwak',
-    'API_KEY': '471624956597817',
-    'API_SECRET': 'dp8uy5YuEkNR_PuesXwcZ0y36Vg',
-}
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-
-
 #####heroku#####
 try:
     from .local_settings import *
 except ImportError:
     pass
 #####heroku#####
+
+if not DEBUG:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ['CLOUD_NAME'],
+        'API_KEY': os.environ['C_API_KEY'],
+        'API_SECRET': os.environ['C_API_SECRET'],
+    }
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
 
 #####heroku#####
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)

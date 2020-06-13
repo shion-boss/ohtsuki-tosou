@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from .models import customer_voice_model,user_meta,qa_model,catalog_model
+import os
 
 # Create your views here.
 def login_view(request):
@@ -331,44 +332,17 @@ def email_view(request):
         smtpobj.ehlo()
         smtpobj.starttls()
         smtpobj.ehlo()
-        smtpobj.login('sss.tl.ges.sss@gmail.com', 'Shion561070')
+        smtpobj.login(os.environ['mymail'], os.environ['mymailpass'])
         msg = MIMEText(email_msg)
 
         msg['Subject'] = 'subject'
-        msg['From'] = 'sss.tl.ges.sss@gmail.com'
+        msg['From'] = os.environ['mymail']
         msg['To'] = 'keito3261998@gmail.com'
         msg['Date'] = formatdate()
-        smtpobj.sendmail('sss.tl.ges.sss@gmail.com', 'keito3261998@gmail.com', msg.as_string())
+        smtpobj.sendmail(os.environ['mymail'], 'keito3261998@gmail.com', msg.as_string())
         smtpobj.close()
 
-        '''
-        smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-        smtpobj.ehlo()
-        smtpobj.starttls()
-        smtpobj.ehlo()
-        smtpobj.login('sss.tl.ges.sss@gmail.com', 'Shion561070')
-        msg = MIMEText('これはテストですよ')
-        msg['Subject'] = 'subject'
-        msg['From'] = 'sss.tl.ges.sss@gmail.com'
-        msg['To'] = 'nakamura.0708.tomoya@gmail.com'
-        msg['Date'] = formatdate()
-        smtpobj.sendmail('sss.tl.ges.sss@gmail.com', 'nakamura.0708.tomoya@gmail.com', msg.as_string())
-        smtpobj.close()
 
-        smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-        smtpobj.ehlo()
-        smtpobj.starttls()
-        smtpobj.ehlo()
-        smtpobj.login('sss.tl.ges.sss@gmail.com', 'Shion561070')
-        msg = MIMEText('これはテストですよ')
-
-        msg['Subject'] = 'subject'
-        msg['From'] = 'sss.tl.ges.sss@gmail.com'
-        msg['To'] = 'keito3261998@gmail.com'
-        msg['Date'] = formatdate()
-        smtpobj.sendmail('sss.tl.ges.sss@gmail.com', 'keito3261998@gmail.com', msg.as_string())
-        smtpobj.close()
-        '''
         return redirect('complete')
     return redirect('easy')
 
@@ -447,14 +421,14 @@ def m_form_view(request):
         smtpobj.ehlo()
         smtpobj.starttls()
         smtpobj.ehlo()
-        smtpobj.login('sss.tl.ges.sss@gmail.com', 'Shion561070')
+        smtpobj.login(os.environ['mymail'], os.environ['mymailpass'])
         msg = MIMEText(email_msg)
 
         msg['Subject'] = 'subject'
         msg['From'] = 'sss.tl.ges.sss@gmail.com'
         msg['To'] = 'keito3261998@gmail.com'
         msg['Date'] = formatdate()
-        smtpobj.sendmail('sss.tl.ges.sss@gmail.com', 'keito3261998@gmail.com', msg.as_string())
+        smtpobj.sendmail(os.environ['mymail'], 'keito3261998@gmail.com', msg.as_string())
         smtpobj.close()
 
         return redirect('good')
