@@ -210,18 +210,17 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 
-'''
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'hm9k6tunn',
     'API_KEY': '968519817597487',
     'API_SECRET': '5PcNevnegIjtDlJZyJCZ6J_bGGw',
 }
-'''
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-'''
+
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-'''
 
 
 
