@@ -33,9 +33,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ################
-DEBUG = True
+#DEBUG = True
 #####heroku#####
-#DEBUG = False
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -212,9 +212,9 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'hm9k6tunn',
-    'API_KEY': '968519817597487',
-    'API_SECRET': '5PcNevnegIjtDlJZyJCZ6J_bGGw',
+    'CLOUD_NAME': 'hlbrfvwak',
+    'API_KEY': '471624956597817',
+    'API_SECRET': 'dp8uy5YuEkNR_PuesXwcZ0y36Vg',
 }
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
