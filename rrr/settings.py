@@ -197,7 +197,7 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-callback_uri='http://127.0.0.1:8000/smart/login/'
+
 SOCIALACCOUNT_PROVIDERS = {
     'line': {
         'AUTH_PARAMS': {'bot_prompt':'aggressive','prompt':'consent'},
