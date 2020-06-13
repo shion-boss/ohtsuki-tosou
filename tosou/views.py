@@ -18,9 +18,12 @@ from django.http import HttpResponseForbidden, HttpResponse
 from django.conf import settings
 
 
-
-line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
+YOUR_CHANNEL_ACCESS_TOKEN ='52+twonMXh6ueH20i0f0J0mIYNom107nAwJnXiZyB4DwwSvN/NwKN6JiEn+kECPjHZHZeZqyFmLNwwb4GbjoIs10FaT0PXQnWvU6ic35ua33q1F984zYr+hy8imDUy67Gjjk58+YEmbNz7wqEI5uywdB04t89/1O/w1cDnyilFU='
+YOUR_CHANNEL_SECRET='72b96cff52e8346263319984f3955e2c'
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+#line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
+#handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
 @csrf_exempt
 def callback_view(request):
