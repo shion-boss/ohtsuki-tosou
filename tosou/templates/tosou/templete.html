@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/templete.css">
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+
+
+{% block e_body %}
+{% endblock %}
+
+
+{% if user.is_authenticated %}
+<p>ログイン済</p>
+
+<a href="{% url 'logout' %}">ログアウト</a>
+{% endif %}

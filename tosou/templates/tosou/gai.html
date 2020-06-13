@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/gai.css">
+{% endblock %}
+
+{% block body %}
+<div class="gai_body">
+  <div class="gai_msg_box">
+    <img src="{% static 'g_roku.jpg' %}" alt="">
+    <div class="gai_msg">
+      <div class="msg">
+        <h1>結果は現金負担0円塗装の対象外でした。</h1>
+      </div>
+    </div>
+  </div>
+  <div class="afi_box">
+    <h1>紹介特典のお知らせ</h1>
+    <div class="two_box">
+      <a href="{% url 'catalog' %}" class="present_box">
+        <img src="{% static 'S__1401000.jpg' %}" alt="">
+      </a>
+      <a href="{% url 'regi' %}" class="regi_box">
+        <img src="{% static 'S__1400998.jpg' %}" alt="">
+      </a>
+      <p class='t_p'>塗装工事のお仕事をご紹介していただいた方も、お仕事を依頼される方にも特典をプレゼント！月ごとに特典も新しいものに更新していきます。塗り替えをご予定の方で既にこのサイトをご存じの方であっても、自分以外の紹介コードを持っていなかった場合は、紹介コードを入力してもらい、お互い紹介特典を貰うのもいいですね！ぜひ紹介特典を楽しんでいただけたらと思います。</p>
+      <p class='t_r'>お仕事を紹介して特典を貰うためにはユーザー登録が必要ですが、lineでログインするだけで簡単に登録完了です。登録完了後、あなた限定の紹介コードが発行されます。塗り替えを希望するお友達やご親族の方にお伝えしてください。塗り替えを希望する方がこのサイトから依頼される際は、無料相談や見積依頼のフォームに紹介コードの入力欄があるのでそちらに入力してください。</p>
+    </div>
+  </div>
+  <div class="ohtsuki_box">
+    <h1>(有)大槻塗装工業をご紹介</h1>
+    <div class="o_box">
+      <div class="o_img_box">
+        <img src="{% static 'S__1401008.jpg'%}" alt="">
+      </div>
+      <div class="o_guide">
+        <p>昭和36年から約60年続く、老舗塗装店の施工力が一番の強み。<br>お住まいの状況を正しく見極める診断力、一軒一軒に合わせて最適な塗り替えを行う技術力なら、どんな塗装店にも引けをとりません。戸建て住宅を中心に、マンションやアパート、店舗の塗装にも対応しております。<br>皆様の大切なお住まいが、少しでも長く家族の暮らしを守れるように..。<br>小さなところからきっちりと、信頼に応える塗装工事をいたします。</p>
+        <a href="{% url 'mitumori' %}">
+          <img src="{% static 'S__1401012.jpg' %}" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block e_body %}
+{% endblock %}

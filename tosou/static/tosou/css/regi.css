@@ -1,0 +1,111 @@
+.r_body{
+  padding: 3rem 12.5%;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.r_box{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 2rem;
+}
+
+.r_body h1{
+  text-align: center;
+  font-family: serif;
+  padding: 2rem 0;
+}
+
+.fa-line{
+  color:#00C300;
+}
+
+.r_two{
+  padding-top: 2rem;
+
+
+}
+
+.akubi_box{
+  padding: 1rem;
+  padding-top: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.akubi_box img{
+  width: 100%;
+}
+
+.under_ts{
+  height: 300px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.under_ts div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.under_ts div i{
+  color:#00C300;
+  font-size: 3rem;
+}
+
+.line_box{
+  
+  border-radius: 20px;
+  border: solid 3px #b4e4e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 13vw;
+}
+
+.line_box:hover{
+  opacity: 0.7;
+}
+
+.line_img{
+  height: 13vw;
+  border-radius: 20px;
+}
+
+.r_one h2{
+  text-align: center;
+  font-family: serif;
+  margin: 3rem 0 1rem 0;
+}
+
+.count_li li{
+  list-style: none;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: rgba(179, 235, 207,0.2);
+  border-radius:20px;
+  font-family: sans-serif;
+}
+
+.jun{
+  font-size: 1.2rem;
+  font-weight:bold;
+}
+
+.jun:first-letter{
+  /*適用したいCSSスタイルを記述*/
+  font-size: 2.5rem;
+  color: #72c5c8;
+  text-shadow: 0 0 2px #fff;
+  line-height: 3rem;
+ }
+
+ .r_two{
+   display: flex;
+   justify-content: center;
+   align-items: flex-end;
+ }

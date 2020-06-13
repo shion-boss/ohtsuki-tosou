@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/regi.css">
+{% endblock %}
+
+{% block body %}
+<div class="r_body">
+  <h1>ユーザー登録をして紹介コードをGET</h1>
+  <div class="r_box">
+    <div class="r_one">
+      <h2>紹介特典を貰うための手順</h2>
+      <div class='count_li'>
+        <li><p class='jun'>1Lineでログイン</p>
+          <p>「かんたん３クリックLINE登録画面はこちら」からお進みください。</p>
+        </li>
+        <li>
+          <p class='jun'>2大槻塗装工業の公式LINEを友達追加</p>
+          <p>ログイン後に公式アカウントが表示されるので友達追加してください。</p>
+        </li>
+        <li>
+          <p class='jun'>3あなた限定の紹介コードをメモ</p>
+          <p>紹介コードはLINEにも送信されますが、念のため記録しておいてください。</p>
+        </li>
+        <li>
+          <p class='jun'>4友人や親戚にこのサイトを紹介</p>
+          <p>さっそくお仕事の紹介をしてみましょう。<br>サイトではなく直接お問い合わせすることも可能です。</p>
+        </li>
+        <li>
+          <p class='jun'>5紹介コードの入力</p>
+          <p>無料見積や見積依頼に紹介コード入力フォームがあるのでそちらに入力してもらいます。</p>
+        </li>
+        <li><p class='jun'>6LINEを確認</p>
+          <p>大槻塗装工業から塗装工事完了後にLINEにて確認のご連絡をさせていただきます。</p>
+        </li>
+        <li><p class='jun'>7LINEでリクエスト</p>
+          <p>LINEでお好きなカタログ番号と住所をLINEで大槻塗装工業へお送りください。</p>
+        </li>
+        <li>
+          <p class='jun'>8紹介特典を受け取る準備完了</p>
+          <p>紹介特典の到着まで1週間ほどお待ちください。</p>
+        </li>
+      </div>
+    </div>
+    <div class="r_two">
+      <div class="two_box">
+        <div class="akubi_box">
+          <img src="{% static 'S__73731.jpg' %}" alt="">
+        </div>
+        <div class="under_ts">
+          <div class="">
+            <i class="fas fa-caret-down"></i>
+          </div>
+          <div class="">
+            <i class="fas fa-caret-down"></i>
+          </div>
+          <div class="">
+            <i class="fas fa-caret-down"></i>
+          </div>
+        </div>
+        <a href="{% url 'line_login' %}" class='line_box'>
+          <img class='line_img' src="{% static 'S__73730.jpg' %}" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block e_body %}
+{% endblock %}

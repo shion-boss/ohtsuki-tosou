@@ -1,0 +1,138 @@
+.gai_body{
+  width: 100%;
+  padding: 0 12.5%;
+  font-family:serif;
+}
+
+.gai_msg_box{
+  margin: 3rem 0;
+  position: relative;
+  height: 20vw;
+}
+
+.gai_msg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.msg{
+  text-align: center;
+  text-shadow: 0 0 20px #fff;
+  color: rgb(56,56,56);
+}
+
+
+.gai_msg_box img{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 20vw;
+  z-index: -1;
+}
+
+.afi_box{
+  margin: 3rem 0;
+  padding: 3rem 0;
+  background-color: rgba(219, 239, 246,0.2);
+}
+
+.afi_box h1,.ohtsuki_box h1{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.two_box{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 1rem;
+  grid-column-gap: 2rem;
+}
+
+.two_box a{
+  border: solid 3px #b4e4e6;
+  border-radius: 30px;
+  margin: 0 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.two_box p{
+  margin: 0 5%;
+}
+
+.two_box p:first-letter{
+  /*適用したいCSSスタイルを記述*/
+  font-size: 3rem;
+  color: #72c5c8;
+  text-shadow: 0 0 2px #fff;
+  line-height: 3rem;
+ }
+
+.two_box a:hover{
+  opacity: 0.7;
+}
+
+.present_box img{
+  width: 100%;
+  border-radius: 30px;
+}
+
+.regi_box img{
+  width: 100%;
+  border-radius: 30px;
+}
+
+.ohtsuki_box{
+  margin: 3rem 0 ;
+  padding: 3rem 0;
+}
+
+.o_box{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 2rem;
+}
+
+.o_img_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.o_img_box img{
+  width: 100%;
+}
+
+.o_guide p{
+
+}
+
+.o_guide p:first-letter{
+  /*適用したいCSSスタイルを記述*/
+  font-size: 3rem;
+  color: #72c5c8;
+  text-shadow: 0 0 2px #fff;
+  line-height: 3rem;
+ }
+
+ .o_guide a{
+   border-radius: 20px;
+   border: solid 3px #b4e4e6;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   margin-right: 10%;
+   margin-top: 1rem;
+ }
+
+ .o_guide a:hover{
+   opacity: 0.7;
+ }
+
+ .o_guide a img{
+   width: 100%;
+   border-radius: 20px;
+ }

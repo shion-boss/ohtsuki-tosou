@@ -1,0 +1,173 @@
+.nai_body_box{
+  width: 100%;
+  padding: 0 12.5%;
+  font-family:serif;
+}
+.easy_s{
+  width: 100%;
+}
+
+.easy_s h1{
+  text-align: center;
+}
+
+.nai_box{
+  width: 100%;
+  padding: 3rem 0;
+}
+
+.nai_box h1{
+  text-align: center;
+}
+
+.nai_box p{
+  text-align: center;
+}
+
+.easy_form{
+  display: grid;
+  grid-template-columns: 1fr 3fr ;
+  grid-row-gap: 1rem;
+}
+.radio_box input{
+  cursor: pointer;
+}
+
+.radio_box label{
+  cursor: pointer;
+}
+
+.easy_form button{
+  grid-column: 1/3;
+  cursor: pointer;
+  width: 100%;
+  line-height: 3rem;
+  font-size: 2rem;
+  margin: 2rem 0;
+}
+
+.result{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  border: 0.5px solid #000;
+
+}
+
+.result div{
+  border: 1px solid #000;
+}
+
+.result_gaku{
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 3rem;
+  color:red;
+  border-bottom: solid 2px red;
+  margin: 0 10%;
+}
+
+
+
+input[type="range"] {
+  -webkit-appearance: none; /* 🚩これ無しだとスタイルがほぼ全く反映されないので注意 */
+  appearance: none;
+  cursor: pointer; /* カーソルを分かりやすく */
+  outline: none; /* スライダーのアウトラインは見た目がキツイので消す */
+  height: 14px; /* バーの高さ */
+  width: 100px; /* バーの幅 */
+  background: #cff2f4; /* バーの背景色 */
+  border-radius: 10px; /* バーの両端の丸み */
+  border: solid 3px #dff1ff; /* バー周囲の線 */
+
+
+}
+
+/* WebKit向けのつまみ */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /*  🚩デフォルトのつまみのスタイルを解除 */
+  background: #b4e4e6; /* 背景色 */
+  width: 24px; /* 幅 */
+  height: 24px; /* 高さ */
+  border-radius: 50%; /* 円形に */
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15); /* 影 */
+}
+/* Moz向けのつまみ */
+input[type="range"]::-moz-range-thumb {
+  background:  #b4e4e6; /* 背景色 */
+  width: 24px; /* 幅 */
+  height: 24px; /* 高さ */
+  border-radius: 50%; /* 円形に */
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15); /* 影 */
+  border: none; /* デフォルトの線を消す */
+}
+/* Firefoxで点線が周りに表示されてしまう問題の解消 */
+input[type="range"]::-moz-focus-outer {
+  border: 0;
+}
+/* つまみをドラッグしているときのスタイル */
+input[type="range"]:active::-webkit-slider-thumb {
+  box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+.consul_box{
+  margin: 5rem 0;
+  width: 100%;
+}
+
+.consul_box h1{
+  text-align: center;
+}
+
+.consul{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 2rem;
+}
+
+.c_flow_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c_flow_box img{
+  width: 100%;
+}
+
+.c_c_box{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.c_c_box p{
+  margin: auto 0;
+}
+
+.c_c_box p:first-letter{
+  /*適用したいCSSスタイルを記述*/
+  font-size: 3rem;
+  color: #72c5c8;
+  text-shadow: 0 0 2px #fff;
+  line-height: 3rem;
+ }
+
+.c_img_box{
+  border-radius: 30px;
+  border: solid 3px #b4e4e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.c_img_box img{
+  width: 100%;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.c_img_box img:hover{
+  opacity: 0.7;
+}

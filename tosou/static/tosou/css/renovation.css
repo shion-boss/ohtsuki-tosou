@@ -1,0 +1,210 @@
+.rino_body{
+  /*padding: 3rem 12.5%;*/
+  width: 100%;
+  padding-bottom: 5rem;
+}
+
+.rino_main{
+  width: 100%;
+  padding: 3rem 12.5%;
+  position: relative;
+}
+
+.rino_main_img{
+  width: 100%;
+}
+
+.main_logo{
+  position: absolute;
+  top:30%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width: 60%;
+}
+
+.sikumi_box{
+  padding: 3rem 12.5%;
+  margin-top: 3rem;
+  background-image: url('/static/shikumiBg.png');
+}
+
+.sikumi_box h1,.rino_main2 h1{
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.new_sikumi{
+  margin-top: 2rem;
+  font-weight: normal;
+  background-color: white;
+  border: solid 4px #7d3613;
+  color:#7D3613;
+  line-height: 4rem;
+}
+
+.sikumi_box h1 span,.rino_main2 h1 span{
+  color: #009303;
+}
+
+.tada_box .tada{
+  font-size: 3rem;
+  text-align: center;
+}
+
+.tada_box .tada span{
+  padding: 0 2rem;
+  color: #E67300;
+  font-size: 5rem;
+  font-family:cursive;
+}
+
+.tada_p{
+  text-align: center;
+}
+
+.tada_p span{
+  color: #E67300;
+}
+
+.henka_box{
+  margin-top: 3rem;
+}
+
+.henka_box h1{
+  border-bottom: solid 2px black;
+  line-height: 3rem;
+  margin: 2rem 0;
+}
+
+.sikumi_img{
+  width:100%;
+}
+
+.sikumi_img img{
+  width: 100%;
+}
+
+.taisyo_box{
+  color: #40220F;
+  border: 2px solid #40220F;
+  box-shadow: 5px 5px 0px rgba(107,66,0,0.76);
+  background-color: White;
+  margin: 5% 15% 5% 15%;
+  padding: 10px 2% 10px 2%;
+}
+.taisyo_p{
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 0.8rem;
+  margin: 1rem 0;
+  border-bottom: solid 2px black;
+}
+
+.taisyo_grid{
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+.check_grid{
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.contact_p{
+  background: #F9E9C6;
+  padding: 1rem;
+}
+
+.a_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.a_box:hover{
+  /*opacity: 0.7;*/
+}
+.a_box:hover .mask{
+  visibility: visible;
+  opacity: 1;
+}
+
+.a_box img{
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.a_box:hover img{
+  width: 110%;
+  opacity: 0.7;
+}
+
+.rino_manga{
+  background-color: white;
+  padding: 1rem;
+}
+
+.m_label_box{
+  height: 23vw;
+  display: grid;
+  grid-template-columns: 23vw 23vw 23vw;
+  grid-column-gap: 3vw;
+
+}
+
+.m_label_box p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flow_p{
+  padding: 3rem 0 0 0;
+}
+
+.flow_grid{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  background-color: white;
+  padding: 1rem 5rem;
+  margin: 3rem 0;
+  grid-column-gap: 3rem;
+}
+.f_p_box{
+  display: grid;
+  grid-auto-rows: 3rem 1fr;
+}
+.f_p_box h2{
+  line-height: 2rem;
+  border-bottom: solid 2px black;
+  margin: 0.5rem 0;
+}
+
+.f_p_box h2 span{
+  color: #009303;
+}
+
+.f_p_box p{
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.f_img_box{
+  overflow: hidden;
+  width: 100%;
+}
+
+.f_img_box img{
+  width: 100%;
+}
+
+.rino_main2{
+  width: 100%;
+  padding: 4rem 12.5% 2rem 12.5%;
+  position: relative;
+}

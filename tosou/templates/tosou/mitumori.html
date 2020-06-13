@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/consul.css">
+<link rel="stylesheet" href="/static/tosou/css/mitumori.css">
+{% endblock %}
+
+{% block body %}
+<img src="{% static 'S__1401007.jpg'%}" alt="" class='back_img'>
+<div class="mitumori_body">
+  <div class="m_header">
+    <h1>大槻塗装工業へ見積依頼を送る</h1>
+  </div>
+  <form class="o_form" action="{% url 'm_form' %}" method="post">
+    {% csrf_token %}
+    <div class="info">
+      <label for="hurigana" class='bold_p'>お名前(ふりがな)<span>必須</span></label>
+      <input type="text" name="hurigana" value="" id='hurigana' required pattern="[\u3041-\u3096]*" title="ひらがなでお名前を入力してください。">
+      <label for="name" class='bold_p'>お名前<span>必須</span></label>
+      <input type="text" name="name" value="" id='name' required>
+      <label for="yubin" class='bold_p'>郵便番号<span>必須</span></label>
+      <input type='tel' name="yubin" value="" id='yubin' required onKeyUp="AjaxZip3.zip2addr(this,'','stay','stay');" pattern="\d{3}-?\d{4}" title="123-1234">
+      <label for="stay" class='bold_p'>ご住所<span>必須</span></label>
+      <input type="text" name="stay" value="" id='stay' required pattern=".*?\d" title="番地まで入力してください。">
+      <label for="email" class='bold_p'>メールアドレス<span>必須</span></label>
+      <input type='email' name="email" value="" id='email' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='xxxxxxx@xxxxx.xxx'>
+      <label for="tel" class='bold_p'>お電話番号<span>必須</span></label>
+      <input type="tel" name="tel" value="" id='tel' required pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" title='000-0000-0000'>
+      <label for="one_day" class='bold_p'>連絡希望日時<span>必須</span></label>
+      <div class="day_box">
+        <div class="">
+          <label for="one_day" class='bold_p'>第一希望<span>必須</span></label>
+          <input type="date" name="one_day" value="" id='one_day'>
+          <label for="one1"><input type="radio" name="one" value="1" id='one1' required>9:00-12:00</label>
+          <label for="one2"><input type="radio" name="one" value="2" id='one2'>12:00-15:00</label>
+          <label for="one3"><input type="radio" name="one" value="3" id='one3'>15:00-18:00</label>
+          <label for="one4"><input type="radio" name="one" value="4" id='one4'>18:00-20:00</label>
+        </div>
+        <div class="">
+          <label for="two_day" class='bold_p'>第二希望<span>必須</span></label>
+          <input type="date" name="two_day" value="" id='two_day'>
+          <label for="two1"><input type="radio" name="two" value="1" id='two1' required>9:00-12:00</label>
+          <label for="two2"><input type="radio" name="two" value="2" id='two2'>12:00-15:00</label>
+          <label for="two3"><input type="radio" name="two" value="3" id='two3'>15:00-18:00</label>
+          <label for="two4"><input type="radio" name="two" value="4" id='two4'>18:00-20:00</label>
+        </div>
+      </div>
+      <label for="question_area" class='bold_p'>ご質問等</label>
+      <textarea name="question_area" rows="8" cols="80" id='question_area'></textarea>
+    </div>
+    <button type="submit" name="button" class='submit'>送信</button>
+  </form>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block e_body %}
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<script type="text/javascript">
+  $(function() {
+    $('#stay').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('#tel').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('#yubin').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+  });
+</script>
+{% endblock %}

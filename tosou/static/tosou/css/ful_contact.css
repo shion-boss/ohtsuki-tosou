@@ -1,0 +1,72 @@
+.f_contact_body{
+  padding: 3rem 12.5%;
+  width: 100%;
+}
+
+.tel_number_box{
+  padding: 5rem 0 8rem 0;
+}
+
+.tel_number_box h1{
+  text-align: center;
+  color: #95d1d2;
+  font-size: 5rem;
+}
+
+.tel_number_box h2{
+  border-radius: 1rem;
+  background-color: rgb(56,56,56);
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.tel_number_box h2 i{
+  margin: 0 5px 0 1rem;
+}
+
+
+.tel_number_box p{
+  text-align: center;
+
+}
+
+.line_box{
+  width: 100%;
+  background-image: url("/static/S__3899397.jpg");
+  background-repeat:  no-repeat;                         /* 画像の繰り返しを指定  */
+  background-position:top left;                     /* 画像の表示位置を指定  */
+  background-size:contain;
+  margin-bottom: 5rem;
+}
+
+.line_grid{
+  display: grid;
+  grid-template-columns: 1fr 17vw;
+}
+
+.qr_box{
+  width: 17vw;
+  height: 17vw;
+  border: solid 2px #00C300;
+  padding: 5px;
+  border-radius: 10px 10px 0 0 ;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr_box img{
+  width: 120%;
+}
+
+.line_a{
+  grid-column: 2;
+  line-height: 2rem;
+  font-weight: bold;
+  background-color: #00C300;
+  color: white;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+
+}

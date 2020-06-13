@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/qa.css">
+{% endblock %}
+
+{% block body %}
+<div class="qa_body">
+  <h1>よくあるご質問</h1>
+  {% for a in aaa %}
+  <div class="qa_box">
+    <div class="q_box">
+      <p><span><i class="fas fa-question"></i></span>{{ a.question }}</p>
+    </div>
+    <div class="a_box">
+      <p><span><i class="fas fa-headset"></i></span>{{ a.answer }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
+
+
+
+{% block e_body %}
+{% endblock %}

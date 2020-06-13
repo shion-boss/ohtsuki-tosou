@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/page.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="complete_body">
+  <div id="flipbook">
+    <div><img src="{% static '00001.jpg'%}" alt=""></div>
+    <div><img src="{% static '00002.jpg'%}" alt=""></div>
+    <div><img src="{% static '00003.jpg'%}" alt=""></div>
+    <div><img src="{% static '00004.jpg'%}" alt=""></div>
+    <div><img src="{% static '00005.jpg'%}" alt=""></div>
+    <div><img src="{% static '00006.jpg'%}" alt=""></div>
+    <div><img src="{% static '00007.jpg'%}" alt=""></div>
+    <div><img src="{% static '00008.jpg'%}" alt=""></div>
+  </div>
+  <div id="pagemenu">
+  	<ul>
+      <li><span id="toLast"> Last</span></li>
+  	  <li><span id="toNext"> Next</span></li>
+      <li><span id="toPrev"> Prev</span></li>
+      <li><span id="toTop"> Top</span></li>
+  	</ul>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block e_body %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'tosou/js/turn.js' %}"></script>
+<script type="text/javascript">
+    $('#flipbook').turn({
+      display: 'double',
+      inclination: 50,
+      direction: "rtl",
+    });
+</script>
+<script type="text/javascript">
+    // トップへ移動
+  	$("#toTop").click(function(){
+  		$("#flipbook").turn("page", 1);
+  	})
+  	// 前のページへ移動
+  	$("#toPrev").click(function(){
+  	    $("#flipbook").turn("previous");
+  	});
+  	// 次のページへ移動
+  	$("#toNext").click(function(){
+  	    $("#flipbook").turn("next");
+  	});
+  	// 最後のページへ移動
+  	$("#toLast").click(function(){
+  		$("#flipbook").turn("page", 8);
+  	})
+</script>
+
+{% endblock %}

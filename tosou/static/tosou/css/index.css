@@ -1,0 +1,180 @@
+.main_img{
+  padding: 20px 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_img img{
+  width:95%;
+  opacity: 0.9;
+}
+
+.customer_voice_box{
+  margin: 2rem 12.5%;
+  padding: 3rem 0;
+  background-color: rgba(219, 239, 246,0.2);
+}
+
+.customer_voice_box h1{
+  padding-bottom: 2rem;
+  text-align: center;
+  font-family:serif;
+}
+
+.scloll_box{
+  height: 400px;
+  margin: 0 2rem;
+  overflow-y: scroll;
+  background-color: #fff;
+}
+
+.customer_voice{
+  transition:20s;
+}
+
+.customer_voice img{
+  width: 10vw;
+}
+
+.customer_voice p{
+  padding: 10px;
+  background-color: rgba(0,0,0,0.1);
+  width: 60%;
+}
+
+.c_right p{
+  border-radius: 20px 0 20px 20px;
+}
+
+.c_left p{
+  border-radius: 0 20px 20px 20px;
+}
+
+.c_right{
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+}
+
+.c_left{
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+}
+
+.guide_box{
+  margin: 2rem 12.5%;
+  padding: 3rem 0;
+  background-color: rgba(219, 239, 246,0.2);
+  font-family:serif;
+}
+
+.guide_box h1{
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.guide{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  padding-bottom: 2rem;
+}
+
+.guide .grid_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img_box img {
+  height: 20vw;
+}
+
+.img_box p{
+  font-weight: bold;
+  text-align: center;
+}
+
+.check_form{
+  margin: 0 12.5%;
+  padding: 1.5rem;
+  font-family:serif;
+  background-color:
+}
+
+.check_form h1{
+  text-align: center;
+}
+
+.check_form p{
+  font-size: 1.2rem;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.check_box{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+.c_box{
+  width: 100%;
+  font-size: 2rem;
+  position: relative;
+}
+
+.c_box label{
+  display:block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.c_box:hover{
+  background-color: rgba(232, 239, 255,0.3);
+}
+
+
+/* 元のチェックボックスを表示しない */
+.c_box input[type=checkbox] {
+    display:none;
+}
+/* チェックした時のスタイル */
+.c_box input[type=checkbox]:checked ~ label {
+    content:        '';        /* チェックの文字 */
+    font-size:      2rem;           /* チェックのサイズ */
+    color:          rgb(56,56,56);           /* チェックの色 */
+    background-color:   #d7f5f7;           /* チェックした時の色 */
+}
+
+.c_box p{
+  display: none;
+}
+.c_box:hover p{
+  display: block;
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  transform: rotateZ(-30deg);
+  padding: 0;
+  opacity: 0.5;
+}
+
+.c_box input[type=checkbox]:checked ~ p{
+  display: block;
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  transform: rotateZ(-30deg);
+  padding: 0;
+  opacity: 1;
+}
+
+
+.check_form button{
+  cursor: pointer;
+  width: 100%;
+  line-height: 3rem;
+  font-size: 2rem;
+  margin: 2rem 0;
+}

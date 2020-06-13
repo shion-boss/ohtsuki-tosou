@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/catalog.css">
+{% endblock %}
+
+{% block body %}
+<div class="catalog_body">
+  <div class="messages_box">
+    <h1>お仕事を紹介して下さった方と<br>お仕事を依頼してくださった方へ感謝の気持ちを込めて</h1>
+    <p class='b_p'>お仕事紹介の完了後にLINEにてお好きな商品のコードの確認の連絡をいたします。</p>
+  </div>
+  <div class="catalog_grid">
+    {% for c in ccc %}
+    <div class="catalog_box">
+      <div class="catalog">
+        <div class="img_box">
+          <img src="{{ c.img.url }}" alt="">
+          <p>{{ c.number}}</p>
+        </div>
+        <p>{{c.p}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block e_body %}
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/account.css">
+{% endblock %}
+
+{% block body %}
+<div class="account_body">
+  <div class="messages_box">
+    {% if request.path == "/smart/account/" %}
+    {% if line_regi %}
+    <h1>あなたの紹介コードは、{{afi_code}}です。</h1>
+    <p>紹介特典のご連絡はLINEで行います。</p>
+    {% else %}
+    <h1>公式LINEの友達追加が完了していません。</h1>
+    <p>紹介特典のご連絡はLINEで行うため、公式LINEを友達追加していただく必要があります。</p>
+    <a href="{% url 'line_login' %}" class='a_under'>公式LINEの友達追加はこちら</a>
+    {% endif %}
+    {% elif request.path == "/smart/complete/"%}
+    <h1>お疲れ様です！無料相談シートの送信が完了しました。</h1>
+    <p>担当の者からの連絡をお待ちください。</p>
+    {% else %}
+    <h1>お疲れ様です！無料相談シートの送信が完了しました。</h1>
+    <p>担当の者からの連絡をお待ちください。</p>
+    {% endif %}
+  </div>
+  <h2>おすすめのトピック</h2>
+  <div class="account_grid">
+    <label class="ohtsuki_box a_box" onClick="win3_open()">
+      <img src="{% static 'S__3866630.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>大槻塗装工業</h3>
+            <p>当社の一番の強みは、昭和36年から約60年続く、老舗塗装店の施工力。<br>お住まいの状況を正しく見極める診断力、一軒一軒に合わせて最適な塗り替えを行う技術力なら、どんな塗装店にも引けをとりません。<br>皆様の大切なお住まいが、少しでも長く家族の暮らしを守れるように...。<br>小さなところからきっちりと、信頼に応える塗装工事をいたします。</p>
+          </div>
+        </div>
+      </div>
+    </label>
+    <a href="{% url 'mitumori' %}" class="mitumori_box a_box">
+      <img src="{% static 'S__3866634.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>塗装見積依頼</h3>
+            <p>直接大槻塗装工業に見積依頼をする方はこちらのフォームから送信してください。<br>見積依頼を当社で確認後、希望日に合わせてご連絡いたします。こちらのお見積りにかかる費用は一切ございませんが、お仕事の方は通常料金でご案内させていただいております。<br>お気軽にお問合わせください。</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="{% url 'qa' %}" class="qa_box a_box">
+      <img src="{% static 'S__3866628.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>よくあるご質問</h3>
+            <p>よくあるご質問をQ＆A方式でまとめました。<br>公式LINEでもご質問などに対応しておりますので、他にも気になることがありましたら、そちらもご利用ください。</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="{% url 'renovation' %}" class="smart_box a_box">
+      <img src="{% static 'S__3883010.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>現金負担0円の仕組み</h3>
+            <p>現金負担0円の仕組みの説明や、無料相談後の流れについてまとめました。なぜ現金負担0円で塗装工事をすることが可能なのかを簡単にご説明できればと思っております。知れば納得の仕組みになっておりますので、ご安心して当社にお任せください。</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="{% url 'consul' %}" class="consul_box a_box">
+      <img src="{% static 'S__3866633.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>無料相談</h3>
+            <p>住宅ローン残高1000万円以上、住宅ローン残期間10年以上、現在の金利が1.5%以上の方であれば、きっとお役に立てます。リフォーム資金計画相談シートをご入力を希望の方はこちらからお願いいたします。</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <label for='manga_check' class="manga_box a_box">
+      <img src="{% static 'S__3866629.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>漫画で分かる<span><div class='span_d'>現金<br>負担</div></span>0<span>円</span>塗装</h3>
+            <p>現金負担0円でお家の塗り替えができる仕組みが分かりやすく漫画になりました。</p>
+          </div>
+        </div>
+      </div>
+    </label>
+    <a href="{% url 'e_s' %}" class="simulation_box a_box">
+      <img src="{% static 'S__3866635.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>簡単シミュレーション</h3>
+            <p>住宅ローンの金利が現在のままの場合に支払う利子がいくらになるのか、借り換えをするといくら節約することが出来るのかを簡単に計算できます。<br>無料相談の前などに一度お試ししてみてはいかがでしょうか。</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="{% url 'catalog' %}" class="catalog_box a_box">
+      <img src="{% static 'S__3866632.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>紹介特典</h3>
+            <p>お仕事をご紹介していただいた皆様に、紹介特典として送りさせていただく品物のカタログです。<br>紹介していただいたお仕事が完了した際に、公式LINEからご連絡いたします。その際にカタログに掲載されている商品の中から一つお選びしていただく形になっております。<br>商品は定期的に新しいもの更新しております。</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="{% url 'regi' %}" class="user_box a_box">
+      <img src="{% static 'S__3866626.jpg' %}" alt="">
+      <div class="mask">
+        <div class="p_box">
+          <div class="p">
+            <h3>ユーザー登録</h3>
+            <p>お仕事をご紹介して紹介特典を受け取るためにはユーザー登録が必要になっております。ユーザー登録はLINEでサイトにログインするだけなのでとても簡単です。<br>また、紹介特典の商品コードや郵送先の確認のご連絡は公式LINEにて行いますので、ユーザー登録後、公式LINEの方も友達追加していただきますようよろしくお願いいたします。</p>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block e_body %}
+{% endblock %}

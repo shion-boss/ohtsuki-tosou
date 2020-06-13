@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/nai.css">
+{% endblock %}
+
+{% block body %}
+<div class="nai_body_box">
+  <div class="nai_box">
+    {% if request.path == "/smart/check/" %}
+    <h1>おめでとうございます<br>現金負担0円塗装の対象かもしれません</h1>
+    <p>無料相談または簡単シミュレーションに進んでみましょう</p>
+    {% endif %}
+  </div>
+  <div class="easy_s">
+    <h1>簡単シミュレーション</h1>
+    <form class="easy_form" action="{% url 'easy' %}" method="post">
+      {% csrf_token %}
+      <label for="sai">残債額(円)</label>
+      <input type="text" name="sai" value="{{sai}}" id='sai' required oninput="value = value.replace(/[^0-9]+/i,'');">
+      <label for="kikan">残期間(年)</label>
+      <input type="number" name="kikan" value="{{kikan}}" id='kikan' required>
+      <label for="riritu">利率(％)</label>
+      <input type="number" name="riritu" value="{{riritu}}" id='riritu' required min='1.5' step='0.1'>
+      <label for="">返済方法</label>
+      <div class="radio_box">
+        <input type="radio" name="hensai" value="1" id='ganri' {%if hoho != 2 %}checked{%endif%}>
+        <label for="ganri">元利均等返済</label>
+        <input type="radio" name="hensai" value="2" id='gankin'{%if hoho == 2 %}checked{%endif%}>
+        <label for="gankin">元金均等返済</label>
+      </div>
+      <label for="input">借換後の期待値</label>
+      <div class="">
+        <input type="range" id='input' name="new_rate" value="{{new_rate}}" min='0.8' max='1.5' step='0.1'>
+        <span id="output">{%if rate_true %}{{new_rate}}{%else%}1.2{%endif%}</span><span>％</span>
+      </div>
+      <button type="submit" name="button" id='easy_submit'>計算結果を見る</button>
+    </form>
+    {% if rate_true %}
+    <div class="result">
+      <div class=""></div>
+      <div class=""><p>借換前</p></div>
+      <div class=""><p>借換後</p></div>
+      <div class=""><p>差額</p></div>
+      <div class=""><p>月間の支払い</p></div>
+      <div class=""><p>{{ now_tuki}}円</p></div>
+      <div class=""><p>{{ after_tuki}}円</p></div>
+      <div class=""><p>{{ tuki_sa }}円</p></div>
+      <div class=""><p>年間の支払い</p></div>
+      <div class=""><p>{{ now_nen }}円</p></div>
+      <div class=""><p>{{ after_nen}}円</p></div>
+      <div class=""><p>{{ nen_sa }}円</p></div>
+      <div class=""><p>利息総額</p></div>
+      <div class=""><p>{{ now_total }}円</p></div>
+      <div class=""><p>{{ after_total }}円</p></div>
+      <div class=""><p>{{ total_sa }}円</p></div>
+    </div>
+    <p class='result_gaku'>住宅ローンの見直しで<br>{{ total_sa }}円も節約！</p>
+    {% endif %}
+  </div>
+  <div class="consul_box">
+    <h1>無料相談</h1>
+    <div class="consul">
+      <div class="c_flow_box">
+        <img src="{% static 'S__6668559.jpg' %}" alt="">
+      </div>
+      <div class="c_c_box">
+        <p>現金負担0円で塗装ができて、月々の支払いも減らせるかもしれません。借り換えに関してのご説明はスマートリノベーションのファイナンシャルプランナーからご連絡させていただきます。その後、借り換えを行うことでお客様にメリットがあるようでしたら、塗装工事を大槻塗装工業が承ります。ご相談の途中でやめることによる、違約金等はございませんのでご安心ください。「無料相談フォームはこちら」の画像から無料相談の入力ページへとお進みください。</p>
+        <a href="{% url 'consul' %}" class="c_img_box"><img src="{% static 'S__6782980.jpg' %}" alt=""></a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block e_body %}
+<script type="text/javascript">
+  $(function() {
+    var $input = $('#input');
+    var $output = $('#output');
+    $input.on('input', function(event) {
+      var value = $input.val();
+      $output.text(value);
+    });
+
+
+    // フォーカスアウト
+    $('#sai').on('blur', function(){
+      var num = $(this).val();
+      num = num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+      $(this).val(num);
+    });
+
+    // フォーカス
+    $('#sai').on('focus', function(){
+      var num = $(this).val();
+      num = num.replace(/,/g, '');
+      $(this).val(num);
+    });
+
+    $('#easy_submit').on('click', function(){
+      var num = $('#sai').val();
+      num = num.replace(/,/g, '');
+      $('#sai').val(num);
+    });
+  });
+
+  $(window).on('load', function (){
+    var num = $('#sai').val();
+    num = num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    $('#sai').val(num);
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="/static/tosou/css/consul.css">
+{% endblock %}
+
+{% block body %}
+<div class="consul_body">
+  <h1>リフォーム資金計画相談シート</h1>
+  <p class='bold_p'>お申込み目安（改めてご確認お願いいたします）</p>
+  <div class="meyasu">
+    <p class='bold_p y_color'>年齢</p>
+    <p class='bold_p y_color'>勤続年数</p>
+    <p class='bold_p y_color'>年収</p>
+    <p class='bold_p y_color'>雇用形態</p>
+    <p class='meyasu_p'>55歳以下</p>
+    <p class='meyasu_p'>2年以上</p>
+    <p class='meyasu_p'>400万円～</p>
+    <p class='meyasu_p'>正社員</p>
+  </div>
+  <form class="consul_form" action="{% url 'email' %}" method="post">
+    {% csrf_token %}
+    <div class="kakunin_box">
+      <p class='bold_p y_color'>チェック欄</p>
+      <p class='bold_p y_color'>必ずご確認ください</p>
+      <label class="c_check" for='three_check'>
+        <input type="checkbox" name="check" value="1" id='three_check' required>
+        <span>必須</span>
+      </label>
+      <div class="c_list">
+        <li>借換が完了した段階でリフォーム資金コンサルティング費用として手数料が発生いたします。</li>
+        <li>相談シートをいただきましたら、ファイナンシャルプランナーより直接ご連絡いたします。</li>
+        <li>お客様の現在状況によりご期待に沿えない場合がございますので予めご了承ください。 </li>
+      </div>
+    </div>
+    <div class="info_box">
+      <p class='y_color bold_p'>お客様情報</p>
+      <div class="info">
+        <label for="hurigana" class='bold_p'>お名前(ふりがな)<span>必須</span></label>
+        <input type="text" name="hurigana" value="" id='hurigana' required pattern="[\u3041-\u3096]*" title="ひらがなでお名前を入力してください。">
+        <label for="name" class='bold_p'>お名前<span>必須</span></label>
+        <input type="text" name="name" value="" id='name' required>
+        <label for="old" class='bold_p'>ご年齢<span>必須</span></label>
+        <input type="tel" name="old" value="" id='old' required>
+        <label for="yubin" class='bold_p'>郵便番号<span>必須</span></label>
+        <input type='tel' name="yubin" value="" id='yubin' required onKeyUp="AjaxZip3.zip2addr(this,'','stay','stay');" pattern="\d{3}-?\d{4}" title="123-1234">
+        <label for="stay" class='bold_p'>ご住所<span>必須</span></label>
+        <input type="text" name="stay" value="" id='stay' required pattern=".*?\d" title="番地まで入力してください。">
+        <label for="email" class='bold_p'>メールアドレス<span>必須</span></label>
+        <input type='email' name="email" value="" id='email' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='xxxxxxx@xxxxx.xxx'>
+        <label for="tel" class='bold_p'>お電話番号<span>必須</span></label>
+        <input type="tel" name="tel" value="" id='tel' required pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" title='000-0000-0000'>
+        <label for="one_day" class='bold_p'>連絡希望日時<span>必須</span></label>
+        <div class="day_box">
+          <div class="">
+            <label for="one_day" class='bold_p'>第一希望<span>必須</span></label>
+            <input type="date" name="one_day" value="" id='one_day'>
+            <label for="one1"><input type="radio" name="one" value="1" id='one1' required>9:00-12:00</label>
+            <label for="one2"><input type="radio" name="one" value="2" id='one2'>12:00-15:00</label>
+            <label for="one3"><input type="radio" name="one" value="3" id='one3'>15:00-18:00</label>
+            <label for="one4"><input type="radio" name="one" value="4" id='one4'>18:00-20:00</label>
+          </div>
+          <div class="">
+            <label for="two_day" class='bold_p'>第二希望<span>必須</span></label>
+            <input type="date" name="two_day" value="" id='two_day'>
+            <label for="two1"><input type="radio" name="two" value="1" id='two1' required>9:00-12:00</label>
+            <label for="two2"><input type="radio" name="two" value="2" id='two2'>12:00-15:00</label>
+            <label for="two3"><input type="radio" name="two" value="3" id='two3'>15:00-18:00</label>
+            <label for="two4"><input type="radio" name="two" value="4" id='two4'>18:00-20:00</label>
+          </div>
+        </div>
+        <div class='bold_p s_s'>現行金利<span>必須</span></div>
+        <div class="">
+          <label for="k_over"><input type="radio" name="kinri" value='1' id='k_over' required>1.5%以上</label>
+          <label for="k_under"><input type="radio" name="kinri" value="2" id='k_under'>1.5%未満</label>
+          <label for="k_more"><input type="radio" name="kinri" value="3" id='k_more'>詳しく分かる方（<input type="number" name="k_more" value="" class='k_more_input' step="0.1">％）</label>
+        </div>
+        <div class='bold_p s_s'>残債<span>必須</span></div>
+        <div class="">
+          <label for="s_over"><input type="radio" name="zansai" value="1" id='s_over' required>1000万円以上</label>
+          <label for="s_under"><input type="radio" name="zansai" value="2" id='s_under'>1000万円未満</label>
+          <label for="s_more"><input type="radio" name="zansai" value="3" id='s_more'>詳しく分かる方（<input type="number" name="s_more" value="" class='s_more_input' pattern="^([1-9]\d*|0)(\.\d+)?$">万円）</label>
+        </div>
+        <div class='bold_p s_s'>残年数<span>必須</span></div>
+        <div class="">
+          <label for="n_over"><input type="radio" name="zannen" value="1" id='n_over' required>10年以上</label>
+          <label for="n_under"><input type="radio" name="zannen" value="2" id='n_under'>10年未満</label>
+          <label for="n_more"><input type="radio" name="zannen" value="3" id='n_more'>詳しく分かる方（<input type="number" name="n_more" value="" class='n_more_input' pattern="^([1-9]\d*|0)(\.\d+)?$">年）</label>
+        </div>
+        <div class='bold_p s_s'>年収<span>必須</span></div>
+        <div class="">
+          <label for="f_over"><input type="radio" name="nensyu" value="1" id='f_over' required>400万円以上</label>
+          <label for="f_under"><input type="radio" name="nensyu" value="2" id='f_under'>400万円未満</label>
+        </div>
+        <label for="afi" class='bold_p'>ご紹介コード</label>
+        <input type="tel" name="afi" value="" id='afi' pattern="\d{6}" title="数字6桁でご入力ください。">
+      </div>
+    </div>
+    <div class="submit_c">
+      <p>＊ご入力に間違いが無いかご確認の上送信ボタンにお進みください</p>
+    </div>
+    <button type='submit' class='submit'>送信</button>
+  </form>
+  <div class="">
+    <p>※経営者の方は会社の決算書が必要になります。</p>
+    <p>※指定のプランナーから直接ご連絡いたします。</p>
+    <p>※ご希望の日時にご連絡できない場合はご調整させていただく場合があります。予めご了承ください。</p>
+    <div class="personal_info">
+      <p>※個人情報の取り扱いについて</p>
+      <li>ご記入していただいた個人情報について、不正アクセス、紛失、漏洩等が発生しないよう管理責任者を定め、個人情報取り扱い規定を整備し、これらの危険に対する安全対策を積極的に実施します。</li>
+      <li>ご記入していただいた個人情報は、ご本人の同意がない限り第三者には提供いたしません。</li>
+      <li>ご記入していただいた個人情報は、法律に基づいた、警察等の行政機関や司法機関からの要請があった場合を除き、第三者には提供いたしません。</li>
+      <li>個人情報の取り扱いの全てもしくはその一部を外部に委託する場合、委託を受けた者に対して適切な監督を実施します。</li>
+    </div>
+  </div>
+  <div class="consul_footer">
+    <div class="smart_info">
+      <img src="{% static 'S__6783020.jpg'%}" alt="">
+    </div>
+    <div class="ohtsuki_info">
+      <img src="{% static 'output.png' %}" alt="">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block e_body %}
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<script type="text/javascript">
+  $(function() {
+    $('#stay').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('#tel').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('#yubin').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('#old').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('.k_more_input').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('.n_more_input').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('.s_more_input').on('blur', function(){
+      var text  = $(this).val();
+      //できるだけ半角にする/[！-～]/g
+      var hen = text.replace(/[！-～]/g,function(s){
+                return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
+                });
+      //要素のvalue属性に変換した hen を入れる。
+      $(this).val(hen);
+    });
+    $('input[name="kinri"]').change(function() {
+      if($('#k_more').is(':checked')) {
+        $(".k_more_input").prop('required', true);
+      }
+      else {
+        $(".k_more_input").prop('required', false);
+      }
+    });
+    $('input[name="zansai"]').change(function() {
+      if($('#s_more').is(':checked')) {
+        $(".s_more_input").prop('required', true);
+      }
+      else {
+        $(".s_more_input").prop('required', false);
+      }
+    });
+    $('input[name="zannen"]').change(function() {
+      if($('#n_more').is(':checked')) {
+        $(".n_more_input").prop('required', true);
+      }
+      else {
+        $(".n_more_input").prop('required', false);
+      }
+    });
+  });
+</script>
+{% endblock %}

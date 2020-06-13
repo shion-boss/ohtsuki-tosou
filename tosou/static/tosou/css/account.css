@@ -1,0 +1,223 @@
+.account_body{
+  width: 100%;
+  padding: 3rem 12.5%;
+}
+.messages_box{
+  padding: 5rem 0 8rem 0;
+}
+
+.messages_box h1{
+  text-align: center;
+}
+
+.messages_box p{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
+.account_grid{
+  display: grid;
+  grid-template-columns: 23vw 23vw 23vw;
+  grid-template-rows: 23vw 23vw 23vw;
+  grid-gap: 3vw;
+}
+
+.account_grid .a_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.account_grid .a_box:hover{
+  /*opacity: 0.7;*/
+}
+.account_grid .a_box:hover .mask{
+  visibility: visible;
+  opacity: 1;
+}
+
+.account_grid .a_box img{
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.account_grid .a_box:hover img{
+  width: 110%;
+  opacity: 0.7;
+}
+
+.mask{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-color: rgba(255,255,255,0.5);*/
+  transition: all 0.3s ease;
+  opacity: 0;
+  border-radius: 10px;
+}
+
+.mask:hover{
+  visibility: visible;
+  opacity: 1;
+}
+
+.p_box{
+  border-radius: 10px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.p h3{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.p h3 span{
+  font-size: 0.8rem;
+}
+
+.p p{
+  font-size: 0.8rem;
+}
+
+.span_d{
+  display:inline-block;
+  line-height: 0.8rem;
+}
+
+.a_under{
+  background-color: #00C300;
+  line-height: 1.5rem;
+  border-radius: 10px;
+  color: white;
+  padding: 0.5rem;
+  margin: 1rem 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.a_under:hover{
+  background-color: #00E000;
+}
+
+.a_under:active{
+  background-color: #00B300;
+}
+
+.complete_body{
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: black;
+  display:none;
+}
+
+
+.complete_box{
+  display: grid;
+  grid-template-columns: 3rem 80vw 3rem;
+}
+
+.complete_box p{
+  grid-column: 1/4;
+  color: white;
+  text-align: center;
+}
+
+.white_box{
+  background-color: white;
+  width:80vw;
+  height: 50vw;
+}
+#flipbook {
+   /* flipbook自体の横幅なので各ページは200px */
+  width:80vw;
+  height: 50vw;
+  background-image: url("/static/S__3883015.jpg");
+  background-repeat:  no-repeat;                         /* 画像の繰り返しを指定  */
+  background-position:center center;                     /* 画像の表示位置を指定  */
+  background-size:contain;                               /* 画像のサイズを指定    */
+}
+
+#flipbook div img{
+  width: 40vw;
+  height: 50vw;
+}
+
+#pagemenu{
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pages{
+  line-height: 2.5rem;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 0 0 10px 10px;
+}
+
+#toLast{
+  border-radius: 10px 0 0 10px;
+}
+
+#toTop {
+  border-radius: 0 10px 10px 0;
+}
+
+.pages:hover{
+  background-color: rgba(255,255,255,0.9);
+}
+
+#manga_check{
+  display: none;
+}
+
+#manga_check:checked+.complete_body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
+
+.batu{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  font-size: 3rem;
+  padding: 1rem;
+  opacity: 0.7;
+}
+
+.batu:hover{
+  opacity: 1;
+}

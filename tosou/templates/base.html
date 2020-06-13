@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6836fb8d63.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'tosou/css/base.css' %}">
+    <link rel="stylesheet" href="/static/tosou/css/account.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <input type="checkbox" name="" value="" id='manga_check'>
+    <div class="complete_body">
+      <label for="manga_check" class='batu'><i class="fas fa-times"></i></label>
+      <div class="complete_box">
+        <p>ページが画面サイズに合っていない場合は再読み込みしてください。</p>
+        <span class='pages' id="toLast">P8</span>
+        <div class="white_box">
+          <div id="flipbook">
+            <div><img src="{% static '00001.jpg'%}" alt=""></div>
+            <div><img src="{% static '00002.jpg'%}" alt=""></div>
+            <div><img src="{% static '00003.jpg'%}" alt=""></div>
+            <div><img src="{% static '00004.jpg'%}" alt=""></div>
+            <div><img src="{% static '00005.jpg'%}" alt=""></div>
+            <div><img src="{% static '00006.jpg'%}" alt=""></div>
+            <div><img src="{% static '00007.jpg'%}" alt=""></div>
+            <div><img src="{% static '00008.jpg'%}" alt=""></div>
+          </div>
+        </div>
+        <span class='pages' id="toTop">P1</span>
+        <div id="pagemenu">
+          <span class='pages' id="toNext">Next</span>
+          <span class='pages' id="toPrev">Prev</span>
+        </div>
+      </div>
+    </div>
+    <header>
+      <div class="header_left">
+        <div class="logo_box">
+          <div class="c_logo">
+            <div class="sume_box">
+              <div class="c_sume">
+                <p>現金負担０円リフォーム</p>
+                <img class='header_sume' src="{% static 'sume.png' %}" alt="">
+              </div>
+            </div>
+            <img class='header_logo' src="{% static 'logo4.png' %}" alt="">
+          </div>
+          <p class='header_p'>確かな技術をスマートにあなたへ｜外壁塗装｜内壁塗装｜遮熱｜GAINA</p>
+        </div>
+      </div>
+    </header>
+    <div class="header_menu">
+      <!--{% if request.path == "/techbee/ranking/" %}id="current"{% endif %}-->
+      <div class="h_box">
+        <a href="{% url 'index' %}" class='a_nav a_nav_a'>TOP</a>
+        <a href="{% url 'mitumori' %}" class='a_nav a_nav_a'>見積依頼</a>
+        <a href="{% url 'consul' %}" class='a_nav a_nav_a'>無料相談</a>
+        <a href="{% url 'catalog' %}" class='a_nav a_nav_a'>紹介特典</a>
+        <a href="{% url 'qa' %}" class='a_nav a_nav_a'>Q&A</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'account' %}" class='a_nav a_nav_a'>000-111</a>
+        {% else%}
+        <a class='a_nav a_nav_a' href="{% url 'line_login' %}">ログイン</a>
+        {% endif %}
+      </div>
+    </div>
+    <a class="tel_box" href="{% url 'contact_line' %}">
+      <img src="{% static 'tel.png' %}" alt="">
+    </a>
+    {% if request.path == "/auth/social/login/cancelled/" %}
+    <h1>あらあらキャンセルしちゃったのかい。。。</h1>
+    {% elif request.path == "/auth/line/login/callback/" %}
+    <h1>おっと？今起きた状況を説明してくれるかい？</h1>
+    {% endif %}
+    {% block body %}{% endblock %}
+    <footer>
+      <div class="footer_grid">
+        <div class="footer_h_box">
+          <div class="footer_l_box">
+            <p class='footer_title'>提携企業</p>
+            <p class='ap' onClick="win3_open()">有限会社大槻塗装工業</p>
+            <p class='ap' onClick="win_open()">スマートリノベーション</p>
+            <p class='ap' onClick="win2_open()">Goodグループ</>
+            <p class='ap'>TechNext</p>
+          </div>
+        </div>
+        <div class="footer_h_box">
+          <div class="footer_l_box">
+            <p class='footer_title'>お役立ちコンテンツ</p>
+            <label for="manga_check" class='ap'>現金負担0円が分かる漫画</label>
+            <a href="{% url 'e_s' %}">簡単シミュレーション</a>
+            <a href="{% url 'qa' %}">よくあるご質問</a>
+          </div>
+        </div>
+        <div class="footer_h_box">
+          <div class="footer_l_box">
+            <p class='footer_title'>お問い合わせ</p>
+            <a href="{% url 'consul' %}">無料相談</a>
+            <a href="{% url 'mitumori' %}">見積依頼</a>
+            <a href="{% url 'contact_line' %}">LINEで連絡</a>
+          </div>
+        </div>
+        <div class="footer_h_box">
+          <div class="footer_l_box">
+            <p class='footer_title'>紹介特典</p>
+            <a href="{% url 'regi' %}">紹介コードをGET</a>
+            <a href="{% url 'catalog' %}">カタログ</a>
+          </div>
+        </div>
+        <div class="footer_h_box">
+          <div class="footer_l_box">
+            <p class='footer_title'>アカウント</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'account' %}">000-000</a>
+            <a href="{% url 'logout' %}">ログアウト</a>
+            {% else %}
+            <a href="{% url 'line_login' %}">ログイン</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <p class='copyright'>Copyright © 有限会社大槻塗装工業 All Rights Reserved.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'tosou/js/turn.js' %}"></script>
+    <script type="text/javascript">
+        $('#flipbook').turn({
+          display: 'double',
+          inclination: 50,
+          direction: "rtl",
+        });
+    </script>
+    <script type="text/javascript">
+        // トップへ移動
+      	$("#toTop").click(function(){
+      		$("#flipbook").turn("page", 1);
+      	})
+      	// 前のページへ移動
+      	$("#toPrev").click(function(){
+      	    $("#flipbook").turn("previous");
+      	});
+      	// 次のページへ移動
+      	$("#toNext").click(function(){
+      	    $("#flipbook").turn("next");
+      	});
+      	// 最後のページへ移動
+      	$("#toLast").click(function(){
+      		$("#flipbook").turn("page", 8);
+      	})
+    </script>
+    <script type="text/javascript">
+      function win_open() {
+      	window.open("https://smart-renovation.jp/","","width=500,height=500");
+      }
+    </script>
+    <script type="text/javascript">
+      function win2_open() {
+      	window.open("https://www.good-group.co.jp/","","width=500,height=500");
+      }
+    </script>
+    <script type="text/javascript">
+      function win3_open() {
+      	window.open("https://www.ohtsuki-tosou.co.jp/","","width=500,height=500");
+      }
+    </script>
+    {% block e_body %}{% endblock %}
+  </body>
+</html>
