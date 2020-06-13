@@ -15,17 +15,14 @@ from linebot.exceptions import LineBotApiError
 from django.http import HttpResponse
 
 def callback_view(request):
+    line_bot_api = LineBotApi('52+twonMXh6ueH20i0f0J0mIYNom107nAwJnXiZyB4DwwSvN/NwKN6JiEn+kECPjHZHZeZqyFmLNwwb4GbjoIs10FaT0PXQnWvU6ic35ua33q1F984zYr+hy8imDUy67Gjjk58+YEmbNz7wqEI5uywdB04t89/1O/w1cDnyilFU=')
     if request.method == 'POST':
         request_json = json.loads(request.body.decode('utf-8'))
         events = request_json['events']
         line_user_id = events[0]['source']['userId']
 
-        # チャネル設定のWeb hook接続確認時にはここ。このIDで見に来る。
-        if line_user_id == 'Udeadbeefdeadbeefdeadbeefdeadbeef':
-            pass
-
         # 友達追加時
-        elif events[0]['type'] == 'follow':
+        if events[0]['type'] == 'follow':
             profile = line_bot_api.get_profile(line_user_id)
             LinePush.objects.create(user_id=line_user_id, display_name=profile.display_name)
             line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
