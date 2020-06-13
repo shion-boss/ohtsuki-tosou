@@ -24,15 +24,28 @@ handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
 @csrf_exempt
 def callback_view(request):
-    return HttpResponse('OK', status=200)
+    # リクエストヘッダーから署名検証のための値を取得
+    signature = request.META['HTTP_X_LINE_SIGNATURE']
+    # リクエストボディを取得
+    body = request.body.decode('utf-8')
+    try:
+        # 署名の検証を行い、成功した場合にhandleされたメソッドを呼び出す
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        # 署名検証で失敗したときは例外をあげる
+        return HttpResponseForbidden()
+    # handleの処理を終えればOK
+    return HttpResponse('OK')
 
-    #signature = request.META['HTTP_X_LINE_SIGNATURE']
-    #body = request.body.decode('utf-8')
-    #try:
-    #    handler.handle(body, signature)
-    #except InvalidSignatureError:
-    #    HttpResponseForbidden()
-    #return HttpResponse('OK', status=200)
+
+# メッセージイベントの場合の処理
+@handler.add(MessageEvent, message=TextMessage)
+def handle_text_message(event):
+    # メッセージでもテキストの場合はオウム返しする
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text)
+    )
 
 
 # オウム返し
