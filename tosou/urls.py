@@ -23,5 +23,6 @@ urlpatterns = [
     path('renovation/',views.renovation_view,name='renovation'),
     path('QandA/',views.qa_view,name='qa'),
     path('catalog/',views.catalog_view,name='catalog'),
-    path('line/',views.line_view,name='contact_line')
+    path('line/',views.line_view,name='contact_line'),
+    path('callback/',views.callback_view,name='callback'),
 ]

@@ -9,6 +9,39 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from .models import customer_voice_model,user_meta,qa_model,catalog_model
 import os
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
+from linebot.exceptions import LineBotApiError
+from django.http import HttpResponse
+
+def callback_view(request):
+    if request.method == 'POST':
+        request_json = json.loads(request.body.decode('utf-8'))
+        events = request_json['events']
+        line_user_id = events[0]['source']['userId']
+
+        # チャネル設定のWeb hook接続確認時にはここ。このIDで見に来る。
+        if line_user_id == 'Udeadbeefdeadbeefdeadbeefdeadbeef':
+            pass
+
+        # 友達追加時
+        elif events[0]['type'] == 'follow':
+            profile = line_bot_api.get_profile(line_user_id)
+            LinePush.objects.create(user_id=line_user_id, display_name=profile.display_name)
+            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+
+        # アカウントがブロックされたとき
+        elif events[0]['type'] == 'unfollow':
+            LinePush.objects.filter(user_id=line_user_id).delete()
+
+        # メッセージ受信時
+        elif events[0]['type'] == 'message':
+            text = request_json['events'][0]['message']['text']
+            line_push = get_object_or_404(LinePush, user_id=line_user_id)
+            LineMessage.objects.create(push=line_push, text=text, is_admin=False)
+            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+    return HttpResponse()
+
 
 # Create your views here.
 def login_view(request):
