@@ -14,9 +14,12 @@ from linebot.models import TextSendMessage
 from linebot.exceptions import LineBotApiError
 from django.http import HttpResponse
 
+
 def callback_view(request):
     line_bot_api = LineBotApi('52+twonMXh6ueH20i0f0J0mIYNom107nAwJnXiZyB4DwwSvN/NwKN6JiEn+kECPjHZHZeZqyFmLNwwb4GbjoIs10FaT0PXQnWvU6ic35ua33q1F984zYr+hy8imDUy67Gjjk58+YEmbNz7wqEI5uywdB04t89/1O/w1cDnyilFU=')
     if request.method == 'POST':
+
+        signature = base64.b64encode(hash)
         request_json = json.loads(request.body.decode('utf-8'))
         events = request_json['events']
         line_user_id = events[0]['source']['userId']
@@ -24,20 +27,17 @@ def callback_view(request):
         # 友達追加時
         if events[0]['type'] == 'follow':
             profile = line_bot_api.get_profile(line_user_id)
-            LinePush.objects.create(user_id=line_user_id, display_name=profile.display_name)
             line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
 
         # アカウントがブロックされたとき
         elif events[0]['type'] == 'unfollow':
-            LinePush.objects.filter(user_id=line_user_id).delete()
+            pass
 
         # メッセージ受信時
         elif events[0]['type'] == 'message':
             text = request_json['events'][0]['message']['text']
-            line_push = get_object_or_404(LinePush, user_id=line_user_id)
-            LineMessage.objects.create(push=line_push, text=text, is_admin=False)
             line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
-    return HttpResponse()
+    return HttpResponse("ok")
 
 
 # Create your views here.
