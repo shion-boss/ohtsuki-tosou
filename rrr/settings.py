@@ -221,7 +221,7 @@ if not DEBUG:
         'API_SECRET': os.environ['C_API_SECRET'],
     }
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -234,6 +234,8 @@ DATABASES['default'].update(db_from_env)
 
 #####heroku#####
 if not DEBUG:
+    YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+    YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
     SECRET_KEY = os.environ['SECRET_KEY']
     import django_heroku #追加
     django_heroku.settings(locals()) #追加
