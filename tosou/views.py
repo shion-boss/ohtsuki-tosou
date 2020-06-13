@@ -22,7 +22,7 @@ from django.conf import settings
 line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
-#@csrf_exempt
+@csrf_exempt
 def callback_view(request):
     return HttpResponse('OK', status=200)
 
