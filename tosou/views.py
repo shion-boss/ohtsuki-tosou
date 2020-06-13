@@ -24,13 +24,15 @@ handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
 #@csrf_exempt
 def callback_view(request):
-    signature = request.META['HTTP_X_LINE_SIGNATURE']
-    body = request.body.decode('utf-8')
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        HttpResponseForbidden()
     return HttpResponse('OK', status=200)
+
+    #signature = request.META['HTTP_X_LINE_SIGNATURE']
+    #body = request.body.decode('utf-8')
+    #try:
+    #    handler.handle(body, signature)
+    #except InvalidSignatureError:
+    #    HttpResponseForbidden()
+    #return HttpResponse('OK', status=200)
 
 
 # オウム返し
