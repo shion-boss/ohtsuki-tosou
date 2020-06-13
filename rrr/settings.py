@@ -70,7 +70,7 @@ INSTALLED_APPS = [
 #    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 #    'social_django.middleware.SocialAuthExceptionMiddleware',
 #    'django.contrib.sites.middleware.CurrentSiteMiddleware',
-]
+#]
 #####heroku#####
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
