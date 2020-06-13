@@ -18,8 +18,6 @@ from django.http import HttpResponse
 def callback_view(request):
     line_bot_api = LineBotApi('52+twonMXh6ueH20i0f0J0mIYNom107nAwJnXiZyB4DwwSvN/NwKN6JiEn+kECPjHZHZeZqyFmLNwwb4GbjoIs10FaT0PXQnWvU6ic35ua33q1F984zYr+hy8imDUy67Gjjk58+YEmbNz7wqEI5uywdB04t89/1O/w1cDnyilFU=')
     if request.method == 'POST':
-
-        signature = base64.b64encode(hash)
         request_json = json.loads(request.body.decode('utf-8'))
         events = request_json['events']
         line_user_id = events[0]['source']['userId']
