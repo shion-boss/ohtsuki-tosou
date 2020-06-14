@@ -74,16 +74,16 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
-                if event.type =="follow":
-                    try:
-                        line_bot_api.reply_message(
-                            event.replyToken,
-                            TextSendMessage(text='Hello World!')
-                        )
-                    except LineBotApiError as e:
-                        print(e.status_code)
-                        print(e.error.message)
-                        print(e.error.details)
+            if event.type =="follow":
+                try:
+                    line_bot_api.reply_message(
+                        event.replyToken,
+                        TextSendMessage(text='Hello World!')
+                    )
+                except LineBotApiError as e:
+                    print(e.status_code)
+                    print(e.error.message)
+                    print(e.error.details)
 
 
         return HttpResponse()
