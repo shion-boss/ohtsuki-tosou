@@ -214,13 +214,7 @@ except ImportError:
     pass
 #####heroku#####
 
-if not DEBUG:
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': os.environ['CLOUD_NAME'],
-        'API_KEY': os.environ['C_API_KEY'],
-        'API_SECRET': os.environ['C_API_SECRET'],
-    }
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -243,3 +237,11 @@ if not DEBUG:
     django_heroku.settings(locals()) #追加
 
 #####heroku#####
+
+if not DEBUG:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ['CLOUD_NAME'],
+        'API_KEY': os.environ['C_API_KEY'],
+        'API_SECRET': os.environ['C_API_SECRET'],
+    }
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
