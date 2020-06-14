@@ -54,7 +54,7 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
-        request_json = json.loads(request.body.decode('utf-8'))
+        request_json = json.loads(request.body)
         events = request_json['events']
         line_user_id = events[0]['source']['userId']
 
