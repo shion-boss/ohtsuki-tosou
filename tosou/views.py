@@ -486,7 +486,7 @@ def email_view(request):
         else:
             nensyu='400万円未満'
 
-        
+
         email_msg=("スマートリノベーション様\n"
             "加盟店の有限会社大槻塗装工業です。\n"
             "お世話になっております。\n"
@@ -538,7 +538,7 @@ def email_view(request):
             "HP  https://www.ohtsuki-tosou.co.jp/\n"
             "URL https://ohtsuki-tosou.herokuapp.com/smart/index/\n"
             "=============================\n"
-
+        )
 
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
         smtpobj.ehlo()
