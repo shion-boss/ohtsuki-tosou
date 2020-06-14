@@ -62,7 +62,19 @@ def callback_view(request):
             return HttpResponseBadRequest()
 
         for event in events:
-            if event.type =="message":
+            if isinstance(event, MessageEvent):
+                if isinstance(event.message, TextMessage):
+                    try:
+                        line_bot_api.reply_message(
+                            event.reply_token,
+                            TextSendMessage(text=event)
+                        )
+                    except LineBotApiError as e:
+                        print(e.status_code)
+                        print(e.error.message)
+                        print(e.error.details)
+
+            if event.type =="follow":
                 try:
                     line_bot_api.reply_message(
                         event.replyToken,
@@ -72,17 +84,6 @@ def callback_view(request):
                     print(e.status_code)
                     print(e.error.message)
                     print(e.error.details)
-            if isinstance(event, MessageEvent):
-                if isinstance(event.message, TextMessage):
-                    try:
-                        line_bot_api.reply_message(
-                            event.reply_token,
-                            TextSendMessage(text=event.message.text)
-                        )
-                    except LineBotApiError as e:
-                        print(e.status_code)
-                        print(e.error.message)
-                        print(e.error.details)
 
 
 
