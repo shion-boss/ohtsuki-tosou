@@ -53,6 +53,25 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
+        request_json = json.loads(request.body.decode('utf-8'))
+        events = request_json['events']
+        line_user_id = events[0]['source']['userId']
+
+        # 友達追加時
+        if events[0]['type'] == 'follow':
+            profile = line_bot_api.get_profile(line_user_id)
+            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+
+        # アカウントがブロックされたとき
+        elif events[0]['type'] == 'unfollow':
+            pass
+
+        # メッセージ受信時
+        elif events[0]['type'] == 'message':
+            text = request_json['events'][0]['message']['text']
+            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+        return HttpResponse("ok")
+
         return HttpResponse()
     else:
         return HttpResponseBadRequest()
