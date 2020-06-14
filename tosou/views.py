@@ -69,16 +69,11 @@ def callback_view(request):
                             event.reply_token,
                             TextSendMessage(text=event.message.text)
                         )
+                        line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
                     except LineBotApiError as e:
                         print(e.status_code)
                         print(e.error.message)
                         print(e.error.details)
-
-            if event['type'] == 'message':
-                line_user_id = event['source']['userId']
-                text = event['message']['text']
-                line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
-
 
 
         return HttpResponse()
