@@ -70,18 +70,9 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
+        return HttpResponse()
     else:
         return HttpResponseBadRequest()
-
-
-# メッセージイベントの場合の処理
-@handler.add(MessageEvent, message=TextMessage)
-def handle_text_message(event):
-    # メッセージでもテキストの場合はオウム返しする
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text)
-    )
 
 
 def callback(request):
