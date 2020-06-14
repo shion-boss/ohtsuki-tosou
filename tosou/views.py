@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from .models import customer_voice_model,user_meta,qa_model,catalog_model
 import os
-
+from allauth.socialaccount.models import SocialAccount
 from linebot import LineBotApi, WebhookHandler,WebhookParser
 from linebot.exceptions import InvalidSignatureError,LineBotApiError
 from linebot.models import MessageEvent,TextMessage,TextSendMessage
@@ -141,7 +141,7 @@ def index_view(request):
     if settings.DEBUG==False:
         if request.user.is_authenticated:
             try:
-                social_account=SocialAccount.objects.get(user=request.user).extra_data
+                social_account=SocialAccount.objects.get(user=request.user)
             except:
                 pass
         line_bot_api.push_message(social_account.uid, TextSendMessage(text='Hello World!'))
