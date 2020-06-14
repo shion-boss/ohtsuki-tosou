@@ -27,8 +27,9 @@ parser = WebhookParser(settings.YOUR_CHANNEL_SECRET)
 #    text = request_json['events'][0]['message']['text']
 #    line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
 
+#callback_view
 @csrf_exempt
-def callback_view(request):
+def callback(request):
     if request.method == 'POST':
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
@@ -79,29 +80,30 @@ def callback_view(request):
     else:
         return HttpResponseBadRequest()
 
-
-def callback(request):
-
+@csrf_exempt
+def callback_view(request):
     if request.method == 'POST':
         request_json = json.loads(request.body.decode('utf-8'))
         events = request_json['events']
         line_user_id = events[0]['source']['userId']
 
-        # 友達追加時
-        if events[0]['type'] == 'follow':
-            profile = line_bot_api.get_profile(line_user_id)
-            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+        # チャネル設定のWeb hook接続確認時にはここ。このIDで見に来る。
+        if line_user_id == 'Udeadbeefdeadbeefdeadbeefdeadbeef':
+            pass
+
+        # 友達追加時・ブロック解除時
+        elif events[0]['type'] == 'follow':
+            try:
+                message_table_model.objects.get(title=line_user_id)
+            except:
+                message_table_model.objects.create(title=line_user_id)
 
         # アカウントがブロックされたとき
         elif events[0]['type'] == 'unfollow':
-            pass
+            line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text='Hello World!'))
 
-        # メッセージ受信時
-        elif events[0]['type'] == 'message':
-            text = request_json['events'][0]['message']['text']
-            line_bot_api.push_message('U3ef4b863f370e1971bbc243ddc9d861c', TextSendMessage(text='Hello World!'))
 
-    return HttpResponse("ok")
+    return HttpResponse()
 
 
 # Create your views here.
