@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <section class="voice-sec">
+      <div class="voice-wrapper">
+        <div class="voice-box">
+
+          <div class="voice-card">
+            <img src="img/img-human001.svg" alt="">
+            <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.2s" src="img/voice-message.svg" alt="">
+          </div>
+
+          <div class="voice-card">
+            <img src="img/img-human-002.svg" alt="">
+            <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.3s" src="img/voice-right.svg" alt="">
+          </div>
+
+          <div class="voice-card">
+            <img src="img/img-human2.png" alt="">
+            <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.4s" src="img/voice-message.svg" alt="">
+          </div>
+
+          <div class="voice-card">
+            <img src="img/img-human3.png" alt="">
+            <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.5s" src="img/voice-right.svg" alt="">
+          </div>
+
+          <div class="voice-card">
+            <img src="img/img-human4.png" alt="">
+            <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.6s" src="img/voice-message.svg" alt="">
+          </div>
+
+        </div>
+
+        <div class="voice-toggle">
+          <div class="voice-scard">
+            <div class="voice-prof">
+              <img src="img/account-blue.png" alt="">
+
+            </div>
+            <div class="voice-desc">
+              <p>子供が小学校に上がる事もありこれからの出費を考えると、
+                塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+                相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+            </div>
+          </div>
+          <button id="more-btn" type="button" name="button">もっと見る</button>
+        </div>
+
+        <div id="voice-box" class="voice-sbox">
+
+          <div class="voice-scard">
+            <div class="voice-prof">
+              <img src="img/account-blue.png" alt="">
+
+            </div>
+            <div class="voice-desc">
+              <p>子供が小学校に上がる事もありこれからの出費を考えると、
+                塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+                相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+            </div>
+          </div>
+
+          <div class="voice-scard">
+            <div class="voice-prof">
+              <img src="img/account-yellow.png" alt="">
+
+            </div>
+            <div class="voice-desc">
+              <p>子供が小学校に上がる事もありこれからの出費を考えると、
+                塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+                相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+            </div>
+          </div>
+
+          <div class="voice-scard">
+            <div class="voice-prof">
+              <img src="img/account-pink.png" alt="">
+
+            </div>
+            <div class="voice-desc">
+              <p>子供が小学校に上がる事もありこれからの出費を考えると、
+                塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+                相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+            </div>
+          </div>
+
+          <div class="voice-scard">
+            <div class="voice-prof">
+              <img src="img/account-green.png" alt="">
+
+            </div>
+            <div class="voice-desc">
+              <p>子供が小学校に上がる事もありこれからの出費を考えると、
+                塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+                相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+            </div>
+          </div>
+
+          <div class="voice-scard">
+            <div class="voice-prof">
+              <img src="img/account-orange.png" alt="">
+
+            </div>
+            <div class="voice-desc">
+              <p>子供が小学校に上がる事もありこれからの出費を考えると、
+                塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+                相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/scrolla.jquery.min.js"></script>
+    <script type="text/javascript">
+    $('.animate').scrolla({
+          mobile: true,
+          once: false
+          });
+      $(function() {
+        $('#more-btn').click(function() {
+          $('#voice-box').toggleClass('visible');
+          $('.voice-toggle').toggleClass('hidden');
+        });
+      });
+
+    </script>
+  </body>
+</html>

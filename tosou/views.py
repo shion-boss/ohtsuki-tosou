@@ -23,6 +23,7 @@ line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 parser = WebhookParser(settings.YOUR_CHANNEL_SECRET)
 
+
 #line_user_id = events[0]['source']['userId']
 #if events[0]['type'] == 'message':
 #    text = request_json['events'][0]['message']['text']
@@ -422,6 +423,7 @@ def a_easy_view(request):
 def consul_form_view(request):
     return render(request,'tosou/consul.html')
 
+#無料相談
 def email_view(request):
     if request.method=='POST':
         afi=request.POST['afi']
@@ -483,20 +485,65 @@ def email_view(request):
         else:
             nensyu='400万円未満'
 
-        email_msg=hurigana+'\n'+name+'\n'+str(old)+'歳\n'+str(yubin)+'\n'+stay+'\n電話番号'+tel+'\n'+'メールアドレス'+email+'\n'+'第一希望:'+str(one_day)+'\n'+one+'\n第二希望:'+str(two_day)+'\n'+two+'\n'+'現行金利'+k_more+'\n残債額'+s_more+'\n残年数'+n_more+'\n年収'+nensyu
+        email_msg=("スマートリノベーション様\n"
+            "加盟店の有限会社大槻塗装工業です。\n"
+            "お世話になっております。\n"
+            "お客様より無料相談のお問い合わせがありました。\n"
+            "\n"
+            "▽お問い合わせ内容\n"
+            "==========================================\n"
+            "\n"
+            "【おなまえ】\n"
+            "【お名前】\n"
+            "【ご年齢】\n"
+            "【郵便番号】\n"
+            "【ご住所】\n"
+            "【メールアドレス】\n"
+            "【お電話番号】\n"
+            "【連絡希望日時】\n"
+            "<第一希望>\n"
+            "<第二希望>\n"
+            "【現行金利】\n"
+            "【残債額】\n"
+            "【残年数】\n"
+            "【残年数】\n"
+            "【年収】\n"
+            "\n"
+            "==========================================\n"
+            "\n"
+            "このメールはお客様が大槻塗装工業のホームページから"
+            "送信したものを自動でお送りしています。\n"
+            "お客様にご連絡する際は、お問い合わせ内容に記載してある"
+            "メールアドレスまたは電話番号をご利用ください。\n"
+            "==========================================\n"
+            "\n"
+            "有限会社大槻塗装工業\n"
+            "〒238-0032 神奈川県横須賀市平作2-20-2\n"
+            "Tel 090-2564-5015\n"
+            "email info@\n"
+            "\n"
+            "\n"
+            "\n"
+
+
+
+            )
+
+
+        hurigana+'\n'+name+'\n'+str(old)+'歳\n'+str(yubin)+'\n'+stay+'\n電話番号'+tel+'\n'+'メールアドレス'+email+'\n'+'第一希望:'+str(one_day)+'\n'+one+'\n第二希望:'+str(two_day)+'\n'+two+'\n'+'現行金利'+k_more+'\n残債額'+s_more+'\n残年数'+n_more+'\n年収'+nensyu
 
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
         smtpobj.ehlo()
         smtpobj.starttls()
         smtpobj.ehlo()
-        smtpobj.login(os.environ['mymail'], os.environ['mymailpass'])
+        smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
         msg = MIMEText(email_msg)
 
         msg['Subject'] = 'subject'
-        msg['From'] = os.environ['mymail']
-        msg['To'] = 'keito3261998@gmail.com'
+        msg['From'] = settings.MYMAIL
+        msg['To'] = email
         msg['Date'] = formatdate()
-        smtpobj.sendmail(os.environ['mymail'], 'keito3261998@gmail.com', msg.as_string())
+        smtpobj.sendmail(settings.MYMAIL, email, msg.as_string())
         smtpobj.close()
 
 
@@ -541,7 +588,7 @@ def catalog_view(request):
     }
     return render(request,'tosou/catalog.html',params)
 
-
+#見積依頼
 def m_form_view(request):
     if request.method=='POST':
         hurigana=request.POST['hurigana']
@@ -578,14 +625,14 @@ def m_form_view(request):
         smtpobj.ehlo()
         smtpobj.starttls()
         smtpobj.ehlo()
-        smtpobj.login(os.environ['mymail'], os.environ['mymailpass'])
+        smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
         msg = MIMEText(email_msg)
 
         msg['Subject'] = 'subject'
-        msg['From'] = 'sss.tl.ges.sss@gmail.com'
-        msg['To'] = 'keito3261998@gmail.com'
+        msg['From'] = settings.MYMAIL
+        msg['To'] = email
         msg['Date'] = formatdate()
-        smtpobj.sendmail(os.environ['mymail'], 'keito3261998@gmail.com', msg.as_string())
+        smtpobj.sendmail(settings.MYMAIL, email, msg.as_string())
         smtpobj.close()
 
         return redirect('good')

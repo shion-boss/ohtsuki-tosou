@@ -234,6 +234,8 @@ DATABASES['default'].update(db_from_env)
 
 #####heroku#####
 if not DEBUG:
+    MYMAILPASS=os.environ['mymailpass']
+    MYMAIL=os.environ['mymail']
     YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
     YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
     SECRET_KEY = os.environ['SECRET_KEY']

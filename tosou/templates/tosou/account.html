@@ -2,27 +2,33 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="/static/tosou/css/account.css">
+<link rel="stylesheet" href="/static/tosou/css/style2.css">
 {% endblock %}
 
 {% block body %}
 <div class="account_body">
-  <div class="messages_box">
-    {% if request.path == "/smart/account/" %}
-    {% if line_regi %}
-    <h1>あなたの紹介コードは、{{afi_code}}です。</h1>
-    <p>紹介特典のご連絡はLINEで行います。</p>
-    {% else %}
-    <h1>公式LINEの友達追加が完了していません。</h1>
-    <p>紹介特典のご連絡はLINEで行うため、公式LINEを友達追加していただく必要があります。</p>
-    <a href="{% url 'line_login' %}" class='a_under'>公式LINEの友達追加はこちら</a>
-    {% endif %}
-    {% elif request.path == "/smart/complete/"%}
-    <h1>お疲れ様です！無料相談シートの送信が完了しました。</h1>
-    <p>担当の者からの連絡をお待ちください。</p>
-    {% else %}
-    <h1>お疲れ様です！無料相談シートの送信が完了しました。</h1>
-    <p>担当の者からの連絡をお待ちください。</p>
-    {% endif %}
+  <div class="video-wrap">
+    <video src="static/01.mp4" autoplay muted loop></video>
+    <div class="video-bg"></div>
+  </div>
+
+  <div class="mv">
+    <div class="video-desc">
+      {% if request.path == "/smart/account/" %}
+      {% if line_regi %}
+      <p>あなたの紹介コードは、{{afi_code}}です。<br><span>紹介特典のご連絡はLINEで行います。</span></p>
+      {% else %}
+      <p>公式LINEの友達追加が完了していません。<br>紹介特典のご連絡はLINEで行うため、公式LINEを友達追加していただく必要があります。<br><span><a href="{% url 'line_login' %}" class='a_under'>公式LINEの友達追加はこちら</a></span></p>
+      {% endif %}
+      {% elif request.path == "/smart/complete/"%}
+      <p>お疲れ様です！<br>無料相談シートの送信が完了しました。<br><span>担当の者からの連絡をお待ちください。</span></p>
+      {% else %}
+      <p>お疲れ様です！<br>見積依頼の送信が完了しました。<br><span>担当の者からの連絡をお待ちください。</span></p>
+      {% endif %}
+    </div>
+
+
+    <canvas class="background"></canvas>
   </div>
   <h2>おすすめのトピック</h2>
   <div class="account_grid">
@@ -132,4 +138,43 @@
 
 
 {% block e_body %}
+<script src="  https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+Particles.init({
+selector: '.background',
+sizeVariations: 80,
+color: [
+  'rgba(0,187,221,.7)', 'rgba(0,187,221,.4)', 'rgba(255,114,52,.4)', 'rgba(255,114,52,.7)'
+],
+responsive: [
+
+{
+breakpoint: 1024,
+options: {
+  sizeVariations: 50,
+  maxParticles: 120,
+}
+},{
+breakpoint: 768,
+options: {
+  maxParticles: 100,
+}
+}, {
+breakpoint: 425,
+options: {
+  sizeVariations: 20,
+  maxParticles: 80,
+}
+}, {
+breakpoint: 320,
+options: {
+  maxParticles: 50
+}
+}
+]
+
+});
+};
+</script>
 {% endblock %}

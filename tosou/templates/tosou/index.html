@@ -3,29 +3,135 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="/static/tosou/css/index.css">
+<link rel="stylesheet" href="/static/tosou/css/style.css">
 {% endblock %}
 {% block body %}
 <div class="main_img">
   <img src="{% static 'S__6742019.jpg' %}" alt="">
 </div>
-<div class="customer_voice_box">
-  <h1>お客様の声</h1>
-  <div class="scloll_box">
-    {% for c in ccc %}
-    {% if forloop.counter|two == 0 %}
-    <div class="customer_voice c_right">
-      <p>{{c.voice}}</p>
-      <img src={{c.img.url}} alt="">
+<section class="voice-sec">
+  <div class="voice-wrapper">
+    <div class="voice-box">
+
+      <div class="voice-card">
+        <img src="/static/img-human001.svg" alt="">
+        <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.2s" src="/static/voice-message.svg" alt="">
+      </div>
+
+      <div class="voice-card">
+        <img src="/static/img-human-002.svg" alt="">
+        <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.3s" src="/static/voice-right.svg" alt="">
+      </div>
+
+      <div class="voice-card">
+        <img src="/static/img-human2.png" alt="">
+        <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.4s" src="/static/voice-message.svg" alt="">
+      </div>
+
+      <div class="voice-card">
+        <img src="/static/img-human3.png" alt="">
+        <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.5s" src="/static/voice-right.svg" alt="">
+      </div>
+
+      <div class="voice-card">
+        <img src="/static/img-human4.png" alt="">
+        <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.6s" src="/static/voice-message.svg" alt="">
+      </div>
+
     </div>
-    {% else %}
-    <div class="customer_voice c_left">
-      <img src="{{c.img.url}}" alt="">
-      <p>{{c.voice}}</p>
+
+    <div class="voice-toggle">
+      <div class="voice-scard">
+        <div class="voice-prof">
+          <img src="/static/account-blue.png" alt="">
+
+        </div>
+        <div class="voice-desc">
+          <p>子供が小学校に上がる事もありこれからの出費を考えると、
+            塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+            相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+        </div>
+      </div>
+      <button id="more-btn" type="button" name="button">もっと見る</button>
     </div>
-    {% endif %}
-    {% endfor %}
+
+    <div id="voice-box" class="voice-sbox">
+      <div class="voice-scard">
+        <div class="voice-prof">
+          <img src="/static/account-blue.png" alt="">
+
+        </div>
+        <div class="voice-desc">
+          <p>子供が小学校に上がる事もありこれからの出費を考えると、
+            塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+            相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+        </div>
+      </div>
+
+      <div class="voice-scard">
+        <div class="voice-prof">
+          <img src="/static/account-yellow.png" alt="">
+
+        </div>
+        <div class="voice-desc">
+          <p>子供が小学校に上がる事もありこれからの出費を考えると、
+            塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+            相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+        </div>
+      </div>
+
+      <div class="voice-scard">
+        <div class="voice-prof">
+          <img src="/static/account-pink.png" alt="">
+
+        </div>
+        <div class="voice-desc">
+          <p>子供が小学校に上がる事もありこれからの出費を考えると、
+            塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+            相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+        </div>
+      </div>
+
+      <div class="voice-scard">
+        <div class="voice-prof">
+          <img src="/static/account-green.png" alt="">
+
+        </div>
+        <div class="voice-desc">
+          <p>子供が小学校に上がる事もありこれからの出費を考えると、
+            塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+            相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+        </div>
+      </div>
+
+      <div class="voice-scard">
+        <div class="voice-prof">
+          <img src="/static/account-orange.png" alt="">
+
+        </div>
+        <div class="voice-desc">
+          <p>子供が小学校に上がる事もありこれからの出費を考えると、
+            塗り替えどころでは無かったのですが、現金負担０円でできると言う事もあり
+            相談してみました。それに加え毎月の支払いも減ったのでとても助かりました！</p>
+        </div>
+      </div>
+      {% for c in ccc %}
+      <div class="voice-scard">
+        <div class="voice-prof">
+          <img src="{{c.img.url}}" alt="">
+
+        </div>
+        <div class="voice-desc">
+          <p>{{c.voice}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
-</div>
+
+
+</section>
+
 <form class="check_form" action="{% url 'check' %}" method="post">
   {% csrf_token %}
   <h1>あなたにも現金負担0円塗装のチャンス！</h1>
@@ -75,4 +181,23 @@
     </div>
   </div>
 </div>
+{% endblock %}
+
+
+{% block e_body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/static/js/scrolla.jquery.min.js"></script>
+<script type="text/javascript">
+$('.animate').scrolla({
+      mobile: true,
+      once: false
+      });
+  $(function() {
+    $('#more-btn').click(function() {
+      $('#voice-box').toggleClass('visible');
+      $('.voice-toggle').toggleClass('hidden');
+    });
+  });
+
+</script>
 {% endblock %}
