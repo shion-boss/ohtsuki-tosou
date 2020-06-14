@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model,account_meta
+from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model,account_meta,code_model
 import os
 from allauth.socialaccount.models import SocialAccount
 from linebot import LineBotApi, WebhookHandler,WebhookParser
@@ -100,7 +100,7 @@ def callback_view(request):
             if SocialAccount.objects.filter(uid=line_user_id).exists():
                 account=SocialAccount.objects.get(uid=line_user_id)
                 try:
-                    user_meta.objects.get(user=account.user)
+                    user_meta.objects.get(uid=line_user_id)
                 except:
                     #サイトからのユーザー登録
                     try:
@@ -115,9 +115,11 @@ def callback_view(request):
                         top=profile['pictureUrl']
                     except:
                         top=''
-                    user=User.objects.get(user=account.user)
-                    afi_code='{:0=6}'.format(int(user.id))
-                    meta=user_meta(user=user,username=name,top=top,afi_code=afi_code,uid=line_user_id)
+                    code=code_model.objects.get(option=0)
+                    afi_code='{:0=6}'.format(int(code.num))
+                    code+=1
+                    code.save()
+                    meta=user_meta(username=name,top=top,afi_code=afi_code,uid=line_user_id)
                     meta.save()
                 else:
                     #ブロック解除のユーザー
@@ -128,13 +130,19 @@ def callback_view(request):
                     profile = line_bot_api.get_profile(line_user_id)
                 except:
                     pass
-                else:
+                try:
                     name=profile['displayName']
+                except:
+                    name=line_user_id
+                try:
                     top=profile['pictureUrl']
-                user=User(username=name)
-                user.save()
-                afi_code='{:0=6}'.format(int(user.id))
-                meta=user_meta(user=user,username=name,top=top,afi_code=afi_code,uid=line_user_id)
+                except:
+                    top=''
+                code=code_model.objects.get(option=0)
+                afi_code='{:0=6}'.format(int(code.num))
+                code+=1
+                code.save()
+                meta=user_meta(username=str(name),top=top,afi_code=int(afi_code),uid=str(line_user_id))
                 meta.save()
 
             welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典のプレゼント企画を行うことにしました。\n'+name+'様限定の紹介コードが「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。'
@@ -164,10 +172,12 @@ def index_view(request):
             except:
                 pass
             line_bot_api.push_message(str(social_account.uid), TextSendMessage(text='Hello World!'))
-    social_account=SocialAccount.objects.get(user=request.user)
+            social_account=SocialAccount.objects.get(user=request.user)
+    user=request.user
+    a='{:0=6}'.format(int(user.id))
     cv=customer_voice_model.objects.all()
     params={
-        'uid':social_account.uid,
+        'uid':a,
         'ccc':cv,
     }
     return render(request,'tosou/index.html',params)

@@ -13,7 +13,6 @@ class customer_voice_model(models.Model):
     voice=models.TextField(max_length=140)
 
 class user_meta(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
     top=models.CharField(max_length=500,blank=True,null=True)
     username=models.CharField(max_length=500,blank=True,null=True)
     afi_code=models.IntegerField(default=000000)
@@ -58,3 +57,7 @@ class message_user_model(models.Model):
 
     def __str__(self):
         return self.message
+
+class code_model(models.Model):
+    option=models.IntegerField(default=0)
+    num=models.IntegerField(default=10000)
