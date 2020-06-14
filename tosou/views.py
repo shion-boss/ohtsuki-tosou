@@ -493,21 +493,33 @@ def email_view(request):
             "▽お問い合わせ内容\n"
             "==========================================\n"
             "\n"
-            "【おなまえ】\n"
-            "【お名前】\n"
-            "【ご年齢】\n"
-            "【郵便番号】\n"
-            "【ご住所】\n"
-            "【メールアドレス】\n"
-            "【お電話番号】\n"
-            "【連絡希望日時】\n"
+            "\n【おなまえ】\n"
+            str(hurigana)
+            "\n【お名前】\n"
+            str(name)
+            "\n【ご年齢】\n"
+            str(old)'歳'
+            "\n【郵便番号】\n"
+            str(yubin)
+            "\n【ご住所】\n"
+            str(stay)
+            "\n【メールアドレス】\n"
+            str(email)
+            "\n【お電話番号】\n"
+            str(tel)
+            "\n【連絡希望日時】\n"
             "<第一希望>\n"
+            str(one_day)str(one)
             "<第二希望>\n"
-            "【現行金利】\n"
-            "【残債額】\n"
-            "【残年数】\n"
-            "【残年数】\n"
-            "【年収】\n"
+            str(two_day)str(two)
+            "\n【現行金利】\n"
+            str(k_more)
+            "\n【残債額】\n"
+            str(s_more)
+            "\n【残年数】\n"
+            str(n_more)
+            "\n【年収】\n"
+            str(nensyu)
             "\n"
             "==========================================\n"
             "\n"
@@ -520,18 +532,12 @@ def email_view(request):
             "有限会社大槻塗装工業\n"
             "〒238-0032 神奈川県横須賀市平作2-20-2\n"
             "Tel 090-2564-5015\n"
-            "email info@\n"
-            "\n"
-            "\n"
-            "\n"
-
-
-
-            )
-
-
-        hurigana+'\n'+name+'\n'+str(old)+'歳\n'+str(yubin)+'\n'+stay+'\n電話番号'+tel+'\n'+'メールアドレス'+email+'\n'+'第一希望:'+str(one_day)+'\n'+one+'\n第二希望:'+str(two_day)+'\n'+two+'\n'+'現行金利'+k_more+'\n残債額'+s_more+'\n残年数'+n_more+'\n年収'+nensyu
-
+            "email info@ohtsuki-tosou.ne.jp\n"
+            "HP  https://www.ohtsuki-tosou.co.jp/\n"
+            "URL https://ohtsuki-tosou.herokuapp.com/smart/index/\n"
+            "==========================================\n"
+            "\n")
+            
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
         smtpobj.ehlo()
         smtpobj.starttls()
