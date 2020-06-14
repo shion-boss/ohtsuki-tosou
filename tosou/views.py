@@ -128,7 +128,7 @@ def index_view(request):
                 social_account=SocialAccount.objects.get(user=request.user)
             except:
                 pass
-        line_bot_api.push_message(social_account.uid, TextSendMessage(text='Hello World!'))
+        line_bot_api.push_message(str(social_account.uid), TextSendMessage(text='Hello World!'))
     cv=customer_voice_model.objects.all()
     params={
         'ccc':cv,
