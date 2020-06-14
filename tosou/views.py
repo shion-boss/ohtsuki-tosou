@@ -18,11 +18,10 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbid
 from django.conf import settings
 import json
 
-
-
 line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 parser = WebhookParser(settings.YOUR_CHANNEL_SECRET)
+
 #line_user_id = events[0]['source']['userId']
 #if events[0]['type'] == 'message':
 #    text = request_json['events'][0]['message']['text']
@@ -114,7 +113,6 @@ def logout_view(request):
     return redirect(to='index')
 
 def index_view(request):
-    line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
     if settings.DEBUG==False:
         if request.user.is_authenticated:
             try:
