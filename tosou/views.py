@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login
 from .models import customer_voice_model,user_meta,qa_model,catalog_model
 import os
 
-from linebot import LineBotApi, WebhookHandler
+from linebot import LineBotApi, WebhookHandler,WebhookParser
 from linebot.exceptions import InvalidSignatureError,LineBotApiError
 from linebot.models import MessageEvent,TextMessage,TextSendMessage
 from django.views.decorators.csrf import csrf_exempt
@@ -20,7 +20,7 @@ from django.conf import settings
 
 
 #line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
-#handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
+handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
 
 @csrf_exempt
@@ -28,7 +28,7 @@ def callback_view(request):
     YOUR_CHANNEL_ACCESS_TOKEN ='52+twonMXh6ueH20i0f0J0mIYNom107nAwJnXiZyB4DwwSvN/NwKN6JiEn+kECPjHZHZeZqyFmLNwwb4GbjoIs10FaT0PXQnWvU6ic35ua33q1F984zYr+hy8imDUy67Gjjk58+YEmbNz7wqEI5uywdB04t89/1O/w1cDnyilFU='
     YOUR_CHANNEL_SECRET='72b96cff52e8346263319984f3955e2c'
     line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
-    parser = WebhookHandler(YOUR_CHANNEL_SECRET)
+    parser = WebhookParser(YOUR_CHANNEL_SECRET)
     if request.method == 'POST':
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
