@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model
+from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model,account_meta
 import os
 from allauth.socialaccount.models import SocialAccount
 from linebot import LineBotApi, WebhookHandler,WebhookParser
@@ -97,6 +97,8 @@ def callback_view(request):
                 message_table_model.objects.get(title=line_user_id)
             except:
                 message_table_model(title=line_user_id).save()
+            welcome=''
+            line_bot_api.push_message(line_user_id, TextSendMessage(text=welcome))
 
         # アカウントがブロックされたとき
         elif events[0]['type'] == 'unfollow':

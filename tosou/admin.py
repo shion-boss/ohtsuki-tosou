@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model
+from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model,account_meta
 # Register your models here.
 
 admin.site.register(customer_voice_model)
@@ -8,3 +8,4 @@ admin.site.register(qa_model)
 admin.site.register(catalog_model)
 admin.site.register(message_table_model)
 admin.site.register(message_user_model)
+admin.site.register(account_meta)

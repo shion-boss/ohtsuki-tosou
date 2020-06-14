@@ -35,10 +35,24 @@ class catalog_model(models.Model):
     def __str__(self):
         return self.number
 
+class account_meta(models.Model):
+    account=models.ForeignKey(SocialAccount,on_delete=models.CASCADE)
+    afi_code=models.IntegerField(default=000000)
+
+    def __str__(self):
+        return self.afi_code
+
+
 class message_table_model(models.Model):
     title=models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.title
 
 class message_user_model(models.Model):
     title=models.ForeignKey(message_table_model,on_delete=models.CASCADE)
     user=models.ForeignKey(SocialAccount,on_delete=models.CASCADE)
     message=models.TextField(max_length=1000)
+
+    def __str__(self):
+        return self.message
