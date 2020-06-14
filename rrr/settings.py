@@ -51,12 +51,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'tosou',
-    'cloudinary',
-    'cloudinary_storage',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.line',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 ################
@@ -158,7 +158,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -216,8 +216,6 @@ except ImportError:
 
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 
 
@@ -237,7 +235,8 @@ if not DEBUG:
     django_heroku.settings(locals()) #追加
 
 #####heroku#####
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 if not DEBUG:
     CLOUDINARY_STORAGE = {
         'CLOUD_NAME': os.environ['CLOUD_NAME'],
