@@ -17,6 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.conf import settings
 import json
+import requests
 
 line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
@@ -103,18 +104,14 @@ def callback_view(request):
                     user_meta.objects.get(uid=line_user_id)
                 except:
                     #サイトからのユーザー登録
-                    try:
-                        profile = line_bot_api.get_profile(line_user_id)
-                    except:
-                        pass
-                    try:
-                        name=profile['displayName']
-                    except:
-                        name=line_user_id
-                    try:
-                        top=profile['pictureUrl']
-                    except:
-                        top=''
+                    headers = {
+                        'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+                    }
+                    request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
+                    r = requests.get(request_url, headers=headers)
+                    data = json.loads(r.text)
+                    name=data["displayName"]
+                    top=data['pictureUrl']
                     code=code_model.objects.get(option=0)
                     afi_code='{:0=6}'.format(int(code.num))
                     code+=1
@@ -126,18 +123,14 @@ def callback_view(request):
                     pass
             else:
                 #lineを直接追加したユーザー
-                try:
-                    profile = line_bot_api.get_profile(line_user_id)
-                except:
-                    pass
-                try:
-                    name=profile['displayName']
-                except:
-                    name=line_user_id
-                try:
-                    top=profile['pictureUrl']
-                except:
-                    top=''
+                headers = {
+                    'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+                }
+                request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
+                r = requests.get(request_url, headers=headers)
+                data = json.loads(r.text)
+                name=data["displayName"]
+                top=data['pictureUrl']
                 code=code_model.objects.get(option=0)
                 afi_code='{:0=6}'.format(int(code.num))
                 code+=1
@@ -173,11 +166,8 @@ def index_view(request):
                 pass
             line_bot_api.push_message(str(social_account.uid), TextSendMessage(text='Hello World!'))
             social_account=SocialAccount.objects.get(user=request.user)
-    user=request.user
-    a='{:0=6}'.format(int(user.id))
     cv=customer_voice_model.objects.all()
     params={
-        'uid':a,
         'ccc':cv,
     }
     return render(request,'tosou/index.html',params)
