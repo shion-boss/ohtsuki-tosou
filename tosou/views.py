@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from .models import customer_voice_model,user_meta,qa_model,catalog_model
+from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model
 import os
 from allauth.socialaccount.models import SocialAccount
 from linebot import LineBotApi, WebhookHandler,WebhookParser
