@@ -8,7 +8,7 @@
   margin-top: -3rem;
 }
 .video-wrap video {
-  width: 100%;
+  height: 100%;
 }
 .video-bg {
   position: absolute;
@@ -92,6 +92,12 @@
   opacity: 0;
   animation: fadeIn .4s forwards linear;
   animation-delay: 6.6s;
+}
+@media(max-wdith:1440px) {
+  .video-wrap video {
+    width: auto;
+    height: 100%;
+  }
 }
 @media(max-width:1024px) {
   .video-desc p {

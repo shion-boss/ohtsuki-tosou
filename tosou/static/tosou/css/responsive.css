@@ -98,4 +98,105 @@
   .a_under {
     margin:0.5rem 20%;
   }
+  .easy_s h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .easy_form button {
+    font-size: 1rem;
+  }
+  .consul {
+    grid-template-columns :1fr;
+  }
+  .consul_box h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .consul_body {
+    padding:3rem 5%;
+  }
+  .consul_body h1 {
+    font-size: 16px;
+  }
+  .bold_p {
+    font-size: 14px;
+    margin-bottom: 0px;
+  }
+  .meyasu_p {
+    font-size: .85rem;
+  }
+  .c_list li {
+    font-size: 12px;
+  }
+  .info {
+    margin-top: 20px;
+    grid-template-columns: 1fr;
+    grid-row-gap: 0;
+  }
+  .info label {
+    padding-top: 0.5rem;
+    font-size: .85rem;
+  }
+  .info div{
+    display: grid;
+  }
+  .s_s {
+    display: flex !important;
+  }
+  .k_more_input,
+  .n_more_input,
+  .s_more_input {
+    width:30%;
+  }
+  .submit_c p {
+    font-size: .6rem;
+  }
+  .submit {
+    margin-top: 15px;
+    font-size: 1rem;
+  }
+  .d_div p {
+    font-size: .8rem;
+  }
+  .personal_info {
+    font-size: .85rem;
+    margin:15px 0;
+  }
+  .catalog_body {
+    padding: 3rem 5%;
+  }
+  .catalog_grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .catalog {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    padding:0 10px;
+    justify-content: space-around;
+  }
+  .catalog .img_box {
+    width: 100%;
+    height: 45%;
+    padding:0;
+    margin:0;
+  }
+  .catalog .img_box img {
+    width: 100%;
+    height: 100%;
+  }
+  .catalog p {
+    font-size: 12px;
+    height: 35%;
+    padding: 0;
+  }
+  .catalog .img_box p {
+    width: 20vw;
+    height: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
