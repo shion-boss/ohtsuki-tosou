@@ -23,6 +23,22 @@ import json
 #line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
+json_list={
+  "destination": "xxxxxxxxxx",
+  "events": [
+    {
+      "replyToken": "8cf9239d56244f4197887e939187e19e",
+      "type": "follow",
+      "mode": "active",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "user",
+        "userId": "U4af4980629..."
+      }
+    }
+  ]
+}
+
 
 @csrf_exempt
 def callback_view(request):
@@ -54,8 +70,9 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
-        request_json = json.loads(body)
-        events = request_json['events']
+        #request_json = json.loads(body)
+        #events = request_json['events']
+        #events = json_list['events']
         line_user_id = events[0]['source']['userId']
 
         # 友達追加時
@@ -71,8 +88,6 @@ def callback_view(request):
         elif events[0]['type'] == 'message':
             text = request_json['events'][0]['message']['text']
             line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
-        return HttpResponse()
-
         return HttpResponse()
     else:
         return HttpResponseBadRequest()
