@@ -97,7 +97,47 @@ def callback_view(request):
                 message_table_model.objects.get(title=line_user_id)
             except:
                 message_table_model(title=line_user_id).save()
-            welcome=''
+            if SocialAccount.objects.filter(uid=line_user_id).exists():
+                account=SocialAccount.objects.get(uid=line_user_id)
+                try:
+                    user_meta.objects.get()
+                except:
+                    #サイトからのユーザー登録
+                    try:
+                        profile = line_bot_api.get_profile(line_user_id)
+                    except:
+                        pass
+                    try:
+                        name=profile['displayName']
+                    except:
+                        name=line_user_id
+                    try:
+                        top=profile['pictureUrl']
+                    except:
+                        top=''
+                    user=User.objects.get(user=account.user)
+                    afi_code='{:0=6}'.format(int(user.id))
+                    meta=user_meta(user=user,username=name,top=top,afi_code=afi_code,uid=line_user_id)
+                    meta.save()
+                else:
+                    #ブロック解除のユーザー
+                    pass
+            else:
+                #lineを直接追加したユーザー
+                try:
+                    profile = line_bot_api.get_profile(line_user_id)
+                except:
+                    pass
+                else:
+                    name=profile['displayName']
+                    top=profile['pictureUrl']
+                user=User(username=name)
+                user.save()
+                afi_code='{:0=6}'.format(int(user.id))
+                meta=user_meta(user=user,username=name,top=top,afi_code=afi_code,uid=line_user_id)
+                meta.save()
+
+            welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典のプレゼント企画を行うことにしました。\n'+name+'様限定の紹介コードが「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。'
             line_bot_api.push_message(line_user_id, TextSendMessage(text=welcome))
 
         # アカウントがブロックされたとき

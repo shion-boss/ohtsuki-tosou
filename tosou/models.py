@@ -14,8 +14,10 @@ class customer_voice_model(models.Model):
 
 class user_meta(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    img=models.ImageField(null=True, blank=True)
+    top=models.CharField(max_length=500,blank=True,null=True)
+    username=models.CharField(max_length=500,blank=True,null=True)
     afi_code=models.IntegerField(default=000000)
+    uid=models.CharField(max_length=500,blank=True,null=True)
 
     def __str__(self):
         return self.afi_code
