@@ -114,10 +114,9 @@ def callback_view(request):
                     top=data['pictureUrl']
                     code=code_model.objects.get(option=0)
                     afi_code='{:0=6}'.format(int(code.num))
-                    code+=1
+                    code.num+=1
                     code.save()
-                    meta=user_meta(username=name,top=top,afi_code=afi_code,uid=line_user_id)
-                    meta.save()
+                    user_meta(username=name,top=top,afi_code=afi_code,uid=line_user_id).save()
                 else:
                     #ブロック解除のユーザー
                     pass
@@ -133,10 +132,9 @@ def callback_view(request):
                 top=data['pictureUrl']
                 code=code_model.objects.get(option=0)
                 afi_code='{:0=6}'.format(int(code.num))
-                code+=1
+                code.num+=1
                 code.save()
-                meta=user_meta(username=str(name),top=top,afi_code=int(afi_code),uid=str(line_user_id))
-                meta.save()
+                user_meta(username=str(name),top=top,afi_code=int(afi_code),uid=str(line_user_id)).save()
 
             welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典のプレゼント企画を行うことにしました。\n'+name+'様限定の紹介コードが「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。'
             line_bot_api.push_message(line_user_id, TextSendMessage(text=welcome))
