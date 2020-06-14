@@ -74,10 +74,10 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
-                if isinstance(event.source, TextMessage):
+                if event.type =='follow':
                     try:
                         line_bot_api.push_message(
-                            event.source.userId,
+                            event.replyToken,
                             TextSendMessage(text='Hello World!')
                         )
                     except LineBotApiError as e:
