@@ -494,32 +494,32 @@ def email_view(request):
             "==========================================\n"
             "\n"
             "\n【おなまえ】\n"
-            str(hurigana)
+            +str(hurigana)+
             "\n【お名前】\n"
-            str(name)
+            +str(name)+
             "\n【ご年齢】\n"
-            str(old)'歳'
+            +str(old)+'歳'
             "\n【郵便番号】\n"
-            str(yubin)
+            +str(yubin)+
             "\n【ご住所】\n"
-            str(stay)
+            +str(stay)+
             "\n【メールアドレス】\n"
-            str(email)
+            +str(email)+
             "\n【お電話番号】\n"
-            str(tel)
+            +str(tel)+
             "\n【連絡希望日時】\n"
             "<第一希望>\n"
-            str(one_day)str(one)
+            +str(one_day)+str(one)+
             "<第二希望>\n"
-            str(two_day)str(two)
+            +str(two_day)+str(two)+
             "\n【現行金利】\n"
-            str(k_more)
+            +str(k_more)+
             "\n【残債額】\n"
-            str(s_more)
+            +str(s_more)+
             "\n【残年数】\n"
-            str(n_more)
+            +str(n_more)+
             "\n【年収】\n"
-            str(nensyu)
+            +str(nensyu)+
             "\n"
             "==========================================\n"
             "\n"
@@ -537,7 +537,7 @@ def email_view(request):
             "URL https://ohtsuki-tosou.herokuapp.com/smart/index/\n"
             "==========================================\n"
             "\n")
-            
+
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
         smtpobj.ehlo()
         smtpobj.starttls()
