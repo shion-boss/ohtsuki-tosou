@@ -20,9 +20,9 @@ import json
 
 
 
-#line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
+line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
-
+parser = WebhookParser(settings.YOUR_CHANNEL_SECRET)
 #line_user_id = events[0]['source']['userId']
 #if events[0]['type'] == 'message':
 #    text = request_json['events'][0]['message']['text']
@@ -30,10 +30,6 @@ handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
 @csrf_exempt
 def callback_view(request):
-    YOUR_CHANNEL_ACCESS_TOKEN ='52+twonMXh6ueH20i0f0J0mIYNom107nAwJnXiZyB4DwwSvN/NwKN6JiEn+kECPjHZHZeZqyFmLNwwb4GbjoIs10FaT0PXQnWvU6ic35ua33q1F984zYr+hy8imDUy67Gjjk58+YEmbNz7wqEI5uywdB04t89/1O/w1cDnyilFU='
-    YOUR_CHANNEL_SECRET='72b96cff52e8346263319984f3955e2c'
-    line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
-    parser = WebhookParser(YOUR_CHANNEL_SECRET)
     if request.method == 'POST':
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
@@ -51,7 +47,7 @@ def callback_view(request):
                     try:
                         line_bot_api.reply_message(
                             event.reply_token,
-                            TextSendMessage(text=str(event.source.userId))
+                            TextSendMessage(text=str(event))
                         )
                     except LineBotApiError as e:
                         print(e.status_code)
@@ -118,10 +114,7 @@ def logout_view(request):
     return redirect(to='index')
 
 def index_view(request):
-    YOUR_CHANNEL_ACCESS_TOKEN ='52+twonMXh6ueH20i0f0J0mIYNom107nAwJnXiZyB4DwwSvN/NwKN6JiEn+kECPjHZHZeZqyFmLNwwb4GbjoIs10FaT0PXQnWvU6ic35ua33q1F984zYr+hy8imDUy67Gjjk58+YEmbNz7wqEI5uywdB04t89/1O/w1cDnyilFU='
-    YOUR_CHANNEL_SECRET='72b96cff52e8346263319984f3955e2c'
     line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
-    a='U3ef4b863f370e1971bbc243ddc9d861c'
     if settings.DEBUG==False:
         if request.user.is_authenticated:
             try:
