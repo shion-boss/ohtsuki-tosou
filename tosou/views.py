@@ -70,6 +70,16 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
+            if event['type'] == 'message':
+                line_user_id = event['source']['userId']
+                text = request_json['events'][0]['message']['text']
+                line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+
+        line_user_id = events[0]['source']['userId']
+        if events[0]['type'] == 'message':
+            text = request_json['events'][0]['message']['text']
+            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+
         return HttpResponse()
     else:
         return HttpResponseBadRequest()
