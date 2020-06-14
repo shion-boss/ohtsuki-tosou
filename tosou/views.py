@@ -16,6 +16,7 @@ from linebot.models import MessageEvent,TextMessage,TextSendMessage
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.conf import settings
+import json
 
 
 
