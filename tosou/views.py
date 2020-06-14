@@ -139,7 +139,12 @@ def index_view(request):
     line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
     a='U3ef4b863f370e1971bbc243ddc9d861c'
     if settings.DEBUG==False:
-        line_bot_api.push_message(request.user.uid, TextSendMessage(text='Hello World!'))
+        if request.user.is_authenticated:
+            try:
+                social_account=SocialAccount.objects.get(user=request.user).extra_data
+            except:
+                pass
+        line_bot_api.push_message(social_account.uid, TextSendMessage(text='Hello World!'))
     cv=customer_voice_model.objects.all()
     params={
         'ccc':cv,
