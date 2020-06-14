@@ -74,9 +74,9 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
-                if event.type =='follow':
+                if event.type =="follow":
                     try:
-                        line_bot_api.push_message(
+                        line_bot_api.reply_message(
                             event.replyToken,
                             TextSendMessage(text='Hello World!')
                         )
