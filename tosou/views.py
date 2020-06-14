@@ -22,25 +22,40 @@ from django.conf import settings
 #line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
 #handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
+
 @csrf_exempt
 def callback_view(request):
     YOUR_CHANNEL_ACCESS_TOKEN ='52+twonMXh6ueH20i0f0J0mIYNom107nAwJnXiZyB4DwwSvN/NwKN6JiEn+kECPjHZHZeZqyFmLNwwb4GbjoIs10FaT0PXQnWvU6ic35ua33q1F984zYr+hy8imDUy67Gjjk58+YEmbNz7wqEI5uywdB04t89/1O/w1cDnyilFU='
     YOUR_CHANNEL_SECRET='72b96cff52e8346263319984f3955e2c'
-    line_bot_api = LineBotApi(channel_access_token=YOUR_CHANNEL_ACCESS_TOKEN)
-    handler = WebhookHandler(channel_secret=YOUR_CHANNEL_SECRET)
-    # リクエストヘッダーから署名検証のための値を取得
-    signature = request.META['HTTP_X_LINE_SIGNATURE']
-    # リクエストボディを取得
-    body = request.body.decode('utf-8')
-    try:
-        # 署名の検証を行い、成功した場合にhandleされたメソッドを呼び出す
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        # 署名検証で失敗したときは例外をあげる
-        return HttpResponseForbidden()
-    # handleの処理を終えればOK
-    #return HttpResponse('OK')
-    return render(request,'tosou/index.html')
+    line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+    parser = WebhookHandler(YOUR_CHANNEL_SECRET)
+    if request.method == 'POST':
+        signature = request.META['HTTP_X_LINE_SIGNATURE']
+        body = request.body.decode('utf-8')
+
+        try:
+            events = parser.parse(body, signature)
+        except InvalidSignatureError:
+            return HttpResponseForbidden()
+        except LineBotApiError:
+            return HttpResponseBadRequest()
+
+        for event in events:
+            if isinstance(event, MessageEvent):
+                if isinstance(event.message, TextMessage):
+                    try:
+                        line_bot_api.reply_message(
+                            event.reply_token,
+                            TextSendMessage(text=event.message.text)
+                        )
+                    except LineBotApiError as e:
+                        print(e.status_code)
+                        print(e.error.message)
+                        print(e.error.details)
+
+        return HttpResponse()
+    else:
+        return HttpResponseBadRequest()
 
 
 # メッセージイベントの場合の処理
