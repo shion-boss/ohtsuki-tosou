@@ -96,9 +96,9 @@ def callback_view(request):
             text=events[0]['message']['text']
             message=text+'って言ったん？'
             line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text=message))
-            table=message_table_model.objects.get(line_user_id)
+            table=message_table_model.objects.get(title=line_user_id)
             meta=user_meta.objects.get(uid=line_user_id)
-            u_text=message_user_model(title=table,user=meta.user,message=text)
+            u_text=message_user_model(title=table,uid=line_user_id,message=text)
             u_text.save()
         # 友達追加時・ブロック解除時
         elif events[0]['type'] == 'follow':
