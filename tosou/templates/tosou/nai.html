@@ -3,15 +3,22 @@
 {% block head %}
 <link rel="stylesheet" href="/static/tosou/css/nai.css">
 {% endblock %}
-
-{% block body %}
 <div class="nai_body_box">
-  <div class="nai_box">
-    {% if request.path == "/smart/check/" %}
-    <h1>おめでとうございます<br>現金負担0円塗装の対象かもしれません</h1>
-    <p>無料相談または簡単シミュレーションに進んでみましょう</p>
-    {% endif %}
+  {% if request.path == "/smart/check/" %}
+  <div class="video-wrap">
+    <video src="img/01.mp4" autoplay muted loop></video>
+    <div class="video-bg"></div>
   </div>
+
+  <div class="mv">
+    <div class="video-desc">
+      <p>おめでとうございます<br>現金負担0円塗装の対象かもしれません<br><span>無料相談または簡単シミュレーションに進んでみましょう</span></p>
+    </div>
+
+
+    <canvas class="background"></canvas>
+  </div>
+  {% endif %}
   <div class="easy_s">
     <h1>簡単シミュレーション</h1>
     <form class="easy_form" action="{% url 'easy' %}" method="post">
@@ -73,6 +80,45 @@
 </div>
 {% endblock %}
 {% block e_body %}
+<script src="  https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+Particles.init({
+selector: '.background',
+sizeVariations: 80,
+color: [
+  'rgba(0,187,221,.7)', 'rgba(0,187,221,.4)', 'rgba(255,114,52,.4)', 'rgba(255,114,52,.7)'
+],
+responsive: [
+
+{
+breakpoint: 1024,
+options: {
+  sizeVariations: 50,
+  maxParticles: 120,
+}
+},{
+breakpoint: 768,
+options: {
+  maxParticles: 100,
+}
+}, {
+breakpoint: 425,
+options: {
+  sizeVariations: 20,
+  maxParticles: 80,
+}
+}, {
+breakpoint: 320,
+options: {
+  maxParticles: 50
+}
+}
+]
+
+});
+};
+</script>
 <script type="text/javascript">
   $(function() {
     var $input = $('#input');
@@ -110,4 +156,5 @@
     $('#sai').val(num);
   });
 </script>
+
 {% endblock %}

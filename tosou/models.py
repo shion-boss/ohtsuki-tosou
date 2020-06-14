@@ -7,8 +7,8 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class customer_voice_model(models.Model):
-    #img=CloudinaryField('image',null=True, blank=True)
-    img=models.ImageField(null=True, blank=True)
+    img=CloudinaryField('image',null=True, blank=True)
+    #img=models.ImageField(null=True, blank=True)
     name=models.CharField(max_length=140,blank=True,null=True)
     voice=models.TextField(max_length=140)
 
@@ -29,7 +29,8 @@ class qa_model(models.Model):
         return self.question
 
 class catalog_model(models.Model):
-    img=models.ImageField(null=True, blank=True)
+    img=CloudinaryField('image',null=True, blank=True)
+    #img=models.ImageField(null=True, blank=True)
     number=models.IntegerField(default=0)
     p=models.TextField(max_length=140)
 

@@ -90,6 +90,7 @@
   z-index: 2;
   overflow: hidden;
   outline: none;
+  background-color: #fff;
 }
 .voice-toggle button:before,
 .voice-toggle button:after {

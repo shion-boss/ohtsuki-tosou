@@ -6,9 +6,18 @@
 
 {% block body %}
 <div class="catalog_body">
-  <div class="messages_box">
-    <h1>お仕事を紹介して下さった方と<br>お仕事を依頼してくださった方へ感謝の気持ちを込めて</h1>
-    <p class='b_p'>お仕事紹介の完了後にLINEにてお好きな商品のコードの確認の連絡をいたします。</p>
+  <div class="video-wrap">
+    <video src="img/01.mp4" autoplay muted loop></video>
+    <div class="video-bg"></div>
+  </div>
+
+  <div class="mv">
+    <div class="video-desc">
+      <p>お仕事を紹介して下さった方と<br>お仕事を依頼してくださった方へ感謝の気持ちを込めて<br><span>お仕事紹介の完了後にLINEにてお好きな商品のコードの確認の連絡をいたします。</span></p>
+    </div>
+
+
+    <canvas class="background"></canvas>
   </div>
   <div class="catalog_grid">
     {% for c in ccc %}
@@ -29,4 +38,43 @@
 
 
 {% block e_body %}
+<script src="  https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+Particles.init({
+selector: '.background',
+sizeVariations: 80,
+color: [
+  'rgba(0,187,221,.7)', 'rgba(0,187,221,.4)', 'rgba(255,114,52,.4)', 'rgba(255,114,52,.7)'
+],
+responsive: [
+
+{
+breakpoint: 1024,
+options: {
+  sizeVariations: 50,
+  maxParticles: 120,
+}
+},{
+breakpoint: 768,
+options: {
+  maxParticles: 100,
+}
+}, {
+breakpoint: 425,
+options: {
+  sizeVariations: 20,
+  maxParticles: 80,
+}
+}, {
+breakpoint: 320,
+options: {
+  maxParticles: 50
+}
+}
+]
+
+});
+};
+</script>
 {% endblock %}
