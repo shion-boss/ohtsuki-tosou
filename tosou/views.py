@@ -486,12 +486,7 @@ def email_view(request):
         else:
             nensyu='400万円未満'
 
-        now = datetime.datetime.now()
-        y=now.year # => 2019
-        M=now.month # => 8
-        d=now.day # => 2
-        h=now.hour # => 1
-        m=now.minute # => 57
+        
         email_msg=("スマートリノベーション様\n"
             "加盟店の有限会社大槻塗装工業です。\n"
             "お世話になっております。\n"
@@ -516,7 +511,7 @@ def email_view(request):
             +str(tel)+
             "\n\n【連絡希望日時】\n"
             "<第一希望>\n"
-            +str(one_day.year)+str(one)+
+            +str(one_day)+str(one)+
             "\n<第二希望>\n"
             +str(two_day)+str(two)+
             "\n\n【現行金利】\n"
@@ -543,8 +538,7 @@ def email_view(request):
             "HP  https://www.ohtsuki-tosou.co.jp/\n"
             "URL https://ohtsuki-tosou.herokuapp.com/smart/index/\n"
             "=============================\n"
-            "送信日｜"+y+"年"+M+"月"+d+"日"+h+"時"+m+"分"
-            "\n")
+
 
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
         smtpobj.ehlo()
