@@ -76,7 +76,7 @@ def callback_view(request):
 
             if event['type'] == 'message':
                 line_user_id = event['source']['userId']
-                text = request_json['events'][0]['message']['text']
+                text = event['message']['text']
                 line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
 
 
