@@ -67,12 +67,21 @@ def callback_view(request):
                     try:
                         line_bot_api.reply_message(
                             event.reply_token,
-                            TextSendMessage(text=str(events))
+                            TextSendMessage(text=str(event["userId"]))
                         )
                     except LineBotApiError as e:
                         print(e.status_code)
                         print(e.error.message)
                         print(e.error.details)
+
+
+                try:
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        TextSendMessage(text=str(event.type))
+                    )
+                except :
+                    pass
 
             if event.type =="follow":
                 try:
