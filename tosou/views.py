@@ -67,7 +67,7 @@ def callback_view(request):
                     try:
                         line_bot_api.reply_message(
                             event.reply_token,
-                            TextSendMessage(text=str(event.message))
+                            TextSendMessage(text=str(event.source))
                         )
                     except LineBotApiError as e:
                         print(e.status_code)
