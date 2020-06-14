@@ -15,7 +15,7 @@ class customer_voice_model(models.Model):
 class user_meta(models.Model):
     top=models.CharField(max_length=500,blank=True,null=True)
     username=models.CharField(max_length=500,blank=True,null=True)
-    afi_code=models.IntegerField(default=000000)
+    afi_code=models.CharField(max_length=6,blank=True,null=True)
     uid=models.CharField(max_length=500,blank=True,null=True)
 
     def __str__(self):
