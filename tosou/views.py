@@ -70,24 +70,24 @@ def callback_view(request):
                         print(e.error.message)
                         print(e.error.details)
 
-        #request_json = json.loads(body)
-        #events = request_json['events']
-        #events = json_list['events']
-        line_user_id = events[0]['source']['userId']
+            #request_json = json.loads(body)
+            #events = request_json['events']
+            #events = json_list['events']
+            line_user_id = event['source']['userId']
 
-        # 友達追加時
-        if events[0]['type'] == 'follow':
-            profile = line_bot_api.get_profile(line_user_id)
-            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+            # 友達追加時
+            if event['type'] == 'follow':
+                profile = line_bot_api.get_profile(line_user_id)
+                line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
 
-        # アカウントがブロックされたとき
-        elif events[0]['type'] == 'unfollow':
-            pass
+            # アカウントがブロックされたとき
+            elif event['type'] == 'unfollow':
+                pass
 
-        # メッセージ受信時
-        elif events[0]['type'] == 'message':
-            text = request_json['events'][0]['message']['text']
-            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+            # メッセージ受信時
+            elif event['type'] == 'message':
+                text = event['message']['text']
+                line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
     else:
         return HttpResponseBadRequest()
 
