@@ -138,7 +138,8 @@ def index_view(request):
     YOUR_CHANNEL_SECRET='72b96cff52e8346263319984f3955e2c'
     line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
     a='U3ef4b863f370e1971bbc243ddc9d861c'
-    line_bot_api.push_message(request.user.uid, TextSendMessage(text='Hello World!'))
+    if settings.DEBUG==False:
+        line_bot_api.push_message(request.user.uid, TextSendMessage(text='Hello World!'))
     cv=customer_voice_model.objects.all()
     params={
         'ccc':cv,
