@@ -38,7 +38,8 @@ def callback_view(request):
         # 署名検証で失敗したときは例外をあげる
         return HttpResponseForbidden()
     # handleの処理を終えればOK
-    return HttpResponse('OK')
+    #return HttpResponse('OK')
+    return render(request,'tosou/index.html')
 
 
 # メッセージイベントの場合の処理
@@ -49,17 +50,6 @@ def handle_text_message(event):
         event.reply_token,
         TextSendMessage(text=event.message.text)
     )
-
-
-# オウム返し
-@handler.add(MessageEvent, message=TextMessage)
-def handle_text_message(event):
-    YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
-    YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
-    line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
-    handler = WebhookHandler(YOUR_CHANNEL_SECRET)
-    line_bot_api.reply_message(event.reply_token,
-                               TextSendMessage(text=event.message.text))
 
 
 def callback(request):
