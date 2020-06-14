@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from allauth.socialaccount.models import SocialAccount
 import cloudinary
 from cloudinary.models import CloudinaryField
 
@@ -33,3 +34,11 @@ class catalog_model(models.Model):
 
     def __str__(self):
         return self.number
+
+class message_table_model(models.Model):
+    title=models.CharField(max_length=150)
+
+class message_user_model(models.Model):
+    title=models.ForeignKey(message_table_model,on_delete=models.CASCADE)
+    user=models.ForeignKey(SocialAccount,on_delete=models.CASCADE)
+    message=models.TextField(max_length=1000)

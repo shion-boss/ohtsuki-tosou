@@ -128,9 +128,11 @@ def index_view(request):
                 social_account=SocialAccount.objects.get(user=request.user)
             except:
                 pass
-        line_bot_api.push_message(str(social_account.uid), TextSendMessage(text='Hello World!'))
+            line_bot_api.push_message(str(social_account.uid), TextSendMessage(text='Hello World!'))
+    social_account=SocialAccount.objects.get(user=request.user)
     cv=customer_voice_model.objects.all()
     params={
+        'uid':social_account.uid,
         'ccc':cv,
     }
     return render(request,'tosou/index.html',params)
