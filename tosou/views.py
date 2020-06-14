@@ -100,7 +100,7 @@ def callback_view(request):
             if SocialAccount.objects.filter(uid=line_user_id).exists():
                 account=SocialAccount.objects.get(uid=line_user_id)
                 try:
-                    user_meta.objects.get()
+                    user_meta.objects.get(user=account.user)
                 except:
                     #サイトからのユーザー登録
                     try:
