@@ -96,7 +96,7 @@ def callback_view(request):
             try:
                 message_table_model.objects.get(title=line_user_id)
             except:
-                message_table_model.objects.create(title=line_user_id)
+                message_table_model(title=line_user_id).save()
 
         # アカウントがブロックされたとき
         elif events[0]['type'] == 'unfollow':
