@@ -52,7 +52,7 @@ class message_table_model(models.Model):
 
 class message_user_model(models.Model):
     title=models.ForeignKey(message_table_model,on_delete=models.CASCADE)
-    user=models.ForeignKey(SocialAccount,on_delete=models.CASCADE)
+    uid=models.CharField(max_length=500,blank=True,null=True,default='technext')
     message=models.TextField(max_length=1000)
 
     def __str__(self):
