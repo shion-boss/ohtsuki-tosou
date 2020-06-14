@@ -77,8 +77,9 @@ def callback_view(request):
 
             # 友達追加時
             if event['type'] == 'follow':
-                profile = line_bot_api.get_profile(line_user_id)
-                line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+                #profile = line_bot_api.get_profile(line_user_id)
+                #line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+                pass
 
             # アカウントがブロックされたとき
             elif event['type'] == 'unfollow':
@@ -86,9 +87,10 @@ def callback_view(request):
 
             # メッセージ受信時
             elif event['type'] == 'message':
-                text = event['message']['text']
-                line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
-            return HttpResponse('OK', status=200)
+                #text = event['message']['text']
+                #line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+                pass
+        return HttpResponse('OK', status=200)
     else:
         return HttpResponseBadRequest()
 
