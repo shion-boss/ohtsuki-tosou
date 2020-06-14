@@ -67,7 +67,7 @@ def callback_view(request):
                     try:
                         line_bot_api.reply_message(
                             event.reply_token,
-                            TextSendMessage(text=str(event.source["userId"]))
+                            TextSendMessage(text=str(event.source.userId))
                         )
                     except LineBotApiError as e:
                         print(e.status_code)
@@ -120,7 +120,7 @@ def callback(request):
         # メッセージ受信時
         elif events[0]['type'] == 'message':
             text = request_json['events'][0]['message']['text']
-            line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
+            line_bot_api.push_message('U3ef4b863f370e1971bbc243ddc9d861c', TextSendMessage(text='Hello World!'))
 
     return HttpResponse("ok")
 
@@ -134,6 +134,7 @@ def logout_view(request):
     return redirect(to='index')
 
 def index_view(request):
+    line_bot_api.push_message('U3ef4b863f370e1971bbc243ddc9d861c', TextSendMessage(text='Hello World!'))
     cv=customer_voice_model.objects.all()
     params={
         'ccc':cv,
