@@ -88,7 +88,6 @@ def callback_view(request):
         elif events[0]['type'] == 'message':
             text = request_json['events'][0]['message']['text']
             line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
-        return HttpResponse()
     else:
         return HttpResponseBadRequest()
 
