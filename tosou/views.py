@@ -23,22 +23,6 @@ import json
 #line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
 
-json_list={
-  "destination": "xxxxxxxxxx",
-  "events": [
-    {
-      "replyToken": "8cf9239d56244f4197887e939187e19e",
-      "type": "follow",
-      "mode": "active",
-      "timestamp": 1462629479859,
-      "source": {
-        "type": "user",
-        "userId": "U4af4980629..."
-      }
-    }
-  ]
-}
-
 #line_user_id = events[0]['source']['userId']
 #if events[0]['type'] == 'message':
 #    text = request_json['events'][0]['message']['text']
