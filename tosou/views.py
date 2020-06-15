@@ -130,7 +130,15 @@ def callback_view(request):
                     meta.save()
                 else:
                     #ブロック解除のユーザー
-                    pass
+                    headers = {
+                        'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+                    }
+                    request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
+                    r = requests.get(request_url, headers=headers)
+                    data = json.loads(r.text)
+                    name=data["displayName"]
+                    meta=user_meta.objects.get(uid=line_user_id)
+                    afi_code=meta.afi_code
             else:
                 #lineを直接追加したユーザー
                 headers = {
@@ -497,30 +505,30 @@ def email_view(request):
             "\n"
             "\n【おなまえ】\n"
             +str(hurigana)+
-            "\n\n【お名前】\n"
+            "\n【お名前】\n"
             +str(name)+
-            "\n\n【ご年齢】\n"
+            "\n【ご年齢】\n"
             +str(old)+'歳'
-            "\n\n【郵便番号】\n"
+            "\n【郵便番号】\n"
             +str(yubin)+
-            "\n\n【ご住所】\n"
+            "\n【ご住所】\n"
             +str(stay)+
-            "\n\n【メールアドレス】\n"
+            "\n【メールアドレス】\n"
             +str(email)+
-            "\n\n【お電話番号】\n"
+            "\n【お電話番号】\n"
             +str(tel)+
-            "\n\n【連絡希望日時】\n"
+            "\n【連絡希望日時】\n"
             "<第一希望>\n"
             +str(one_day)+str(one)+
             "\n<第二希望>\n"
             +str(two_day)+str(two)+
-            "\n\n【現行金利】\n"
+            "\n【現行金利】\n"
             +str(k_more)+
-            "\n\n【残債額】\n"
+            "\n【残債額】\n"
             +str(s_more)+
-            "\n\n【残年数】\n"
+            "\n【残年数】\n"
             +str(n_more)+
-            "\n\n【年収】\n"
+            "\n【年収】\n"
             +str(nensyu)+
             "\n"
             "=============================\n"
