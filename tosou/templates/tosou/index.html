@@ -3,11 +3,58 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="/static/tosou/css/index.css">
+<link rel="stylesheet" href="/static/tosou/css/renovation.css">
 <link rel="stylesheet" href="/static/tosou/css/style.css">
 {% endblock %}
 {% block body %}
 <div class="main_img">
   <img src="{% static 'S__6742019.jpg' %}" alt="">
+</div>
+<div class="sikumi_box">
+  <h1>仕組み<span>説</span>明</h1>
+  <h1 class='new_sikumi'>あたらしいリフォームの仕組み</h1>
+  <div class="tada_box">
+    <p class='tada'>自己資金<span>¥0</span></p>
+    <p class='tada'>設備代金<span>¥0</span></p>
+    <p class='tada'>工事代金<span>¥0</span></p>
+    <p class='tada_p'>すべて現金負担<span>0円</span>でリフォームをおこなえる時代になりました。</p>
+  </div>
+  <div class="henka_box">
+    <h1>借り換えとリフォームによる支払額の変化の例</h1>
+    <p>築10年・元金2000万円・残期間25年・金利2.5％の方が、<br>金利0.875％に借り換えして220万（諸経費込）のリフォームをしたケース</p>
+    <div class="sikumi_img">
+      <img src="{% static 'shikumi.png' %}" alt="">
+    </div>
+    <div class="taisyo_box">
+      <p class='taisyo_p'>スマートリノベーションの対象となる方</p>
+      <div class="taisyo_grid">
+        <div class="check_grid">
+          <p><i class="fas fa-check-square"></i>住宅ローンの残高が1000万以上</p>
+          <p><i class="fas fa-check-square"></i>住宅ローンの残期間が10年以上</p>
+          <p><i class="fas fa-check-square"></i>住宅ローンの金利が1.5%以上</p>
+          <p><i class="fas fa-check-square"></i>リフォームをご希望の方</p>
+        </div>
+        <p class="contact_p">以上全てに該当されない方も、現金負担なくリフォーム出来る可能性があります。現在お借入内容とご希望のリフォーム工事をお伝え頂ければ、現金負担０円の対象か無料で診断しております。<br>まずはお気軽にご相談ください！</p>
+      </div>
+    </div>
+  </div>
+  <div class="rino_manga taisyo_box">
+    <p class='taisyo_p'>スマートリノベーションを漫画で知ろう</p>
+    <div class="m_label_box">
+      <p class='grid_t'>分かりやすく漫画になりました。<br>漫画をご覧になる方は画像をクリックしてください。</p>
+      <label for='manga_check' class="manga_box a_box ">
+        <img src="{% static 'S__3866629.jpg' %}" alt="">
+        <div class="mask">
+          <div class="p_box">
+            <div class="p">
+              <h3>漫画で分かる<span><div class='span_d'>現金<br>負担</div></span>0<span>円</span>塗装</h3>
+              <p>現金負担0円でお家の塗り替えができる仕組みが分かりやすく漫画になりました。</p>
+            </div>
+          </div>
+        </div>
+      </label>
+    </div>
+  </div>
 </div>
 <section class="voice-sec">
   <div class="voice-wrapper">

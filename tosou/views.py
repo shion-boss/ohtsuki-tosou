@@ -168,7 +168,7 @@ def callback_view(request):
                 meta=user_meta(username=str(name),top=str(top),afi_code=str(afi_code),uid=str(line_user_id))
                 meta.save()
 
-            welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典としてプレゼント企画を始めました。\n'+name+'様限定の紹介コードが「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。\n'+'https://ohtsuki-tosou.herokuapp.com/smart/index/'
+            welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典としてプレゼント企画を始めました。\n'+name+'様限定の紹介コードは「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。\n'+'https://ohtsuki-tosou.herokuapp.com/smart/index/'
             #message to user
             line_bot_api.push_message(line_user_id, TextSendMessage(text=welcome))
             message='新規LINE登録！！！！'
@@ -180,7 +180,7 @@ def callback_view(request):
         # アカウントがブロックされたとき
         elif events[0]['type'] == 'unfollow':
             #message to staff
-            line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text='Hello World!'))
+            line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text='ブロックされました。'))
 
 
     return HttpResponse()
