@@ -55,7 +55,7 @@
     margin:0;
   }
   .check_form h1  {
-    font-size: 18px;
+    font-size: 1rem;
   }
   .check_form p {
     font-size: 0.6rem;
@@ -320,5 +320,29 @@
     /* display: grid; */
     /* grid-template-columns: 1fr 17vw; */
   }
-  
+  .sikumi_box {
+    padding: 3rem 5%;
+    margin-top: 3rem;
+    background-image: url(/static/shikumiBg.png);
+  }
+  .tada_p {
+    text-align: center;
+    font-size: 0.7rem;
+  }
+  .henka_box h1 {
+    border-bottom: solid 2px black;
+    line-height: 3rem;
+    font-size: 1rem;
+    margin: 2rem 0;
+  }
+  _::-webkit-full-page-media, _:future, :root .voice-card {
+  width: 70%;
+  }
+  _::-webkit-full-page-media, _:future, :root .voice-card:nth-child(even) img:last-child {
+    top: -60%;
+  }
+  _::-webkit-full-page-media, _:future, :root .voice-card:nth-child(odd) img:last-child {
+    top: -60%;
+  }
+
 }
