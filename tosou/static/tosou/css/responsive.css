@@ -105,6 +105,7 @@
   }
   .easy_form button {
     font-size: 1rem;
+    line-height: 1rem;
   }
   .consul {
     grid-template-columns :1fr;
@@ -205,7 +206,7 @@
     padding: 5%;
   }
   .c_box input[type=checkbox]:checked ~ label {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   .account_grid {
     display: grid;
@@ -214,6 +215,13 @@
     grid-gap: 3vw;
     margin-top: 50px;
     margin-bottom: 50px;
+  }
+  .check_form button {
+    cursor: pointer;
+    width: 100%;
+    line-height: 1rem;
+    font-size: 1rem;
+    margin: 2rem 0;
   }
   .mask {
     position: absolute;
@@ -243,9 +251,13 @@
     box-shadow: 0 0 1rem 5px rgba(110, 223, 235, 0.3);
     border-radius: 10px;
     padding: 1rem;
-    /* margin: 0 0 2rem 0; */
+    margin: 0;
     font-size: 0.9rem;
 }
+
+  .qa_body .qa_box{
+    margin-bottom: 2rem;
+   }
   .tel_box img {
     width: 40%;
   }
@@ -325,6 +337,29 @@
     margin-top: 3rem;
     background-image: url(/static/shikumiBg.png);
   }
+
+  .sikumi_box h1{
+    font-size: 1rem;
+  }
+  .smart_box .mask .p_box h3{
+    font-size: 1rem;
+  }
+  .flow_grid {
+    display: grid;
+    grid-template-columns:1fr;
+    background-color: white;
+    padding: 1rem 1rem;
+    margin: 3rem 0;
+    grid-column-gap: 3rem;
+}
+
+.f_p_box p {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.9rem;
+}
   .tada_p {
     text-align: center;
     font-size: 0.7rem;
@@ -335,6 +370,128 @@
     font-size: 1rem;
     margin: 2rem 0;
   }
+  .account_body {
+    width: 100%;
+    padding: 3rem 2.5%;
+  }
+
+  .msg h1{
+    font-size: 1rem;
+  }
+  .gai_body {
+    width: 100%;
+    padding: 0 2.5%;
+    font-family: serif;
+  }
+  .gai_msg_box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: -1;
+  }
+  .gai_msg_box {
+    margin: 5rem 0;
+    position: relative;
+    height: 0;
+  }
+  .afi_box {
+    margin: 280px 0 3rem 0;
+    padding: 3rem 0;
+    background-color: rgba(219, 239, 246,0.1);
+  }
+  .two_box {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 1rem;
+    grid-column-gap: 2rem;
+  }
+
+  .t_p{
+    grid-row: 2;
+    padding-bottom: 3rem;
+  }
+  .afi_box h1, .ohtsuki_box h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  .o_box {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 2rem;
+  }
+  .o_guide a {
+    border-radius: 20px;
+    border: solid 3px #b4e4e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-right: 10%;
+    margin-top: 1rem;
+    margin: 1rem auto;
+  }
+  .easy_form label{
+    font-size: 0.9rem;
+  }
+  element.style {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+  }
+  .radio_box input {
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .henka_box p{
+    font-size: 0.6rem;
+  }
+  .taisyo_box {
+    color: #40220F;
+    border: 2px solid #40220F;
+    box-shadow: 5px 5px 0px rgba(107,66,0,0.76);
+    background-color: White;
+    margin: 5% 0 5% 0;
+    padding: 10px 2% 10px 2%;
+  }
+  .taisyo_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .m_label_box {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 3vw;
+    grid-row-gap: 2rem;
+  }
+  .m_label_box p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  .rino_main2 {
+    width: 100%;
+    padding: 4rem 2.5% 2rem 2.5%;
+    position: relative;
+  }
+  .new_sikumi {
+    margin-top: 2rem;
+    font-weight: normal;
+    background-color: white;
+    border: solid 4px #7d3613;
+    color: #7D3613;
+    line-height: 4rem;
+    font-size: 0.8rem;
+  }
+  }
+  .nai_body_box {
+    width: 100%;
+    padding: 3rem 2.5%;
+    font-family: serif;
+  }
+
   _::-webkit-full-page-media, _:future, :root .voice-card {
   width: 70%;
   }

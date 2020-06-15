@@ -50,25 +50,25 @@
 .result{
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  border: 0.5px solid #000;
 
 }
 
 .result div{
-  border: 1px solid #000;
+  font-size: 0.9rem;
 }
+.result_gaku {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    border-bottom: solid 2px red;
+    margin: 1rem; 10%;
+  }
 
-.result_gaku{
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 3rem;
-  border-bottom: solid 2px red;
-  margin: 0 10%;
-}
 
 .result_gaku span{
   color: red;
 }
+
 
 
 

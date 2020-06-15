@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: source-han-serif-japanese, serif;
 }
 
 body{
@@ -21,6 +22,7 @@ header{
   justify-content: center;
   align-items: center;
 }
+
 
 .header_left{
   display: flex;
@@ -72,6 +74,7 @@ header{
   text-align: center;
   position: sticky;
   top: 0;
+  font-family: source-han-sans-japanese, sans-serif;
 }
 
 .h_box{
@@ -87,12 +90,14 @@ header{
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: source-han-sans-japanese, sans-serif;
 }
 .h_box .a_nav_a{
   color: rgb(56,56,56);
   font-weight: bold;
   line-height: 46px;
   text-align: center;
+  font-family: source-han-sans-japanese, sans-serif;
 }
 
 .h_box .a_nav:hover{
@@ -140,6 +145,7 @@ footer{
   line-height: 2rem;
   border-bottom: solid 2px white;
   margin-bottom: 1rem;
+  font-family: source-han-sans-japanese, sans-serif;
 }
 
 .footer_l_box a , .footer_l_box .ap{
@@ -153,6 +159,7 @@ footer{
   cursor: pointer;
   border-top: solid 1px rgba(0,0,0,0);
   border-bottom: solid 1px rgba(0,0,0,0);
+  font-family: source-han-sans-japanese, sans-serif;
 }
 
 .footer_l_box a:hover,.footer_l_box .ap:hover{
