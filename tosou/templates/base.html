@@ -25,9 +25,9 @@
   </head>
   <body>
     <input type="checkbox" name="" value="" id='manga_check'>
-    <div class="complete_body">
+    <div class="complete_body responsive_manga_b">
       <label for="manga_check" class='batu'><i class="fas fa-times"></i></label>
-      <div class="complete_box">
+      <div class="complete_box ">
         <p>ページが画面サイズに合っていない場合は再読み込みしてください。</p>
         <span class='pages' id="toLast">P8</span>
         <div class="white_box">
@@ -49,6 +49,32 @@
         </div>
       </div>
     </div>
+    <div class="complete_body responsive_manga">
+      <label for="manga_check" class='batu'><i class="fas fa-times"></i></label>
+      <div class="complete_box2 ">
+        <p>ページが画面サイズに合っていない場合は再読み込みしてください。</p>
+        <div class="white_box2">
+          <div id="flipbook2">
+            <div><img src="{% static '00001.jpg'%}" alt=""></div>
+            <div><img src="{% static '00002.jpg'%}" alt=""></div>
+            <div><img src="{% static '00003.jpg'%}" alt=""></div>
+            <div><img src="{% static '00004.jpg'%}" alt=""></div>
+            <div><img src="{% static '00005.jpg'%}" alt=""></div>
+            <div><img src="{% static '00006.jpg'%}" alt=""></div>
+            <div><img src="{% static '00007.jpg'%}" alt=""></div>
+            <div><img src="{% static '00008.jpg'%}" alt=""></div>
+            <div><img src="{% static 'manga1.jpg'%}" alt=""></div>
+          </div>
+        </div>
+        <div id="pagemenu2">
+          <span class='pages' id="toLast2">Last</span>
+          <span class='pages' id="toNext2">Next</span>
+          <span class='pages' id="toPrev2">Prev</span>
+          <span class='pages' id="toTop2">P1</span>
+        </div>
+      </div>
+    </div>
+
     <header>
       <div class="header_left">
         <div class="logo_box">
@@ -152,6 +178,13 @@
         });
     </script>
     <script type="text/javascript">
+        $('#flipbook2').turn({
+          display: 'single',
+          inclination: 50,
+          direction: "rtl",
+        });
+    </script>
+    <script type="text/javascript">
         // トップへ移動
       	$("#toTop").click(function(){
       		$("#flipbook").turn("page", 1);
@@ -167,6 +200,24 @@
       	// 最後のページへ移動
       	$("#toLast").click(function(){
       		$("#flipbook").turn("page", 8);
+      	})
+    </script>
+    <script type="text/javascript">
+        // トップへ移動
+      	$("#toTop2").click(function(){
+      		$("#flipbook2").turn("page", 1);
+      	})
+      	// 前のページへ移動
+      	$("#toPrev2").click(function(){
+      	    $("#flipbook2").turn("previous");
+      	});
+      	// 次のページへ移動
+      	$("#toNext2").click(function(){
+      	    $("#flipbook2").turn("next");
+      	});
+      	// 最後のページへ移動
+      	$("#toLast2").click(function(){
+      		$("#flipbook2").turn("page", 9);
       	})
     </script>
     <script type="text/javascript">
