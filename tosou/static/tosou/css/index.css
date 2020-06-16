@@ -147,24 +147,38 @@
     background-color:   #d7f5f7;           /* チェックした時の色 */
 }
 
-.c_box p{
+.c_box .checked{
   display: none;
 }
-.c_box:hover p{
+
+.c_box .a_check{
   display: block;
   position: absolute;
   top: -15px;
-  left: -15px;
-  transform: rotateZ(-30deg);
+  left: 0;
+  transform: rotateZ(0);
   padding: 0;
   opacity: 0.5;
+  transition: all 0.3s ease-in-out;
 }
 
-.c_box input[type=checkbox]:checked ~ p{
+.c_box:hover .a_check{
   display: block;
   position: absolute;
   top: -15px;
-  left: -15px;
+  left: 0;
+  transform: rotateZ(-30deg);
+  padding: 0;
+  opacity: 0.8;
+}
+.c_box input[type=checkbox]:checked ~ .a_check{
+  display: none;
+}
+.c_box input[type=checkbox]:checked ~ .checked{
+  display: block;
+  position: absolute;
+  top: -15px;
+  left: 0;
   transform: rotateZ(-30deg);
   padding: 0;
   opacity: 1;

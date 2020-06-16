@@ -334,6 +334,10 @@ element.style {
 
 
 @media(max-width:600px) {
+  .result_gaku span {
+    color: orangered;
+    font-size: 3rem;
+  }
 
   .main_img img {
       width: 100%;
@@ -416,7 +420,15 @@ footer {
 }
 
 }
-@media(max-width:450px) {
+@media(max-width:500px) {
+
+  .check_box {
+    margin: 0 auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 1rem;
+  }
   header {
     height: 80px;
   }
@@ -676,7 +688,7 @@ footer {
     padding: 1rem;
     margin: 0;
     font-size: 0.9rem;
-}
+  }
 
   .qa_body .qa_box{
     margin-bottom: 2rem;
@@ -716,10 +728,10 @@ footer {
     background-position: top left;
     background-size: contain;
     margin-bottom: 0;
-}
-.tel_number_box {
+  }
+  .tel_number_box {
     padding: 0 0 17rem 0;
-}
+  }
   .r_box {
     display: grid;
     grid-template-columns:1fr;
@@ -770,15 +782,15 @@ footer {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-row-gap: 2rem;
-}
-.akubi_box {
-    padding: 1rem;
-    padding-top: 0; */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    overflow: hidden;
-}
+  }
+  .akubi_box {
+      padding: 1rem;
+      padding-top: 0; */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+  }
   .m_header {
     padding-top: 14rem;
     padding-bottom: 5rem;
@@ -798,7 +810,7 @@ footer {
     padding: 0;
     position: relative;
     overflow: hidden;
-}
+  }
   .sikumi_box h1{
     font-size: 1rem;
   }
@@ -812,15 +824,15 @@ footer {
     padding: 1rem 1rem;
     margin: 3rem 0;
     grid-column-gap: 3rem;
-}
+  }
 
-.f_p_box p {
-    padding: 0 1rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 1rem;
-}
+  .f_p_box p {
+      padding: 0 1rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 1rem;
+  }
   .tada_p {
     text-align: center;
     font-size: 0.7rem;
@@ -909,6 +921,10 @@ footer {
     display: grid;
     grid-template-columns: 1rem 1fr;
   }
+  .result_gaku span {
+    color: orangered;
+    font-size: 2rem;
+  }
   .radio_box input {
     cursor: pointer;
     margin-top: 4px;
@@ -955,34 +971,33 @@ footer {
     line-height: 4rem;
     font-size: 0.8rem;
   }
-  }
   .nai_body_box {
     width: 100%;
     padding: 3rem 2.5%;
     font-family: serif;
   }
-.easy_form {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-columns: 1fr;
-    grid-row-gap: 0;
-}
-.p p {
-    font-size: 0.9rem;
-}
-.footer_l_box a, .footer_l_box .ap {
-    display: block;
-    text-align: center;
-    line-height: 2rem;
-    font-size: 0.7rem;
-    color: white;
-    opacity: 0.9;
-    transition: all 0.1s ease-in-out;
-    cursor: pointer;
-    border-top: solid 1px rgba(0,0,0,0);
-    border-bottom: solid 1px rgba(0,0,0,0);
-    font-family: source-han-sans-japanese, sans-serif;
-}
+  .easy_form {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
+      grid-row-gap: 0;
+  }
+  .p p {
+      font-size: 0.9rem;
+  }
+  .footer_l_box a, .footer_l_box .ap {
+      display: block;
+      text-align: center;
+      line-height: 2rem;
+      font-size: 0.7rem;
+      color: white;
+      opacity: 0.9;
+      transition: all 0.1s ease-in-out;
+      cursor: pointer;
+      border-top: solid 1px rgba(0,0,0,0);
+      border-bottom: solid 1px rgba(0,0,0,0);
+      font-family: source-han-sans-japanese, sans-serif;
+  }
   .footer_l_box a:hover,.footer_l_box .ap:hover{
     line-height: 2rem;
     border-bottom: solid 1px white;

@@ -50,24 +50,48 @@
 .result{
   display: grid;
   grid-template-columns: repeat(4,1fr);
+  grid-gap: 2px;
+  border: solid 1px skyblue;
 
 }
+.bold_p{
+  font-weight: bold;
 
-.result div{
-  font-size: 0.9rem;
+}
+.v_d{
+  background-color: rgba(89, 153, 172,0.6);
+}
+.c_p{
+  background-color: rgba(89, 153, 172,0.6);
+  text-align: center;
+}
+
+.v_p{
+  text-align: center;
+  background-color: rgba(89, 153, 172,0.3);
+}
+
+.result div {
+    font-size: 0.9rem;
+    text-align: end;
+    background-color: snow;
+}
+#v_d{
+  background-color: rgba(89, 153, 172,0.6);
 }
 .result_gaku {
     margin-top: 1rem;
     text-align: center;
     font-size: 2rem;
-    border-bottom: solid 2px red;
+    border-bottom: solid 2px orangered;
     margin: 1rem;
   }
 
 
-.result_gaku span{
-  color: red;
-}
+  .result_gaku span {
+    color: orangered;
+    font-size: 4rem;
+  }
 
 
 
