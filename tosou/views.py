@@ -785,7 +785,7 @@ def account_view(request):
                 pass
             else:
                 try:
-                    user_meta.objects.get(uid=social_account.uid)
+                    meta=user_meta.objects.get(uid=social_account.uid)
                 except:
                     headers = {
                         'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
@@ -801,7 +801,7 @@ def account_view(request):
                     code.save()
                     meta=user_meta(username=str(name),top=str(top),afi_code=str(afi_code),uid=str(social_account.uid))
                     meta.save()
-                    
+
 
                 params['afi_code']=meta.afi_code
                 params['line_regi']=True
