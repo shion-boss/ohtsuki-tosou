@@ -424,7 +424,13 @@ footer {
 
 }
 @media(max-width:500px) {
-
+  .roku_img{
+    display: block;
+  }
+  .video-wrap video {
+    width: auto;
+    height: 100%;
+  }
   .check_box {
     margin: 0 auto;
     width: 80%;

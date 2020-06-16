@@ -10,6 +10,10 @@
 .video-wrap video {
   height: 100%;
 }
+
+.video-wrap .roku_img{
+  width: 100%;
+}
 .video-bg {
   position: absolute;
   top: 0;

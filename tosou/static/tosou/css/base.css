@@ -179,3 +179,7 @@ footer{
   font-size: 0.8rem;
   font-style: italic;
 }
+
+.roku_img{
+  display: none;
+}
