@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .check_form {
     margin: 0 5%;
     padding: 1.5rem;
@@ -139,6 +140,20 @@
 }
 
 @media(max-width:800px) {
+  .back_img {
+    position: absolute;
+    opacity: 0.4;
+    width: 60%;
+    z-index: -1;
+  }
+  .day_box div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 0.5rem;
+  }
+  #one_day,#two_day{
+    grid-column: 1/3;
+  }
   .batu {
     color: white;
     display: flex;
@@ -214,22 +229,10 @@
 }
 .info {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr;
     grid-row-gap: 1.5rem;
 }
-.day_box div {
-    margin-bottom: 1rem;
-    display: grid;
-    grid-template-columns:1fr 1fr ;
 
-}
-.day_box div .bold_p,.grid_be{
-  grid-column: 1/3;
-}
-
-#one_day,#two_day,.grid_af{
-  grid-column: 3/5;
-}
 
 .more_box{
   display: grid;

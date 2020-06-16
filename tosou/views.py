@@ -195,18 +195,21 @@ def logout_view(request):
     return redirect(to='index')
 
 def index_view(request):
+    cv=customer_voice_model.objects.all()
+    params={
+        'ccc':cv,
+        "afi_code":'000000',
+    }
     if settings.DEBUG==False:
         if request.user.is_authenticated:
             try:
                 social_account=SocialAccount.objects.get(user=request.user)
             except:
                 pass
-            line_bot_api.push_message(str(social_account.uid), TextSendMessage(text='Hello World!'))
-            social_account=SocialAccount.objects.get(user=request.user)
-    cv=customer_voice_model.objects.all()
-    params={
-        'ccc':cv,
-    }
+            else:
+                line_bot_api.push_message(str(social_account.uid), TextSendMessage(text='Hello World!'))
+                meta=user_meta.objects.get(uid=social_account.uid)
+                params['afi_code']=meta.afi_code
     return render(request,'tosou/index.html',params)
 
 

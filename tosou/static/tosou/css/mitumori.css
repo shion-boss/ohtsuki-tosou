@@ -40,3 +40,12 @@
 input{
   background-color: rgba(255,255,255,0.4);
 }
+
+.day_box div{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#one_day,#two_day{
+  grid-column: 1/5;
+}

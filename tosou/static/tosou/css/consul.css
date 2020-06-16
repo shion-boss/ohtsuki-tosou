@@ -68,6 +68,8 @@
 
 .day_box div{
   margin-bottom: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 
@@ -182,4 +184,13 @@ label span,.s_s span{
 
 #n_more:checked~.n_more_input{
   visibility: visible;
+}
+
+.one_more{
+  display: block;
+}
+
+.day_box div{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }

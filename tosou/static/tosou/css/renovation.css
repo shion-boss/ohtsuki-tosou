@@ -24,7 +24,7 @@
 
 .sikumi_box{
   padding: 3rem 12.5%;
-  margin-top: 3rem;
+  margin-top: 0;
   background-image: url('/static/shikumiBg.png');
 }
 
