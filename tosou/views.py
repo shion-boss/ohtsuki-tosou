@@ -30,58 +30,6 @@ parser = WebhookParser(settings.YOUR_CHANNEL_SECRET)
 #    text = request_json['events'][0]['message']['text']
 #    line_bot_api.push_message(line_user_id, TextSendMessage(text='Hello World!'))
 
-#callback_view
-@csrf_exempt
-def callback(request):
-    if request.method == 'POST':
-        signature = request.META['HTTP_X_LINE_SIGNATURE']
-        body = request.body.decode('utf-8')
-
-        try:
-            events = parser.parse(body, signature)
-        except InvalidSignatureError:
-            return HttpResponseForbidden()
-        except LineBotApiError:
-            return HttpResponseBadRequest()
-
-        for event in events:
-            if isinstance(event, MessageEvent):
-                if isinstance(event.message, TextMessage):
-                    try:
-                        line_bot_api.reply_message(
-                            event.reply_token,
-                            TextSendMessage(text=str(event))
-                        )
-                    except LineBotApiError as e:
-                        print(e.status_code)
-                        print(e.error.message)
-                        print(e.error.details)
-
-
-                try:
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=str(event.type))
-                    )
-                except :
-                    pass
-
-            if event.type =="follow":
-                try:
-                    line_bot_api.reply_message(
-                        event.replyToken,
-                        TextSendMessage(text=str(events))
-                    )
-                except LineBotApiError as e:
-                    print(e.status_code)
-                    print(e.error.message)
-                    print(e.error.details)
-
-
-
-        return HttpResponse()
-    else:
-        return HttpResponseBadRequest()
 
 @csrf_exempt
 def callback_view(request):
@@ -209,9 +157,12 @@ def index_view(request):
             except:
                 pass
             else:
-                line_bot_api.push_message(str(social_account.uid), TextSendMessage(text='Hello World!'))
-                meta=user_meta.objects.get(uid=social_account.uid)
-                params['afi_code']=meta.afi_code
+                try:
+                    meta=user_meta.objects.get(uid=social_account.uid)
+                except:
+                    params['afi_code']='000000'
+                else:
+                    params['afi_code']=meta.afi_code
     return render(request,'tosou/index.html',params)
 
 
@@ -233,7 +184,15 @@ def check_view(request):
             'tuki_sa':'',
             'nen_sa':'',
             'total_sa':'',
+            'afi_code':'',
         }
+        try:
+            social_account=SocialAccount.objects.get(user=request.user)
+            meta=user_meta.objects.get(uid=social_account.uid)
+        except:
+            params['afi_code']='000000'
+        else:
+            params['afi_code']=meta.afi_code
         try:
             gaku=request.POST['gaku']
         except:
@@ -281,7 +240,15 @@ def easy_view(request):
             'tuki_sa':'',
             'nen_sa':'',
             'total_sa':'',
+            'afi_code':'',
         }
+        try:
+            social_account=SocialAccount.objects.get(user=request.user)
+            meta=user_meta.objects.get(uid=social_account.uid)
+        except:
+            params['afi_code']='000000'
+        else:
+            params['afi_code']=meta.afi_code
         ####################now#########################
         if hoho == 1:
             #元利均等返済の毎月返済額
@@ -378,7 +345,15 @@ def a_easy_view(request):
             'tuki_sa':'',
             'nen_sa':'',
             'total_sa':'',
+            'afi_code':'',
         }
+        try:
+            social_account=SocialAccount.objects.get(user=request.user)
+            meta=user_meta.objects.get(uid=social_account.uid)
+        except:
+            params['afi_code']='000000'
+        else:
+            params['afi_code']=meta.afi_code
         ####################now#########################
         if hoho == 1:
             #元利均等返済の毎月返済額
@@ -452,7 +427,17 @@ def a_easy_view(request):
         return render(request,'tosou/account.html',params)
 
 def consul_form_view(request):
-    return render(request,'tosou/consul.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/consul.html',params)
 
 #無料相談
 def email_view(request):
@@ -589,41 +574,137 @@ def email_view(request):
     return redirect('easy')
 
 def complete_view(request):
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
     return render(request,'tosou/account.html')
 
 def good_view(request):
-    return render(request,'tosou/account.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/account.html',params)
 
 def present_view(request):
-    return render(request,'tosou/gai.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/gai.html',params)
 
 def mitumori_view(request):
-    return render(request,'tosou/mitumori.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/mitumori.html',params)
 
 def e_s_view(request):
-    return render(request,'tosou/nai.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/nai.html',params)
 
 def page_view(request):
-    return render(request,'tosou/page.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/page.html',params)
 
 def renovation_view(request):
-    return render(request,'tosou/renovation.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/renovation.html',params)
 
 def line_view(request):
-    return render(request,'tosou/ful_contact.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/ful_contact.html',params)
 
 def qa_view(request):
     qa_list=qa_model.objects.all()
     params={
         'aaa':qa_list,
+        'afi_code':'',
     }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
     return render(request,'tosou/qa.html',params)
 
 def catalog_view(request):
     catalog=catalog_model.objects.all()
     params={
         'ccc':catalog,
+        'afi_code':'',
     }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
     return render(request,'tosou/catalog.html',params)
 
 #見積依頼
@@ -677,17 +758,60 @@ def m_form_view(request):
     return redirect('index')
 
 def regi_view(request):
-    return render(request,'tosou/regi.html')
+    params={
+        'afi_code':'',
+    }
+    try:
+        social_account=SocialAccount.objects.get(user=request.user)
+        meta=user_meta.objects.get(uid=social_account.uid)
+    except:
+        params['afi_code']='000000'
+    else:
+        params['afi_code']=meta.afi_code
+    return render(request,'tosou/regi.html',params)
 
 @login_required
 def account_view(request):
     user=request.user
     params={
-        'afi_code':'',
+        'afi_code':'000000',
         'line_regi':'',
     }
+    if settings.DEBUG==False:
+        if request.user.is_authenticated:
+            try:
+                social_account=SocialAccount.objects.get(user=request.user)
+            except:
+                pass
+            try:
+                user_meta.objects.get(uid=social_account.uid)
+            except:
+                #サイトからのユーザー登録
+                headers = {
+                    'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+                }
+                request_url='https://api.line.me/v2/bot/profile/'+str(social_account.uid)
+                r = requests.get(request_url, headers=headers)
+                data = json.loads(r.text)
+                name=data["displayName"]
+                top=data['pictureUrl']
+                code=code_model.objects.get(option=0)
+                afi_code='{:0=6}'.format(int(code.num))
+                code.num+=1
+                code.save()
+                meta=user_meta(username=str(name),top=str(top),afi_code=str(afi_code),uid=str(line_user_id))
+                meta.save()
+
+            try:
+                social_account=SocialAccount.objects.get(user=request.user)
+                meta=user_meta.objects.get(uid=social_account.uid)
+            except:
+                params['afi_code']='000000'
+            else:
+                params['afi_code']=meta.afi_code
+
     try:
-        meta=user_meta.objects.get(user=user)
+        meta=user_meta.objects.get(uid=social_account.uid)
     except:
         params['line_regi']=False
     else:
