@@ -113,7 +113,8 @@
     {% if request.path == "/auth/social/login/cancelled/" %}
     <h1>あらあらキャンセルしちゃったのかい。。。</h1>
     {% elif request.path == "/auth/line/login/callback/" %}
-    <h1>おっと？今起きた状況を説明してくれるかい？</h1>
+    <h1>プライベートウィンドウや<br>シークレットウィンドウでは、ログインできません。</h1>
+    <p>お手数をおかけしますが新しいウインドウでやり直してください。</p>
     {% endif %}
     {% block body %}{% endblock %}
     <footer>

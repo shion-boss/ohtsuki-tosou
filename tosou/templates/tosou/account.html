@@ -14,13 +14,13 @@
 
   <div class="mv">
     <div class="video-desc">
-      {% if request.path == "/smart/account/" %}
+      {% if request.path == "/account/" %}
       {% if line_regi %}
       <p>あなたの紹介コードは、{{afi_code}}です。<br><span>紹介特典のご連絡はLINEで行います。</span></p>
       {% else %}
       <p>公式LINEの友達追加が完了していません。<br>紹介特典のご連絡はLINEで行うため、公式LINEを友達追加していただく必要があります。<br><span><a href="{% url 'line_login' %}" class='a_under'>公式LINEの友達追加はこちら</a></span></p>
       {% endif %}
-      {% elif request.path == "/smart/complete/"%}
+      {% elif request.path == "/complete/"%}
       <p>お疲れ様です！<br>無料相談シートの送信が完了しました。<br><span>担当の者からの連絡をお待ちください。</span></p>
       {% else %}
       <p>お疲れ様です！<br>見積依頼の送信が完了しました。<br><span>担当の者からの連絡をお待ちください。</span></p>
