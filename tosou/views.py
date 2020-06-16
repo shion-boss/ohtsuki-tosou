@@ -775,7 +775,7 @@ def account_view(request):
     user=request.user
     params={
         'afi_code':'000000',
-        'line_regi':'',
+        'line_regi':False,
     }
     if settings.DEBUG==False:
         if request.user.is_authenticated:
@@ -783,38 +783,28 @@ def account_view(request):
                 social_account=SocialAccount.objects.get(user=request.user)
             except:
                 pass
-            try:
-                user_meta.objects.get(uid=social_account.uid)
-            except:
-                #サイトからのユーザー登録
-                headers = {
-                    'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
-                }
-                request_url='https://api.line.me/v2/bot/profile/'+str(social_account.uid)
-                r = requests.get(request_url, headers=headers)
-                data = json.loads(r.text)
-                name=data["displayName"]
-                top=data['pictureUrl']
-                code=code_model.objects.get(option=0)
-                afi_code='{:0=6}'.format(int(code.num))
-                code.num+=1
-                code.save()
-                meta=user_meta(username=str(name),top=str(top),afi_code=str(afi_code),uid=str(line_user_id))
-                meta.save()
-
-            try:
-                social_account=SocialAccount.objects.get(user=request.user)
-                meta=user_meta.objects.get(uid=social_account.uid)
-            except:
-                params['afi_code']='000000'
             else:
-                params['afi_code']=meta.afi_code
+                try:
+                    user_meta.objects.get(uid=social_account.uid)
+                except:
+                    headers = {
+                        'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+                    }
+                    request_url='https://api.line.me/v2/bot/profile/'+str(social_account.uid)
+                    r = requests.get(request_url, headers=headers)
+                    data = json.loads(r.text)
+                    name=data["displayName"]
+                    top=data['pictureUrl']
+                    code=code_model.objects.get(option=0)
+                    afi_code='{:0=6}'.format(int(code.num))
+                    code.num+=1
+                    code.save()
+                    meta=user_meta(username=str(name),top=str(top),afi_code=str(afi_code),uid=str(social_account.uid))
+                    meta.save()
+                    
 
-    try:
-        meta=user_meta.objects.get(uid=social_account.uid)
-    except:
-        params['line_regi']=False
-    else:
-        params['line_regi']=True
-        params['afi_code']=meta.afi_code
+                params['afi_code']=meta.afi_code
+                params['line_regi']=True
+
+
     return render(request,'tosou/account.html',params)
