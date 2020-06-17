@@ -431,6 +431,20 @@ footer {
 
 }
 @media(max-width:500px) {
+  .tel_box img {
+    width: 60%;
+  }
+  .tel_box {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 0.9;
+    background-color: paleturquoise;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
   .roku_img{
     display: block;
   }
@@ -709,9 +723,7 @@ footer {
   .qa_body .qa_box{
     margin-bottom: 2rem;
    }
-  .tel_box img {
-    width: 40%;
-  }
+
   .f_contact_body {
     padding: 3rem 5%;
     width: 100%;
