@@ -18,12 +18,15 @@ from django.urls import path,include
 from . import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.static import serve
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("tosou.urls")),
     path('auth/', include('allauth.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
