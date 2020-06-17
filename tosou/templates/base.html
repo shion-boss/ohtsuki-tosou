@@ -56,7 +56,6 @@
         <p>ページが画面サイズに合っていない場合は再読み込みしてください。</p>
         <div class="white_box2">
           <div id="flipbook2">
-            <div><img src="{% static 'manga2.jpg'%}" alt=""></div>
             <div><img src="{% static '00001.jpg'%}" alt=""></div>
             <div><img src="{% static '00002.jpg'%}" alt=""></div>
             <div><img src="{% static '00003.jpg'%}" alt=""></div>
@@ -236,17 +235,6 @@
       <div class="footer_grid">
         <div class="footer_h_box">
           <div class="footer_l_box">
-            <p class='footer_title'>アカウント</p>
-            {% if user.is_authenticated %}
-            <a href="{% url 'account' %}">{{ afi_code}}</a>
-            <a href="{% url 'logout' %}">ログアウト</a>
-            {% else %}
-            <a href="{% url 'line_login' %}">ログイン</a>
-            {% endif %}
-          </div>
-        </div>
-        <div class="footer_h_box">
-          <div class="footer_l_box">
             <p class='footer_title'>紹介特典</p>
             <a href="{% url 'regi' %}">紹介コードをGET</a>
             <a href="{% url 'catalog' %}">カタログ</a>
@@ -275,6 +263,17 @@
             <p class='ap' onClick="win_open()">スマートリノベーション</p>
             <p class='ap' onClick="win2_open()">Goodグループ</>
             <p class='ap'>TechNext</p>
+          </div>
+        </div>
+        <div class="footer_h_box">
+          <div class="footer_l_box">
+            <p class='footer_title'>アカウント</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'account' %}">{{ afi_code}}</a>
+            <a href="{% url 'logout' %}">ログアウト</a>
+            {% else %}
+            <a href="{% url 'line_login' %}">ログイン</a>
+            {% endif %}
           </div>
         </div>
       </div>

@@ -188,7 +188,7 @@ h2{
 #flipbook2 {
    /* flipbook自体の横幅なので各ページは200px */
   width:100vw;
-  height: 140vw;
+  height: 130vw;
   /*background-image: url("/static/S__3883015.jpg");*/
     /*background-repeat:  no-repeat;   */                      /* 画像の繰り返しを指定  */
     /*background-position:center center;  */                   /* 画像の表示位置を指定  */
@@ -197,7 +197,7 @@ h2{
 
 #flipbook2 div img{
   width: 100vw;
-  height: 140vw;
+  height: 130vw;
 }
 
 #pagemenu{

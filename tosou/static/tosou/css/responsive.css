@@ -810,7 +810,7 @@ footer {
     /* grid-template-columns: 1fr 17vw; */
   }
   .sikumi_box {
-    padding: 0 5%;
+    padding: 2rem 5%;
     margin-top: 0;
     background-image: url(/static/shikumiBg.png);
   }
