@@ -29,7 +29,7 @@
     <div class="complete_body responsive_manga_b">
       <label for="manga_check" class='batu'><i class="fas fa-times"></i></label>
       <div class="complete_box ">
-        <p>ページが画面サイズに合っていない場合は再読み込みしてください。</p>
+        <p>画面サイズに合っていない場合は再読み込みしてください。</p>
         <span class='pages' id="toLast">P8</span>
         <div class="white_box">
           <div id="flipbook">
@@ -45,15 +45,15 @@
         </div>
         <span class='pages' id="toTop">P1</span>
         <div id="pagemenu">
-          <span class='pages' id="toNext">Next</span>
-          <span class='pages' id="toPrev">Prev</span>
+          <span class='pages' id="toNext"><i class="fas fa-caret-left"></i></span>
+          <span class='pages' id="toPrev"><i class="fas fa-caret-right"></i></span>
         </div>
       </div>
     </div>
     <div class="complete_body responsive_manga">
       <label for="manga_check" class='batu'><i class="fas fa-times"></i></label>
       <div class="complete_box2 ">
-        <p>ページが画面サイズに合っていない場合は再読み込みしてください。</p>
+        <p>画面サイズに合っていない場合は再読み込みしてください。</p>
         <div class="white_box2">
           <div id="flipbook2">
             <div><img src="{% static '00001.jpg'%}" alt=""></div>
@@ -69,28 +69,18 @@
         </div>
         <div id="pagemenu2">
           <span class='pages' id="toLast2">Last</span>
-          <span class='pages' id="toNext2">Next</span>
-          <span class='pages' id="toPrev2">Prev</span>
+          <span class='pages' id="toNext2"><i class="fas fa-caret-left"></i></span>
+          <span class='pages' id="toPrev2"><i class="fas fa-caret-right"></i></span>
           <span class='pages' id="toTop2">P1</span>
         </div>
       </div>
     </div>
 
     <header>
-      <div class="header_left">
-        <div class="logo_box">
-          <div class="c_logo">
-            <div class="sume_box">
-              <div class="c_sume">
-                <p>現金負担０円リフォーム</p>
-                <img class='header_sume' src="{% static 'sume.png' %}" alt="">
-              </div>
-            </div>
-            <img class='header_logo' src="{% static 'logo4.png' %}" alt="">
-          </div>
-          <p class='header_p'>確かな技術をスマートにあなたへ｜外壁塗装｜内壁塗装｜遮熱｜GAINA</p>
-        </div>
+      <div class="logo_img">
+        <img src="{% static 'newlogo.jpg' %}" alt="">
       </div>
+      <p class='header_p'>確かな技術をスマートにあなたへ｜外壁塗装｜内壁塗装｜遮熱｜GAINA</p>
     </header>
     <div class="header_menu">
       <!--{% if request.path == "/techbee/ranking/" %}id="current"{% endif %}-->

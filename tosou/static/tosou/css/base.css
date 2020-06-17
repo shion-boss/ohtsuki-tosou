@@ -19,27 +19,25 @@ header{
   height: 130px;
   background-color: #b4e4e6;
   padding: 0 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 10;
 }
 
 
-.header_left{
+.logo_img{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100px;
+  overflow: hidden;
 }
 
-.logo_box{
-  color: rgb(56,56,56);
-  font-weight: bold;
-  font-size: 1rem;
+.logo_img img{
+  height: 130%;
 }
+
 .header_p{
+  line-height: 30px;
   text-align: center;
-  margin-right: 55px;
 }
 
 .c_logo{

@@ -140,6 +140,9 @@
 }
 
 @media(max-width:800px) {
+  header{
+    padding: 0;
+  }
 
   #sai{
     display: none;
@@ -348,6 +351,9 @@ element.style {
     color: orangered;
     font-size: 3rem;
   }
+  .header_p{
+    font-size: 14px;
+  }
 
   .main_img img {
       width: 100%;
@@ -463,11 +469,21 @@ footer {
     height: 80px;
   }
 
-  .c_logo {
+  .logo_img{
     display: flex;
-    width: 90%;
+    justify-content: center;
     align-items: center;
-    margin:0;
+    height: 64px;
+    overflow: hidden;
+  }
+
+  .logo_img img{
+    height: 130%;
+  }
+
+  .header_p{
+    line-height: 16px;
+    text-align: center;
   }
   .c_sume p {
     font-size: 10px;
