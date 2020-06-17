@@ -216,7 +216,7 @@ except ImportError:
 
 
 
-
+SECURE_SSL_REDIRECT = True
 
 
 #####heroku#####
