@@ -156,7 +156,7 @@ input[type="range"]:active::-webkit-slider-thumb {
 .c_flow_box{
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items:flex-start;
 }
 
 .c_flow_box img{

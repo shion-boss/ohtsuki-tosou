@@ -259,9 +259,13 @@
 .consul {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 2rem;
     margin-top: 1rem;
+    grid-row-gap: 2rem;
+}
+.c_c_box p {
+    margin: 0 0 2rem 0;
 }
 .c_flow_box {
     display: flex;
