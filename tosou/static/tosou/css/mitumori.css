@@ -9,6 +9,7 @@
   opacity: 0.4;
   width: 40%;
   z-index: -1;
+  border-radius: 90px;
 }
 
 .m_header{
