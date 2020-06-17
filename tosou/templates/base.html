@@ -107,12 +107,13 @@
         {% endif %}
       </div>
     </div>
-    <a class="tel_box" href="{% url 'contact_line' %}">
+    <a class="tel_box" href="tel:090-2564-5015">
       <img src="{% static 'tel.png' %}" alt="">
     </a>
     {% if request.path == "/auth/social/login/cancelled/" %}
     <div class="account_body">
       <div class="video-wrap">
+        <img src="{% static 'S__3940379.jpg' %}" alt="" class='roku_img'>
         <video src="https://res.cloudinary.com/hlbrfvwak/video/upload/v1592166534/01_fmazlw.mp4" autoplay muted loop></video>
         <div class="video-bg"></div>
       </div>
