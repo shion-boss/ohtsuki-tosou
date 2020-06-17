@@ -200,3 +200,7 @@ input[type="range"]:active::-webkit-slider-thumb {
 .c_img_box img:hover{
   opacity: 0.7;
 }
+
+#n_sai{
+  display: none;
+}

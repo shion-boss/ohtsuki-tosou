@@ -140,6 +140,13 @@
 }
 
 @media(max-width:800px) {
+
+  #sai{
+    display: none;
+  }
+  #n_sai{
+    display: block;
+  }
   .back_img {
     position: absolute;
     opacity: 0.4;

@@ -27,6 +27,7 @@
     <form class="easy_form" action="{% url 'easy' %}" method="post">
       {% csrf_token %}
       <label for="sai">残債額(円)</label>
+      <input type="tel" name="sai" value="{{sai}}" id='n_sai' required oninput="value = value.replace(/[^0-9]+/i,'');">
       <input type="text" name="sai" value="{{sai}}" id='sai' required oninput="value = value.replace(/[^0-9]+/i,'');">
       <label for="kikan">残期間(年)</label>
       <input type="number" name="kikan" value="{{kikan}}" id='kikan' required>
