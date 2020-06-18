@@ -25,6 +25,6 @@ urlpatterns = [
     path('catalog/',views.catalog_view,name='catalog'),
     path('line/',views.line_view,name='contact_line'),
     path('callback/',views.callback_view,name='callback'),
-    path('web/'views.web_index_view,name,name='web'),
+    path('web/',views.web_index_view,name,name='web'),
 
     ]
