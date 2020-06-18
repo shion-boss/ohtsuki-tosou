@@ -110,7 +110,7 @@ def callback_view(request):
             line_bot_api.push_message(line_user_id, TextSendMessage(text=welcome))
 
             #message to staff
-            message=str(name)+'さんが'+'新規LINE登録しました！！！！'
+            message=str(name)+'さんが新規LINE登録しました！！！！'
             line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text=message))
             line_bot_api.push_message("U0b64c93b9b15663616d71a057cd41b38", TextSendMessage(text=message))
             line_bot_api.push_message("U8d5974a689241759e8e95f05f161e9bb", TextSendMessage(text=message))
