@@ -202,6 +202,9 @@
   grid-template-columns: 1rem 1fr;
 }
 
+.line_pic{
+  border-radius: 50%;
+}
 
 .v_text{
   width: 100%;
