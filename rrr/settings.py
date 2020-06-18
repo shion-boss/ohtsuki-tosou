@@ -246,7 +246,6 @@ CLOUDINARY_STORAGE = {
     'API_KEY': C_API_KEY,
     'API_SECRET': C_API_SECRET
 }
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

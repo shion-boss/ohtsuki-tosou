@@ -767,7 +767,7 @@ footer {
     text-align: center;
     color: #95d1d2;
     font-size: 2rem;
-    text-shadow: 0 0 80px white;
+    text-shadow: 0 0 5px black;
   }
   .tel_number_box h2 {
     border-radius: 1rem;

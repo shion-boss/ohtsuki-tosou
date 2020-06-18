@@ -94,7 +94,8 @@ def callback_view(request):
                         meta=user_meta(username=str(name),top=str(top),afi_code=str(afi_code),uid=str(line_user_id))
                         meta.save()
                         meta=user_meta.objects.get(uid=line_user_id)
-                    afi_code=meta.afi_code
+                    else:
+                        afi_code=meta.afi_code
             else:
                 #lineを直接追加したユーザー
                 code=code_model.objects.get(option=0)
