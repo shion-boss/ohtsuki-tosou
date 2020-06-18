@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model,account_meta,code_model,c_v_model
 import datetime
+import random
 import os
 from allauth.socialaccount.models import SocialAccount
 from linebot import LineBotApi, WebhookHandler,WebhookParser
@@ -210,7 +211,16 @@ def voice_form_view(request):
                     data = json.loads(r.text)
                     top=data['pictureUrl']
                     if not_pic =='on':
-                        cv=c_v_model(voice=voice)
+                        pic_list=[
+                        'https://res.cloudinary.com/hlbrfvwak/image/upload/v1592458130/account-blue_xuo3jn.png',
+                        'https://res.cloudinary.com/hlbrfvwak/image/upload/v1592458134/account-green_sqqiu2.png',
+                        'https://res.cloudinary.com/hlbrfvwak/image/upload/v1592458151/account-orange_vkeuqy.png',
+                        'https://res.cloudinary.com/hlbrfvwak/image/upload/v1592458157/account-pink_k3iuul.png',
+                        'https://res.cloudinary.com/hlbrfvwak/image/upload/v1592458162/account-yellow_jgvcvi.png',
+                        'https://res.cloudinary.com/hlbrfvwak/image/upload/v1592166538/gpm3ei8ydcd11j6u4x8z.png'
+                        ]
+                        top=random.choise(pic_list)
+                        cv=c_v_model(pic=top,voice=voice)
                     else:
                         cv=c_v_model(pic=top,voice=voice)
                     cv.save()
