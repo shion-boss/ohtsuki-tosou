@@ -201,6 +201,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   opacity: 0.7;
 }
 
-#n_sai{
+.n_sai{
   display: none;
 }

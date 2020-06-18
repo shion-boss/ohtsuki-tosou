@@ -144,10 +144,10 @@
     padding: 0;
   }
 
-  #sai{
+  .sai{
     display: none;
   }
-  #n_sai{
+  .n_sai{
     display: block;
   }
   .back_img {

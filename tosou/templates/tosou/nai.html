@@ -27,8 +27,8 @@
     <form class="easy_form" action="{% url 'easy' %}" method="post">
       {% csrf_token %}
       <label for="sai">残債額(円)</label>
-      <input type="tel" name="sai" value="{{sai}}" id='n_sai' required oninput="value = value.replace(/[^0-9]+/i,'');">
-      <input type="text" name="sai" value="{{sai}}" id='sai' required oninput="value = value.replace(/[^0-9]+/i,'');">
+      <input type="tel" name="sai" value="{{sai}}" id='sai' required oninput="value = value.replace(/[^0-9]+/i,'');" class='n_sai'>
+      <input type="text" name="sai" value="{{sai}}" id='sai' required oninput="value = value.replace(/[^0-9]+/i,'');" class='sai'>
       <label for="kikan">残期間(年)</label>
       <input type="number" name="kikan" value="{{kikan}}" id='kikan' required>
       <label for="riritu">利率(％)</label>
@@ -134,30 +134,30 @@ options: {
 
 
     // フォーカスアウト
-    $('#sai').on('blur', function(){
+    $('.sai').on('blur', function(){
       var num = $(this).val();
       num = num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
       $(this).val(num);
     });
 
     // フォーカス
-    $('#sai').on('focus', function(){
+    $('.sai').on('focus', function(){
       var num = $(this).val();
       num = num.replace(/,/g, '');
       $(this).val(num);
     });
 
     $('#easy_submit').on('click', function(){
-      var num = $('#sai').val();
+      var num = $('.sai').val();
       num = num.replace(/,/g, '');
-      $('#sai').val(num);
+      $('.sai').val(num);
     });
   });
 
   $(window).on('load', function (){
-    var num = $('#sai').val();
+    var num = $('.sai').val();
     num = num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-    $('#sai').val(num);
+    $('.sai').val(num);
   });
 </script>
 
