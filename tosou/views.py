@@ -38,20 +38,21 @@ def callback_view(request):
         request_json = json.loads(request.body.decode('utf-8'))
         events = request_json['events']
         line_user_id = events[0]['source']['userId']
+        headers = {
+            'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+        }
+        request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
+        r = requests.get(request_url, headers=headers)
+        data = json.loads(r.text)
+        name=data["displayName"]
+        text=events[0]['message']['text']
+        top=data['pictureUrl']
 
         # チャネル設定のWeb hook接続確認時にはここ。このIDで見に来る。
         if line_user_id == 'Udeadbeefdeadbeefdeadbeefdeadbeef':
             pass
 
         elif events[0]['type'] == 'message':
-            headers = {
-                'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
-            }
-            request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
-            r = requests.get(request_url, headers=headers)
-            data = json.loads(r.text)
-            name=data["displayName"]
-            text=events[0]['message']['text']
             message=name+'様から公式アカウントへお問い合わせがありました。\n'+'【お問い合わせ内容】\n'+text
             line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text=message))
             line_bot_api.push_message("U0b64c93b9b15663616d71a057cd41b38", TextSendMessage(text=message))
@@ -75,14 +76,6 @@ def callback_view(request):
                     user_meta.objects.get(uid=line_user_id)
                 except:
                     #サイトからのユーザー登録
-                    headers = {
-                        'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
-                    }
-                    request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
-                    r = requests.get(request_url, headers=headers)
-                    data = json.loads(r.text)
-                    name=data["displayName"]
-                    top=data['pictureUrl']
                     code=code_model.objects.get(option=0)
                     afi_code='{:0=6}'.format(int(code.num))
                     code.num+=1
@@ -91,25 +84,10 @@ def callback_view(request):
                     meta.save()
                 else:
                     #ブロック解除のユーザー
-                    headers = {
-                        'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
-                    }
-                    request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
-                    r = requests.get(request_url, headers=headers)
-                    data = json.loads(r.text)
-                    name=data["displayName"]
                     meta=user_meta.objects.get(uid=line_user_id)
                     afi_code=meta.afi_code
             else:
                 #lineを直接追加したユーザー
-                headers = {
-                    'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
-                }
-                request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
-                r = requests.get(request_url, headers=headers)
-                data = json.loads(r.text)
-                name=data["displayName"]
-                top=data['pictureUrl']
                 code=code_model.objects.get(option=0)
                 afi_code='{:0=6}'.format(int(code.num))
                 code.num+=1
@@ -117,12 +95,12 @@ def callback_view(request):
                 meta=user_meta(username=str(name),top=str(top),afi_code=str(afi_code),uid=str(line_user_id))
                 meta.save()
 
-            welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典としてプレゼント企画を始めました。\n'+name+'様限定の紹介コードは「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。\n'+'https://ohtsuki-tosou.herokuapp.com'
+            welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典としてプレゼント企画を始めました。\n'+name+'様限定の紹介コードは「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。\n'+'https://www.ohtsuki-tosou.com'
             #message to user
             line_bot_api.push_message(line_user_id, TextSendMessage(text=welcome))
 
             #message to staff
-            message='新規LINE登録！！！！'
+            message=str(name)+'さんが'+'新規LINE登録しました！！！！'
             line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text=message))
             line_bot_api.push_message("U0b64c93b9b15663616d71a057cd41b38", TextSendMessage(text=message))
             line_bot_api.push_message("U8d5974a689241759e8e95f05f161e9bb", TextSendMessage(text=message))
@@ -279,14 +257,18 @@ def check_view(request):
 
 def easy_view(request):
     if request.method == 'POST':
-        zangaku=int(request.POST['sai'])
+        if request.POST['sai']=='':
+            zangaku=int(request.POST['n_sai'])
+        else:
+            zangaku=int(request.POST['sai'])
         rate=float(request.POST['riritu'])*0.01/12
         kaisu=int(request.POST['kikan'])*12
         rate1=1+rate
         kaisu1=kaisu-1
         hoho=int(request.POST['hensai'])
         params={
-            'sai':int(request.POST['sai']),
+            'sai':int(zangaku),
+            'n_sai':int(zangaku),
             'riritu':float(request.POST['riritu']),
             'kikan':int(request.POST['kikan']),
             'hoho':int(request.POST['hensai']),
@@ -384,14 +366,22 @@ def easy_view(request):
 
 def a_easy_view(request):
     if request.method == 'POST':
-        zangaku=int(request.POST['sai'])
+        try:
+            zangaku=int(request.POST['sai'])
+        except:
+            pass
+        try:
+            zangaku=int(request.POST['n_sai'])
+        except:
+            pass
         rate=float(request.POST['riritu'])*0.01/12
         kaisu=int(request.POST['kikan'])*12
         rate1=1+rate
         kaisu1=kaisu-1
         hoho=int(request.POST['hensai'])
         params={
-            'sai':int(request.POST['sai']),
+            'sai':int(zangaku),
+            'n_sai':int(zangaku),
             'riritu':float(request.POST['riritu']),
             'kikan':int(request.POST['kikan']),
             'hoho':int(request.POST['hensai']),

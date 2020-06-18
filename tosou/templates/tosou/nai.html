@@ -26,9 +26,10 @@
     <h1>簡単シミュレーション</h1>
     <form class="easy_form" action="{% url 'easy' %}" method="post">
       {% csrf_token %}
-      <label for="sai">残債額(円)</label>
-      <input type="tel" name="sai" value="{{sai}}" id='sai' required oninput="value = value.replace(/[^0-9]+/i,'');" class='n_sai'>
-      <input type="text" name="sai" value="{{sai}}" id='sai' required oninput="value = value.replace(/[^0-9]+/i,'');" class='sai'>
+      <label for="sai" class='sai'>残債額(円)</label>
+      <label for="n_sai" class='n_sai'>残債額(円)</label>
+      <input type="tel" name="n_sai" value="{{n_sai}}" id='n_sai' oninput="value = value.replace(/[^0-9]+/i,'');" class='n_sai' required>
+      <input type="text" name="sai" value="{{sai}}" id='sai' oninput="value = value.replace(/[^0-9]+/i,'');" class='sai' required>
       <label for="kikan">残期間(年)</label>
       <input type="number" name="kikan" value="{{kikan}}" id='kikan' required>
       <label for="riritu">利率(％)</label>
@@ -134,31 +135,55 @@ options: {
 
 
     // フォーカスアウト
-    $('.sai').on('blur', function(){
+    $('#sai').on('blur', function(){
       var num = $(this).val();
       num = num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
       $(this).val(num);
     });
 
     // フォーカス
-    $('.sai').on('focus', function(){
+    $('#sai').on('focus', function(){
       var num = $(this).val();
       num = num.replace(/,/g, '');
       $(this).val(num);
     });
 
     $('#easy_submit').on('click', function(){
-      var num = $('.sai').val();
+      var num = $('#sai').val();
       num = num.replace(/,/g, '');
-      $('.sai').val(num);
+      $('#sai').val(num);
+    });
+    $('#sai').on('click', function(){
+      if(window.matchMedia('(max-width:500px)').matches){
+        $('#n_sai').prop('required',true);
+        $("#sai").prop("required",false);
+        $('#sai').val("");
+      } else {
+        $('#sai').prop('required',true);
+        $("#n_sai").prop("required",false);
+        $('#n_sai').val("");
+      }
+    });
+    $('#n_sai').on('click', function(){
+      if(window.matchMedia('(max-width:500px)').matches){
+        $('#n_sai').prop('required',true);
+        $("#sai").prop("required",false);
+        $('#sai').val("");
+      } else {
+        $('#sai').prop('required',true);
+        $("#n_sai").prop("required",false);
+        $('#n_sai').val("");
+      }
+
     });
   });
 
   $(window).on('load', function (){
-    var num = $('.sai').val();
+    var num = $('#sai').val();
     num = num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-    $('.sai').val(num);
+    $('#sai').val(num);
   });
+
 </script>
 
 {% endblock %}
