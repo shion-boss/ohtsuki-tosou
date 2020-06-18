@@ -441,6 +441,12 @@ footer {
 
 }
 @media(max-width:500px) {
+  .phone_img{
+    display: block;
+  }
+  .wide_img{
+    display: none;
+  }
   .pic_check p,.c_announce{
     font-size: 10px;
   }

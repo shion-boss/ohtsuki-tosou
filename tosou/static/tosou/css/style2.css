@@ -84,7 +84,7 @@
   position: absolute;
   top: 180px;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 400px;
   overflow:hidden;
 }
@@ -92,7 +92,7 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 100vw !important;
+  width: 100%;
   opacity: 0;
   animation: fadeIn .4s forwards linear;
   animation-delay: 6.6s;
