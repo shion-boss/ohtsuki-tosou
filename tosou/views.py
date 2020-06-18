@@ -84,7 +84,16 @@ def callback_view(request):
                     meta.save()
                 else:
                     #ブロック解除のユーザー
-                    meta=user_meta.objects.get(uid=line_user_id)
+                    try:
+                        meta=user_meta.objects.get(uid=line_user_id)
+                    except:
+                        code=code_model.objects.get(option=0)
+                        afi_code='{:0=6}'.format(int(code.num))
+                        code.num+=1
+                        code.save()
+                        meta=user_meta(username=str(name),top=str(top),afi_code=str(afi_code),uid=str(line_user_id))
+                        meta.save()
+                        meta=user_meta.objects.get(uid=line_user_id)
                     afi_code=meta.afi_code
             else:
                 #lineを直接追加したユーザー
