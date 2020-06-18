@@ -7,7 +7,7 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class customer_voice_model(models.Model):
-    image=CloudinaryField('image',default='https://res.cloudinary.com/hlbrfvwak/image/upload/v1592409791/vaqfgeeaghdbgjcsghg1.jpg')
+    image=CloudinaryField('image',default='https://res.cloudinary.com/hlbrfvwak/image/upload/v1592409791/vaqfgeeaghdbgjcsghg1.jpg',blank=True,null=True)
     #img=models.ImageField(null=True, blank=True)
     name=models.CharField(max_length=140,blank=True,null=True)
     voice=models.TextField(max_length=140)
@@ -29,7 +29,7 @@ class qa_model(models.Model):
         return self.question
 
 class catalog_model(models.Model):
-    image=CloudinaryField('image',default='https://res.cloudinary.com/hlbrfvwak/image/upload/v1592409791/vaqfgeeaghdbgjcsghg1.jpg')
+    image=CloudinaryField('image',default='https://res.cloudinary.com/hlbrfvwak/image/upload/v1592409791/vaqfgeeaghdbgjcsghg1.jpg',blank=True,null=True)
     #img=models.ImageField(null=True, blank=True)
     number=models.IntegerField(default=0)
     p=models.TextField(max_length=140)
