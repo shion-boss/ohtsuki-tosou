@@ -192,3 +192,21 @@
   font-size: 2rem;
   margin: 2rem 0;
 }
+
+.v_form{
+  margin: 3rem 0;
+}
+
+.pic_check{
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+}
+
+
+.v_text{
+  width: 100%;
+}
+
+.v_button{
+  width: 100%;
+}

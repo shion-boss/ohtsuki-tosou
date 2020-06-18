@@ -15,6 +15,10 @@ class customer_voice_model(models.Model):
     name=models.CharField(max_length=140,blank=True,null=True)
     voice=models.TextField(max_length=140)
 
+class c_v_model(models.Model):
+    pic=models.CharField(max_length=500,blank=True,null=True,default='https://res.cloudinary.com/hlbrfvwak/image/upload/v1592166538/gpm3ei8ydcd11j6u4x8z.png')
+    voice=models.TextField(max_length=140)
+
 class user_meta(models.Model):
     top=models.CharField(max_length=500,blank=True,null=True)
     username=models.CharField(max_length=500,blank=True,null=True)

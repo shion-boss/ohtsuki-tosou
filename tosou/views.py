@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model,account_meta,code_model
+from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model,account_meta,code_model,c_v_model
 import datetime
 import os
 from allauth.socialaccount.models import SocialAccount
@@ -145,7 +145,7 @@ def logout_view(request):
     return redirect(to='index')
 
 def web_index_view(request):
-    cv=customer_voice_model.objects.all()
+    cv=c_v_model.objects.all()
     params={
         'ccc':cv,
         "afi_code":'000000',
@@ -166,7 +166,7 @@ def web_index_view(request):
     return render(request,'tosou/index.html',params)
 
 def index_view(request):
-    cv=customer_voice_model.objects.all()
+    cv=c_v_model.objects.all()
     params={
         'ccc':cv,
         "afi_code":'000000',
@@ -186,6 +186,36 @@ def index_view(request):
                     params['afi_code']=meta.afi_code
     return render(request,'tosou/index.html',params)
 
+
+def voice_form_view(request):
+    if request.method=='POST':
+        if settings.DEBUG==False:
+            if request.user.is_authenticated:
+                try:
+                    social_account=SocialAccount.objects.get(user=request.user)
+                except:
+                    pass
+                else:
+                    uid=social_account.uid
+                    try:
+                        not_pic=request.POST['not_pic']
+                    except:
+                        not_pic='not_on'
+                    voice=request.POST['voice']
+                    headers = {
+                        'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+                    }
+                    request_url='https://api.line.me/v2/bot/profile/'+str(uid)
+                    r = requests.get(request_url, headers=headers)
+                    data = json.loads(r.text)
+                    top=data['pictureUrl']
+                    if not_pic =='on':
+                        cv=c_v_model(voice=voice)
+                    else:
+                        cv=c_v_model(pic=top,voice=voice)
+                    cv.save()
+
+    return redirect('index')
 
 def check_view(request):
     if request.method == 'POST':

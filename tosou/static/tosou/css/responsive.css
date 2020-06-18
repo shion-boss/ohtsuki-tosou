@@ -441,6 +441,9 @@ footer {
 
 }
 @media(max-width:500px) {
+  .pic_check p{
+    font-size: 10px;
+  }
   .tel_box img {
     width: 60%;
   }
