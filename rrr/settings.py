@@ -235,15 +235,12 @@ if not DEBUG:
     django_heroku.settings(locals()) #追加
 
 #####heroku#####
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = '/media/'
 if not DEBUG:
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME':'hlbrfvwak',
-        'C_API_SECRET':'dp8uy5YuEkNR_PuesXwcZ0y36Vg',
-        'API_SECRET':'471624956597817',
-        #'CLOUD_NAME': os.environ['CLOUD_NAME'],
-        #'API_KEY': os.environ['C_API_KEY'],
-        #'API_SECRET': os.environ['C_API_SECRET'],
+        'CLOUD_NAME': os.environ['CLOUD_NAME'],
+        'API_KEY': os.environ['C_API_KEY'],
+        'API_SECRET': os.environ['C_API_SECRET'],
     }
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    #DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
