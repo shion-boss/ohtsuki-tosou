@@ -131,7 +131,7 @@ def callback_view(request):
             name=data["displayName"]
             text=events[0]['message']['text']
             top=data['pictureUrl']
-            welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典としてプレゼント企画を始めました。\n'+name+'様限定の紹介コードは「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。\n'+'https://www.ohtsuki-tosou.com'
+            welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典としてプレゼント企画を始めました。\n'+str(name)+'様限定の紹介コードは「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。\n'+'https://www.ohtsuki-tosou.com'
             #message to user
             line_bot_api.push_message(line_user_id, TextSendMessage(text=welcome))
 
