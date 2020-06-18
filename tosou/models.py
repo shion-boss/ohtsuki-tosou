@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from allauth.socialaccount.models import SocialAccount
 import cloudinary
 from cloudinary.models import CloudinaryField
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Create your models here.
 
