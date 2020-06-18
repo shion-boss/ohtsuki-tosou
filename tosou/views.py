@@ -38,15 +38,6 @@ def callback_view(request):
         request_json = json.loads(request.body.decode('utf-8'))
         events = request_json['events']
         line_user_id = events[0]['source']['userId']
-        headers = {
-            'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
-        }
-        request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
-        r = requests.get(request_url, headers=headers)
-        data = json.loads(r.text)
-        name=data["displayName"]
-        text=events[0]['message']['text']
-        top=data['pictureUrl']
 
         # チャネル設定のWeb hook接続確認時にはここ。このIDで見に来る。
         if line_user_id == 'Udeadbeefdeadbeefdeadbeefdeadbeef':
@@ -83,7 +74,6 @@ def callback_view(request):
                     r = requests.get(request_url, headers=headers)
                     data = json.loads(r.text)
                     name=data["displayName"]
-                    text=events[0]['message']['text']
                     top=data['pictureUrl']
                     code=code_model.objects.get(option=0)
                     afi_code='{:0=6}'.format(int(code.num))
@@ -93,16 +83,7 @@ def callback_view(request):
                     meta.save()
                 else:
                     #ブロック解除のユーザー
-                    headers = {
-                        'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
-                    }
-                    request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
-                    r = requests.get(request_url, headers=headers)
-                    data = json.loads(r.text)
-                    name=data["displayName"]
-                    text=events[0]['message']['text']
-                    top=data['pictureUrl']
-                    meta=user_meta.objects.get(uid=line_user_id)
+                    meta=user_meta.objects.get(uid=str(line_user_id))
                     afi_code=meta.afi_code
             else:
                 #lineを直接追加したユーザー
@@ -113,7 +94,6 @@ def callback_view(request):
                 r = requests.get(request_url, headers=headers)
                 data = json.loads(r.text)
                 name=data["displayName"]
-                text=events[0]['message']['text']
                 top=data['pictureUrl']
                 code=code_model.objects.get(option=0)
                 afi_code='{:0=6}'.format(int(code.num))
@@ -129,11 +109,10 @@ def callback_view(request):
             r = requests.get(request_url, headers=headers)
             data = json.loads(r.text)
             name=data["displayName"]
-            text=events[0]['message']['text']
             top=data['pictureUrl']
             welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典としてプレゼント企画を始めました。\n'+str(name)+'様限定の紹介コードは「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。\n'+'https://www.ohtsuki-tosou.com'
             #message to user
-            line_bot_api.push_message(line_user_id, TextSendMessage(text=welcome))
+            line_bot_api.push_message(str(line_user_id), TextSendMessage(text=welcome))
 
             #message to staff
             message=str(name)+'さんが新規LINE登録しました！！！！'
