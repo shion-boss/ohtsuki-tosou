@@ -174,6 +174,8 @@
         <textarea name="voice" rows="8" cols="80" class='v_text'></textarea>
         <button type="submit" name="button" class='v_button'>送信</button>
       </form>
+      {% else %}
+      <p class='c_announce'>ログインをするとコメント投稿が出来るようになります。</p>
       {% endif %}
     </div>
   </div>

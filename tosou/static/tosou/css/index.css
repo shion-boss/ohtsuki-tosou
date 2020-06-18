@@ -213,3 +213,9 @@
 .v_button{
   width: 100%;
 }
+
+.c_announce{
+  margin: 1rem 0;
+  border: solid 1px black;
+  text-align: center;
+}
