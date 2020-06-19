@@ -452,6 +452,9 @@ footer {
   }
   .tel_box img {
     width: 60%;
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
   }
   .tel_box {
     position: fixed;
@@ -463,6 +466,7 @@ footer {
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: .7rem 0;
 }
   .roku_img{
     display: block;
