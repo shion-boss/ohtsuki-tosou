@@ -138,6 +138,27 @@ def logout_view(request):
     logout(request)
     return redirect(to='index')
 
+def tirasi_index_view(request):
+    cv=c_v_model.objects.all()
+    params={
+        'ccc':cv,
+        "afi_code":'000000',
+    }
+    if settings.DEBUG==False:
+        if request.user.is_authenticated:
+            try:
+                social_account=SocialAccount.objects.get(user=request.user)
+            except:
+                pass
+            else:
+                try:
+                    meta=user_meta.objects.get(uid=social_account.uid)
+                except:
+                    params['afi_code']='000000'
+                else:
+                    params['afi_code']=meta.afi_code
+    return render(request,'tosou/index.html',params)
+
 def web_index_view(request):
     cv=c_v_model.objects.all()
     params={
