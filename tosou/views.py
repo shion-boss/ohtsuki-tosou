@@ -44,7 +44,7 @@ def callback_view(request):
             pass
 
         elif events[0]['type'] == 'message':
-            text=event[0]['message']['text']
+            text=events[0]['message']['text']
             headers = {
                 'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
             }
