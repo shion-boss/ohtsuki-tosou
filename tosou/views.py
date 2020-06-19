@@ -120,7 +120,8 @@ def callback_view(request):
             top=data['pictureUrl']
             welcome='大槻塗装公式LINEをご登録いただきありがとうございます。\n\n現金負担0円塗装をより多くの方々にお届けするために、\nお仕事をご紹介してくださった方、お仕事を依頼してくださった方へ、感謝の気持ちを込めて、紹介特典としてプレゼント企画を始めました。\n'+str(name)+'様限定の紹介コードは「'+str(afi_code)+'」です。\n紹介特典のカタログや現金負担0円塗装の詳細は、下記URLにてご覧ください。\n'+'https://www.ohtsuki-tosou.com'
             #message to user
-            line_bot_api.push_message(str(line_user_id), TextSendMessage(text=welcome))
+            replyToken=data["replyToken"]
+            line_bot_api.reply_message(str(replyToken), TextSendMessage(text=welcome))
 
             #message to staff
             message=str(name)+'さんが新規LINE登録しました！！！！'
@@ -130,9 +131,9 @@ def callback_view(request):
             line_bot_api.push_message("U3ef4b863f370e1971bbc243ddc9d861c", TextSendMessage(text=message))
 
         # アカウントがブロックされたとき
-        elif events[0]['type'] == 'unfollow':
+        #elif events[0]['type'] == 'unfollow':
             #message to staff
-            line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text='ブロックされました。'))
+            #line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text='ブロックされました。'))
 
 
     return HttpResponse()
