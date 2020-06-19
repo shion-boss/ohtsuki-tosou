@@ -688,19 +688,19 @@ def email_view(request):
         )
 
         #to smart
-        #smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-        #smtpobj.ehlo()
-        #smtpobj.starttls()
-        #smtpobj.ehlo()
-        #smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
-        #msg = MIMEText(email_msg)
+        smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
+        smtpobj.ehlo()
+        smtpobj.starttls()
+        smtpobj.ehlo()
+        smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
+        msg = MIMEText(email_msg)
 
-        #msg['Subject'] ="無料相談のお問い合わせ"
-        #msg['From'] = settings.MYMAIL
-        #msg['To'] = settings.SMARTMAIL
-        #msg['Date'] = formatdate()
-        #smtpobj.sendmail(settings.MYMAIL, settings.SMARTMAIL, msg.as_string())
-        #smtpobj.close()
+        msg['Subject'] ="無料相談のお問い合わせ"
+        msg['From'] = settings.MYMAIL
+        msg['To'] = settings.SMARTMAIL
+        msg['Date'] = formatdate()
+        smtpobj.sendmail(settings.MYMAIL, settings.SMARTMAIL, msg.as_string())
+        smtpobj.close()
 
         email_msg=(
             "お客様より無料相談のお問い合わせがありました。\n"
