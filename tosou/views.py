@@ -928,6 +928,7 @@ def m_form_view(request):
         smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
         msg = MIMEText(email_msg)
 
+        msg['Subject'] = 'subject'
         msg['From'] = settings.MYMAIL
         msg['To'] = settings.techbeeMail
         msg['Date'] = formatdate()
