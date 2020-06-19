@@ -804,7 +804,51 @@ def m_form_view(request):
         else:
             two='18:00-20:00'
 
-        email_msg=hurigana+'\n'+name+'\n'+yubin+'\n'+stay+'\n'+email+'\n'+tel+'\n'+one_day+one+'\n'+two_day+two+'\n'+'\n'+question_area
+        #to customer
+        email_msg=("【確認メール】\n"
+            "お問い合わせありがとうございます。\n"
+            "お問い合わせの送信が完了しました。\n"
+            "担当の者からの連絡をお待ちください。\n"
+            "希望の連絡日時に沿えなかった際は、"
+            "メールにて再度連絡希望日時をご確認させていただくことをご了承ください。"
+            "▽お問い合わせ内容\n"
+            "=============================\n"
+            "\n"
+            "\n【おなまえ】\n"
+            +str(hurigana)+
+            "\n【お名前】\n"
+            +str(name)+
+            "\n【郵便番号】\n"
+            +str(yubin)+
+            "\n【ご住所】\n"
+            +str(stay)+
+            "\n【メールアドレス】\n"
+            +str(email)+
+            "\n【お電話番号】\n"
+            +str(tel)+
+            "\n【連絡希望日時】\n"
+            "<第一希望>\n"
+            +str(one_day)+str(one)+
+            "\n<第二希望>\n"
+            +str(two_day)+str(two)+
+            "\n【ご質問等】\n"
+            +str(question_area)+
+            "\n=============================\n"
+            "\n"
+            "このメールはお客様が大槻塗装工業のホームページから"
+            "送信したものを自動でお送りしています。\n"
+            "その他追加でお問い合わせがございましたら、"
+            "本メールに返信することも可能です。\n"
+            "=============================\n"
+            "\n"
+            "有限会社大槻塗装工業\n"
+            "〒238-0032 神奈川県横須賀市平作2-20-2\n"
+            "Tel 090-2564-5015\n"
+            "email info@ohtsuki-tosou.ne.jp\n"
+            "HP  https://www.ohtsuki-tosou.co.jp/\n"
+            "URL https://www.ohtsuki-tosou.com/\n"
+            "=============================\n"
+        )
 
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
         smtpobj.ehlo()
@@ -818,6 +862,76 @@ def m_form_view(request):
         msg['To'] = email
         msg['Date'] = formatdate()
         smtpobj.sendmail(settings.MYMAIL, email, msg.as_string())
+        smtpobj.close()
+
+
+        #to staff
+        email_msg=("【確認メール】\n"
+            "お客様からお問い合わせがありました。\n"
+            "▽お問い合わせ内容\n"
+            "=============================\n"
+            "\n"
+            "\n【おなまえ】\n"
+            +str(hurigana)+
+            "\n【お名前】\n"
+            +str(name)+
+            "\n【郵便番号】\n"
+            +str(yubin)+
+            "\n【ご住所】\n"
+            +str(stay)+
+            "\n【メールアドレス】\n"
+            +str(email)+
+            "\n【お電話番号】\n"
+            +str(tel)+
+            "\n【連絡希望日時】\n"
+            "<第一希望>\n"
+            +str(one_day)+str(one)+
+            "\n<第二希望>\n"
+            +str(two_day)+str(two)+
+            "\n【ご質問等】\n"
+            +str(question_area)+
+            "\n=============================\n"
+            "\n"
+            "\n"
+            "このメールはお客様が大槻塗装工業のホームページから"
+            "送信したものを自動でお送りしています。\n"
+            "お客様にご連絡する際は、お問い合わせ内容に記載してある"
+            "メールアドレスまたは電話番号をご利用ください。\n"
+            "=============================\n"
+            "\n"
+            "有限会社大槻塗装工業\n"
+            "〒238-0032 神奈川県横須賀市平作2-20-2\n"
+            "Tel 090-2564-5015\n"
+            "email info@ohtsuki-tosou.ne.jp\n"
+            "HP  https://www.ohtsuki-tosou.co.jp/\n"
+            "URL https://www.ohtsuki-tosou.com/\n"
+            "=============================\n"
+        )
+        smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
+        smtpobj.ehlo()
+        smtpobj.starttls()
+        smtpobj.ehlo()
+        smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
+        msg = MIMEText(email_msg)
+
+        msg['Subject'] = 'subject'
+        msg['From'] = settings.MYMAIL
+        msg['To'] = settings.ohtsukiMail
+        msg['Date'] = formatdate()
+        smtpobj.sendmail(settings.MYMAIL,settings.ohtsukiMail , msg.as_string())
+        smtpobj.close()
+
+        smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
+        smtpobj.ehlo()
+        smtpobj.starttls()
+        smtpobj.ehlo()
+        smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
+        msg = MIMEText(email_msg)
+
+        msg['From'] = settings.MYMAIL
+        msg['To'] = settings.techbeeMail
+        msg['Date'] = formatdate()
+        smtpobj.sendmail(settings.MYMAIL,settings.techbeeMail , msg.as_string())
         smtpobj.close()
 
         return redirect('good')

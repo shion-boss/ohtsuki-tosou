@@ -226,6 +226,8 @@ DATABASES['default'].update(db_from_env)
 #####heroku#####
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
+    techbeeMail=os.environ['techbeeMail']
+    ohtsukiMail=os.environ['ohtsukiMail']
     MYMAILPASS=os.environ['mymailpass']
     MYMAIL=os.environ['mymail']
     YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
