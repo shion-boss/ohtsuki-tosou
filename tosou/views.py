@@ -682,8 +682,8 @@ def email_view(request):
             "〒238-0032 神奈川県横須賀市平作2-20-2\n"
             "Tel 090-2564-5015\n"
             "email info@ohtsuki-tosou.ne.jp\n"
-            "HP  https://www.ohtsuki-tosou.co.jp/\n"
-            "LP https://www.ohtsuki-tosou.com/\n"
+            "HP  https://www.ohtsuki-tosou.co.jp\n"
+            "LP https://www.ohtsuki-tosou.com\n"
             "=============================\n"
         )
 
@@ -750,8 +750,8 @@ def email_view(request):
             "〒238-0032 神奈川県横須賀市平作2-20-2\n"
             "Tel 090-2564-5015\n"
             "email info@ohtsuki-tosou.ne.jp\n"
-            "HP  https://www.ohtsuki-tosou.co.jp/\n"
-            "LP https://www.ohtsuki-tosou.com/\n"
+            "HP  https://www.ohtsuki-tosou.co.jp\n"
+            "LP https://www.ohtsuki-tosou.com\n"
             "=============================\n"
         )
 
