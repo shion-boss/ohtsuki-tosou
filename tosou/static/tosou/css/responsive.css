@@ -451,7 +451,7 @@ footer {
     font-size: 10px;
   }
   .tel_box img {
-    width: 60%;
+    width: 70%;
     padding: 5px;
     background-color: white;
     border-radius: 10px;
@@ -462,7 +462,7 @@ footer {
     right: 0;
     z-index: 1;
     opacity: 1;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.4);
     width: 100%;
     display: flex;
     justify-content: center;

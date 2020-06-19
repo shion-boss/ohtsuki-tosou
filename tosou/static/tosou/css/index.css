@@ -150,11 +150,14 @@
 .c_box .checked{
   display: none;
 }
+.c_box #a_check{
+  font-size: 1rem;
+}
 
 .c_box .a_check{
   display: block;
   position: absolute;
-  top: -15px;
+  top: 0;
   left: 0;
   transform: rotateZ(-30deg);
   padding: 0;
@@ -165,11 +168,11 @@
 .c_box:hover .a_check{
   display: block;
   position: absolute;
-  top: -15px;
+  top: 0;
   left: 0;
   transform: rotateZ(0);
   padding: 0;
-  opacity: 0.8;
+  opacity: 1;
 }
 .c_box input[type=checkbox]:checked ~ .a_check{
   display: none;
@@ -177,7 +180,7 @@
 .c_box input[type=checkbox]:checked ~ .checked{
   display: block;
   position: absolute;
-  top: -15px;
+  top: 0;
   left: 0;
   transform: rotateZ(0);
   padding: 0;

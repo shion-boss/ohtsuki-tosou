@@ -181,3 +181,7 @@ footer{
 .roku_img{
   display: none;
 }
+
+#current{
+  background-color: #72c5c8;
+}

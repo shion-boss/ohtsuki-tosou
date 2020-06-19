@@ -85,13 +85,13 @@
     <div class="header_menu">
       <!--{% if request.path == "/techbee/ranking/" %}id="current"{% endif %}-->
       <div class="h_box">
-        <a href="{% url 'index' %}" class='a_nav a_nav_a'>TOP</a>
-        <a href="{% url 'mitumori' %}" class='a_nav a_nav_a'>見積依頼</a>
-        <a href="{% url 'consul' %}" class='a_nav a_nav_a'>無料相談</a>
-        <a href="{% url 'catalog' %}" class='a_nav a_nav_a'>紹介特典</a>
-        <a href="{% url 'qa' %}" class='a_nav a_nav_a'>Q&A</a>
+        <a href="{% url 'index' %}" class='a_nav a_nav_a' {% if request.path == "/" %}id="current"{% elif request.path == "/web/" %}id="current"{% elif request.path == "/poster/" %}id="current"{% endif %}>TOP</a>
+        <a href="{% url 'consul' %}" class='a_nav a_nav_a' {% if request.path == "/consul/" %}id="current"{% endif %}>無料相談</a>
+        <a href="{% url 'mitumori' %}" class='a_nav a_nav_a' {% if request.path == "/mitumori/" %}id="current"{% endif %}>見積依頼</a>
+        <a href="{% url 'catalog' %}" class='a_nav a_nav_a' {% if request.path == "/catalog/" %}id="current"{% endif %}>紹介特典</a>
+        <a href="{% url 'qa' %}" class='a_nav a_nav_a' {% if request.path == "/QandA/" %}id="current"{% endif %}>Q&A</a>
         {% if user.is_authenticated %}
-        <a href="{% url 'account' %}" class='a_nav a_nav_a'>{{ afi_code }}</a>
+        <a href="{% url 'account' %}" class='a_nav a_nav_a' {% if request.path == "/account/" %}id="current"{% endif %}>{{ afi_code }}</a>
         {% else%}
         <a class='a_nav a_nav_a' href="{% url 'line_login' %}">ログイン</a>
         {% endif %}
@@ -116,17 +116,6 @@
       </div>
       <h2>おすすめのトピック</h2>
       <div class="account_grid">
-        <label class="ohtsuki_box a_box" onClick="win3_open()">
-          <img src="{% static 'S__3866630.jpg' %}" alt="">
-          <div class="mask">
-            <div class="p_box">
-              <div class="p">
-                <h3>大槻塗装工業</h3>
-                <p>当社の一番の強みは、昭和36年から約60年続く、老舗塗装店の施工力。<br>お住まいの状況を正しく見極める診断力、一軒一軒に合わせて最適な塗り替えを行う技術力なら、どんな塗装店にも引けをとりません。<br>皆様の大切なお住まいが、少しでも長く家族の暮らしを守れるように...。<br>小さなところからきっちりと、信頼に応える塗装工事をいたします。</p>
-              </div>
-            </div>
-          </div>
-        </label>
         <a href="{% url 'mitumori' %}" class="mitumori_box a_box">
           <img src="{% static 'S__3866634.jpg' %}" alt="">
           <div class="mask">
@@ -204,6 +193,17 @@
             </div>
           </div>
         </a>
+        <label class="ohtsuki_box a_box" onClick="win3_open()">
+          <img src="{% static 'S__3866630.jpg' %}" alt="">
+          <div class="mask">
+            <div class="p_box">
+              <div class="p">
+                <h3>大槻塗装工業ホームページ</h3>
+                <p>当社の一番の強みは、昭和36年から約60年続く、老舗塗装店の施工力。<br>お住まいの状況を正しく見極める診断力、一軒一軒に合わせて最適な塗り替えを行う技術力なら、どんな塗装店にも引けをとりません。<br>皆様の大切なお住まいが、少しでも長く家族の暮らしを守れるように...。<br>小さなところからきっちりと、信頼に応える塗装工事をいたします。</p>
+              </div>
+            </div>
+          </div>
+        </label>
         <a href="{% url 'regi' %}" class="user_box a_box">
           <img src="{% static 'S__3866626.jpg' %}" alt="">
           <div class="mask">

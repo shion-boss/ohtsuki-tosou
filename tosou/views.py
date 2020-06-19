@@ -241,7 +241,7 @@ def voice_form_view(request):
                         'https://res.cloudinary.com/hlbrfvwak/image/upload/v1592458162/account-yellow_jgvcvi.png',
                         'https://res.cloudinary.com/hlbrfvwak/image/upload/v1592166538/gpm3ei8ydcd11j6u4x8z.png'
                         ]
-                        top=random.choise(pic_list)
+                        top=random.choice(pic_list)
                         cv=c_v_model(pic=top,voice=voice)
                     else:
                         cv=c_v_model(pic=top,voice=voice)
