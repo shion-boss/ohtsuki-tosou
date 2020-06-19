@@ -26,7 +26,7 @@ urlpatterns = [
     path('line/',views.line_view,name='contact_line'),
     path('callback/',views.callback_view,name='callback'),
     path('web/',views.web_index_view,name='web'),
-    path('paper/',views.tirasi_index_view,name='tirasi'),
+    path('poster/',views.tirasi_index_view,name='poster'),
     path('voice/',views.voice_form_view,name='voice_form'),
 
     ]
