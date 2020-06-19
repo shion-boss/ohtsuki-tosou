@@ -518,6 +518,7 @@ def email_view(request):
         email=request.POST['email']
         tel=request.POST['tel']
         one_day=request.POST['one_day']
+        o_d = datetime.datetime.strptime(one_day, '%Y-%m-%d')
         one=request.POST['one']
         if one == '1':
             one='9:00-12:00'
@@ -528,6 +529,7 @@ def email_view(request):
         else:
             one='18:00-20:00'
         two_day=request.POST['two_day']
+        t_d = datetime.datetime.strptime(two_day, '%Y-%m-%d')
         two=request.POST['two']
         if two == '1':
             two='9:00-12:00'
@@ -567,15 +569,13 @@ def email_view(request):
         else:
             nensyu='400万円未満'
 
-
-        email_msg=("スマートリノベーション様\n"
-            "加盟店の有限会社大槻塗装工業です。\n"
-            "お世話になっております。\n"
-            "お客様より無料相談のお問い合わせがありました。\n"
-            "\n"
+        #to customer
+        email_msg=(
+            "お問い合わせの送信が完了しました。\n"
+            "担当の者からの連絡をお待ちください。\n"
+            "=============================\n"
             "▽お問い合わせ内容\n"
             "=============================\n"
-            "\n"
             "\n【おなまえ】\n"
             +str(hurigana)+
             "\n【お名前】\n"
@@ -592,9 +592,77 @@ def email_view(request):
             +str(tel)+
             "\n【連絡希望日時】\n"
             "<第一希望>\n"
-            +str(one_day)+str(one)+
+            +str(o_d.year)+'年'+str(o_d.month)+'月'+str(o_d.day)+'日'+str(one)+
             "\n<第二希望>\n"
-            +str(two_day)+str(two)+
+            +str(t_d.year)+'年'+str(t_d.month)+'月'+str(t_d.day)+'日'+str(two)+
+            "\n【現行金利】\n"
+            +str(k_more)+
+            "\n【残債額】\n"
+            +str(s_more)+
+            "\n【残年数】\n"
+            +str(n_more)+
+            "\n【年収】\n"
+            +str(nensyu)+
+            "\n【紹介コード】\n"
+            +str(afi)+
+            "\n"
+            "\n===========================\n"
+            "このメールはお客様が大槻塗装工業のホームページから"
+            "送信したものを自動でお送りしています。\n"
+            "希望の連絡日時に沿えなかった際は、"
+            "メールにて再度連絡希望日時をご確認させていただくことをご了承ください。\n"
+            "=============================\n"
+            "有限会社大槻塗装工業\n"
+            "〒238-0032 神奈川県横須賀市平作2-20-2\n"
+            "Tel 090-2564-5015\n"
+            "email info@ohtsuki-tosou.ne.jp\n"
+            "HP  https://www.ohtsuki-tosou.co.jp/\n"
+            "LP https://www.ohtsuki-tosou.com/\n"
+            "=============================\n"
+        )
+
+        #to customer
+        smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
+        smtpobj.ehlo()
+        smtpobj.starttls()
+        smtpobj.ehlo()
+        smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
+        msg = MIMEText(email_msg)
+
+        msg['Subject'] = '無料相談のお問い合わせ'
+        msg['From'] = settings.MYMAIL
+        msg['To'] = email
+        msg['Date'] = formatdate()
+        smtpobj.sendmail(settings.MYMAIL, email, msg.as_string())
+        smtpobj.close()
+
+
+        email_msg=("スマートリノベーション様\n"
+            "加盟店の有限会社大槻塗装工業です。\n"
+            "お世話になっております。\n"
+            "お客様より無料相談のお問い合わせがありました。\n"
+            "=============================\n"
+            "▽お問い合わせ内容\n"
+            "=============================\n"
+            "\n【おなまえ】\n"
+            +str(hurigana)+
+            "\n【お名前】\n"
+            +str(name)+
+            "\n【ご年齢】\n"
+            +str(old)+'歳'
+            "\n【郵便番号】\n"
+            +str(yubin)+
+            "\n【ご住所】\n"
+            +str(stay)+
+            "\n【メールアドレス】\n"
+            +str(email)+
+            "\n【お電話番号】\n"
+            +str(tel)+
+            "\n【連絡希望日時】\n"
+            "<第一希望>\n"
+            +str(o_d.year)+'年'+str(o_d.month)+'月'+str(o_d.day)+'日'+str(one)+
+            "\n<第二希望>\n"
+            +str(t_d.year)+'年'+str(t_d.month)+'月'+str(t_d.day)+'日'+str(two)+
             "\n【現行金利】\n"
             +str(k_more)+
             "\n【残債額】\n"
@@ -605,6 +673,72 @@ def email_view(request):
             +str(nensyu)+
             "\n"
             "=============================\n"
+            "このメールはお客様が大槻塗装工業のホームページから"
+            "送信したものを自動でお送りしています。\n"
+            "お客様にご連絡する際は、お問い合わせ内容に記載してある"
+            "メールアドレスまたは電話番号をご利用ください。\n"
+            "=============================\n"
+            "有限会社大槻塗装工業\n"
+            "〒238-0032 神奈川県横須賀市平作2-20-2\n"
+            "Tel 090-2564-5015\n"
+            "email info@ohtsuki-tosou.ne.jp\n"
+            "HP  https://www.ohtsuki-tosou.co.jp/\n"
+            "LP https://www.ohtsuki-tosou.com/\n"
+            "=============================\n"
+        )
+
+        #to smart
+        #smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
+        #smtpobj.ehlo()
+        #smtpobj.starttls()
+        #smtpobj.ehlo()
+        #smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
+        #msg = MIMEText(email_msg)
+
+        #msg['Subject'] ="無料相談のお問い合わせ"
+        #msg['From'] = settings.MYMAIL
+        #msg['To'] = settings.SMARTMAIL
+        #msg['Date'] = formatdate()
+        #smtpobj.sendmail(settings.MYMAIL, settings.SMARTMAIL, msg.as_string())
+        #smtpobj.close()
+
+        email_msg=(
+            "お客様より無料相談のお問い合わせがありました。\n"
+            "スマートリノベーションが担当しているフォームなので、\n"
+            "対応不要です。これは確認のメールです。"
+            "=============================\n"
+            "▽お問い合わせ内容\n"
+            "=============================\n"
+            "\n【おなまえ】\n"
+            +str(hurigana)+
+            "\n【お名前】\n"
+            +str(name)+
+            "\n【ご年齢】\n"
+            +str(old)+'歳'
+            "\n【郵便番号】\n"
+            +str(yubin)+
+            "\n【ご住所】\n"
+            +str(stay)+
+            "\n【メールアドレス】\n"
+            +str(email)+
+            "\n【お電話番号】\n"
+            +str(tel)+
+            "\n【連絡希望日時】\n"
+            "<第一希望>\n"
+            +str(o_d.year)+'年'+str(o_d.month)+'月'+str(o_d.day)+'日'+str(one)+
+            "\n<第二希望>\n"
+            +str(t_d.year)+'年'+str(t_d.month)+'月'+str(t_d.day)+'日'+str(two)+
+            "\n【現行金利】\n"
+            +str(k_more)+
+            "\n【残債額】\n"
+            +str(s_more)+
+            "\n【残年数】\n"
+            +str(n_more)+
+            "\n【年収】\n"
+            +str(nensyu)+
+            "\n【紹介コード】\n"
+            + str(afi)+
+            "\n=============================\n"
             "\n"
             "このメールはお客様が大槻塗装工業のホームページから"
             "送信したものを自動でお送りしています。\n"
@@ -617,10 +751,11 @@ def email_view(request):
             "Tel 090-2564-5015\n"
             "email info@ohtsuki-tosou.ne.jp\n"
             "HP  https://www.ohtsuki-tosou.co.jp/\n"
-            "URL https://ohtsuki-tosou.herokuapp.com/smart/index/\n"
+            "LP https://www.ohtsuki-tosou.com/\n"
             "=============================\n"
         )
 
+        #to ohtsuki
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
         smtpobj.ehlo()
         smtpobj.starttls()
@@ -628,11 +763,26 @@ def email_view(request):
         smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
         msg = MIMEText(email_msg)
 
-        msg['Subject'] = 'subject'
+        msg['Subject'] ="無料相談のお問い合わせ"
         msg['From'] = settings.MYMAIL
-        msg['To'] = email
+        msg['To'] = settings.OHTSUKIMAIL
         msg['Date'] = formatdate()
-        smtpobj.sendmail(settings.MYMAIL, email, msg.as_string())
+        smtpobj.sendmail(settings.MYMAIL, settings.OHTSUKIMAIL, msg.as_string())
+        smtpobj.close()
+
+        #to technext
+        smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
+        smtpobj.ehlo()
+        smtpobj.starttls()
+        smtpobj.ehlo()
+        smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
+        msg = MIMEText(email_msg)
+
+        msg['Subject'] ="無料相談のお問い合わせ"
+        msg['From'] = settings.MYMAIL
+        msg['To'] = settings.TECHBEEMAIL
+        msg['Date'] = formatdate()
+        smtpobj.sendmail(settings.MYMAIL, settings.TECHBEEMAIL, msg.as_string())
         smtpobj.close()
 
 
@@ -776,6 +926,7 @@ def catalog_view(request):
 #見積依頼
 def m_form_view(request):
     if request.method=='POST':
+        afi=request.POST['afi']
         hurigana=request.POST['hurigana']
         name=request.POST['name']
         yubin=request.POST['yubin']
@@ -784,6 +935,7 @@ def m_form_view(request):
         tel=request.POST['tel']
         question_area=request.POST['question_area']
         one_day=request.POST['one_day']
+        o_d = datetime.datetime.strptime(one_day, '%Y-%m-%d')
         one=request.POST['one']
         if one == '1':
             one='9:00-12:00'
@@ -794,6 +946,7 @@ def m_form_view(request):
         else:
             one='18:00-20:00'
         two_day=request.POST['two_day']
+        t_d = datetime.datetime.strptime(two_day, '%Y-%m-%d')
         two=request.POST['two']
         if two == '1':
             two='9:00-12:00'
@@ -805,16 +958,13 @@ def m_form_view(request):
             two='18:00-20:00'
 
         #to customer
-        email_msg=("【確認メール】\n"
-            "お問い合わせありがとうございます。\n"
+        email_msg=(
             "お問い合わせの送信が完了しました。\n"
             "担当の者からの連絡をお待ちください。\n"
-            "希望の連絡日時に沿えなかった際は、"
-            "メールにて再度連絡希望日時をご確認させていただくことをご了承ください。"
+            "=============================\n"
             "▽お問い合わせ内容\n"
             "=============================\n"
-            "\n"
-            "\n【おなまえ】\n"
+            "【おなまえ】\n"
             +str(hurigana)+
             "\n【お名前】\n"
             +str(name)+
@@ -828,25 +978,27 @@ def m_form_view(request):
             +str(tel)+
             "\n【連絡希望日時】\n"
             "<第一希望>\n"
-            +str(one_day)+str(one)+
+            +str(o_d.year)+'年'+str(o_d.month)+'月'+str(o_d.day)+'日'+str(one)+
             "\n<第二希望>\n"
-            +str(two_day)+str(two)+
+            +str(t_d.year)+'年'+str(t_d.month)+'月'+str(t_d.day)+'日'+str(two)+
             "\n【ご質問等】\n"
             +str(question_area)+
-            "\n=============================\n"
-            "\n"
+            "\n【紹介コード】\n"
+            +str(afi)+
+            "\n===========================\n"
             "このメールはお客様が大槻塗装工業のホームページから"
             "送信したものを自動でお送りしています。\n"
             "その他追加でお問い合わせがございましたら、"
             "本メールに返信することも可能です。\n"
+            "希望の連絡日時に沿えなかった際は、"
+            "メールにて再度連絡希望日時をご確認させていただくことをご了承ください。\n"
             "=============================\n"
-            "\n"
             "有限会社大槻塗装工業\n"
             "〒238-0032 神奈川県横須賀市平作2-20-2\n"
             "Tel 090-2564-5015\n"
             "email info@ohtsuki-tosou.ne.jp\n"
             "HP  https://www.ohtsuki-tosou.co.jp/\n"
-            "URL https://www.ohtsuki-tosou.com/\n"
+            "LP https://www.ohtsuki-tosou.com/\n"
             "=============================\n"
         )
 
@@ -857,7 +1009,7 @@ def m_form_view(request):
         smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
         msg = MIMEText(email_msg)
 
-        msg['Subject'] = 'subject'
+        msg['Subject'] = '大槻塗装見積依頼'
         msg['From'] = settings.MYMAIL
         msg['To'] = email
         msg['Date'] = formatdate()
@@ -866,12 +1018,12 @@ def m_form_view(request):
 
 
         #to staff
-        email_msg=("【確認メール】\n"
+        email_msg=(
             "お客様からお問い合わせがありました。\n"
+            "=============================\n"
             "▽お問い合わせ内容\n"
             "=============================\n"
-            "\n"
-            "\n【おなまえ】\n"
+            "【おなまえ】\n"
             +str(hurigana)+
             "\n【お名前】\n"
             +str(name)+
@@ -885,26 +1037,25 @@ def m_form_view(request):
             +str(tel)+
             "\n【連絡希望日時】\n"
             "<第一希望>\n"
-            +str(one_day)+str(one)+
+            +str(o_d.year)+'年'+str(o_d.month)+'月'+str(o_d.day)+'日'+str(one)+
             "\n<第二希望>\n"
-            +str(two_day)+str(two)+
+            +str(t_d.year)+'年'+str(t_d.month)+'月'+str(t_d.day)+'日'+str(two)+
             "\n【ご質問等】\n"
             +str(question_area)+
-            "\n=============================\n"
-            "\n"
-            "\n"
+            "\n【紹介コード】\n"
+            +str(afi)+
+            "\n=========================\n"
             "このメールはお客様が大槻塗装工業のホームページから"
             "送信したものを自動でお送りしています。\n"
             "お客様にご連絡する際は、お問い合わせ内容に記載してある"
             "メールアドレスまたは電話番号をご利用ください。\n"
             "=============================\n"
-            "\n"
             "有限会社大槻塗装工業\n"
             "〒238-0032 神奈川県横須賀市平作2-20-2\n"
             "Tel 090-2564-5015\n"
             "email info@ohtsuki-tosou.ne.jp\n"
             "HP  https://www.ohtsuki-tosou.co.jp/\n"
-            "URL https://www.ohtsuki-tosou.com/\n"
+            "LP https://www.ohtsuki-tosou.com/\n"
             "=============================\n"
         )
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
@@ -914,13 +1065,14 @@ def m_form_view(request):
         smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
         msg = MIMEText(email_msg)
 
-        msg['Subject'] = 'subject'
+        msg['Subject'] = str(name)+'さんから見積依頼'
         msg['From'] = settings.MYMAIL
         msg['To'] = settings.OHTSUKIMAIL
         msg['Date'] = formatdate()
         smtpobj.sendmail(settings.MYMAIL,settings.OHTSUKIMAIL , msg.as_string())
         smtpobj.close()
 
+        msg['Subject'] = str(name)+'さんから見積依頼'
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
         smtpobj.ehlo()
         smtpobj.starttls()
@@ -928,7 +1080,6 @@ def m_form_view(request):
         smtpobj.login(settings.MYMAIL, settings.MYMAILPASS)
         msg = MIMEText(email_msg)
 
-        msg['Subject'] = 'subject'
         msg['From'] = settings.MYMAIL
         msg['To'] = settings.TECHBEEMAIL
         msg['Date'] = formatdate()
