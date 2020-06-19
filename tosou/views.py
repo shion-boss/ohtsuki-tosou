@@ -44,6 +44,13 @@ def callback_view(request):
             pass
 
         elif events[0]['type'] == 'message':
+            headers = {
+                'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+            }
+            request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
+            r = requests.get(request_url, headers=headers)
+            data = json.loads(r.text)
+            name=data["displayName"]
             message=name+'様から公式アカウントへお問い合わせがありました。\n'+'【お問い合わせ内容】\n'+text
             line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text=message))
             line_bot_api.push_message("U0b64c93b9b15663616d71a057cd41b38", TextSendMessage(text=message))
