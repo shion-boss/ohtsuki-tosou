@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from allauth.socialaccount.models import SocialAccount
 import cloudinary
 from cloudinary.models import CloudinaryField
-import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from django.utils import timezone
 
 # Create your models here.
 
@@ -62,6 +62,7 @@ class message_user_model(models.Model):
     title=models.ForeignKey(message_table_model,on_delete=models.CASCADE)
     uid=models.CharField(max_length=500,blank=True,null=True,default='technext')
     message=models.TextField(max_length=1000)
+    post_time=models.DateTimeField(default=timezone.datetime.now)
 
     def __str__(self):
         return self.message
