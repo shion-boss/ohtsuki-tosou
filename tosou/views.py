@@ -916,9 +916,9 @@ def m_form_view(request):
 
         msg['Subject'] = 'subject'
         msg['From'] = settings.MYMAIL
-        msg['To'] = settings.ohtsukiMail
+        msg['To'] = settings.OHTSUKIMAIL
         msg['Date'] = formatdate()
-        smtpobj.sendmail(settings.MYMAIL,settings.ohtsukiMail , msg.as_string())
+        smtpobj.sendmail(settings.MYMAIL,settings.OHTSUKIMAIL , msg.as_string())
         smtpobj.close()
 
         smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
@@ -930,9 +930,9 @@ def m_form_view(request):
 
         msg['Subject'] = 'subject'
         msg['From'] = settings.MYMAIL
-        msg['To'] = settings.techbeeMail
+        msg['To'] = settings.TECHBEEMAIL
         msg['Date'] = formatdate()
-        smtpobj.sendmail(settings.MYMAIL,settings.techbeeMail , msg.as_string())
+        smtpobj.sendmail(settings.MYMAIL,settings.TECHBEEMAIL , msg.as_string())
         smtpobj.close()
 
         return redirect('good')
