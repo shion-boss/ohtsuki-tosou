@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/tosou/css/line_contact.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <p class='aficode'>{{ afi_code }}|{{name}}</p>
+    <div class="talk_box" id='target'>
+      <div class="talk_grid">
+        {% for t in ttt %}
+        {% if t.uid == "technext" %}
+        <div class="talk_right">
+          <p class='message_p'>{{t.message}}</p>
+        </div>
+        {% else %}
+        <div class="talk_left">
+          <p class='message_p'>{{t.message}}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="send_fixed">
+        <a href="{% url 'ok_c' afi_code %}" class='kan_a'>完了</a>
+        <form class="send_form" action="{% url 'send_m' afi_code %}" method="post">
+          {% csrf_token %}
+          <textarea name="send_message" rows="8" cols="80"></textarea>
+          <button type="submit" name="button">送信</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(window).on('load', function (){
+        $('#target').animate({scrollTop: $('#target')[0].scrollHeight}, 'fast');
+      });
+    </script>
+  </body>
+</html>

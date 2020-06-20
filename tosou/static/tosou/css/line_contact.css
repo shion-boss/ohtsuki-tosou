@@ -1,0 +1,95 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
+  text-align: center;
+}
+
+body{
+  width: 100%;
+  padding: 0 17% 0 17%;
+  background-color: snow;
+  display: grid;
+}
+
+.aficode{
+  font-size: 1.5rem;
+  font-weight: bolder;
+  position: fixed;
+  color: white;
+
+}
+
+.talk_box{
+  width: 100%;
+  background-image: url('/static/ans-421790985.png');
+  background-repeat:  no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding-bottom: 250px;
+  overflow: auto;
+}
+
+.talk_grid{
+  display: grid;
+  width: 100%;
+}
+.talk_right{
+  width: 70%;
+  margin-left: 27%;
+  margin-right: 3%;
+  margin-top: 2rem;
+}
+
+.talk_left{
+  width: 70%;
+  margin-top: 2rem;
+  margin-right: 27%;
+  margin-left: 3%;
+}
+.message_p{
+  background-color: snow;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.send_fixed{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 20%;
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+}
+
+.send_form{
+  display: grid;
+  border-radius: 0 10px 10px 0;
+  background-color: snow;
+}
+
+.send_form textarea{
+  border-radius: 0 10px 0 0 ;
+  padding: 1rem;
+  font-size: 1.2rem;
+  resize: none;
+}
+
+.send_form button{
+  line-height: 2rem;
+  border-radius: 0 0 10px 0;
+  cursor: pointer;
+}
+
+.kan_a{
+  border-radius: 10px 0 0 10px;
+  color: white;
+  background-color: rgb(232, 15, 87);
+  line-height: 200px;
+  font-weight: bold;
+}

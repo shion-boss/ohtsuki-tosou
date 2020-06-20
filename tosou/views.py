@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from .models import customer_voice_model,user_meta,qa_model,catalog_model,message_table_model,message_user_model,account_meta,code_model,c_v_model
 import datetime
+from django.utils import timezone
 import random
 import os
 from allauth.socialaccount.models import SocialAccount
@@ -53,13 +54,10 @@ def callback_view(request):
             data = json.loads(r.text)
             name=data["displayName"]
             message=name+'様から公式アカウントへお問い合わせがありました。\n'+'【お問い合わせ内容】\n'+text
-            line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text=message))
-            line_bot_api.push_message("U0b64c93b9b15663616d71a057cd41b38", TextSendMessage(text=message))
             line_bot_api.push_message("U8d5974a689241759e8e95f05f161e9bb", TextSendMessage(text=message))
-            line_bot_api.push_message("U3ef4b863f370e1971bbc243ddc9d861c", TextSendMessage(text=message))
             table=message_table_model.objects.get(title=line_user_id)
             meta=user_meta.objects.get(uid=line_user_id)
-            u_text=message_user_model(title=table,uid=line_user_id,message=text)
+            u_text=message_user_model(title=table,uid=line_user_id,message=text,afi_code=meta.afi_code)
             u_text.save()
 
 
@@ -68,7 +66,14 @@ def callback_view(request):
             try:
                 message_table_model.objects.get(title=line_user_id)
             except:
-                message_table_model(title=line_user_id).save()
+                headers = {
+                    'Authorization': 'Bearer '+settings.YOUR_CHANNEL_ACCESS_TOKEN,
+                }
+                request_url='https://api.line.me/v2/bot/profile/'+str(line_user_id)
+                r = requests.get(request_url, headers=headers)
+                data = json.loads(r.text)
+                name=data["displayName"]
+                message_table_model(title=line_user_id,name=name).save()
             if SocialAccount.objects.filter(uid=line_user_id).exists():
                 account=SocialAccount.objects.get(uid=line_user_id)
                 try:
@@ -134,9 +139,105 @@ def callback_view(request):
         #elif events[0]['type'] == 'unfollow':
             #message to staff
             #line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text='ブロックされました。'))
-
-
     return HttpResponse()
+
+
+def line_contact_view(request,uid):
+    user=request.user
+    if not user.is_staff:
+        return redirect('index')
+    table=message_table_model.objects.get(title=uid)
+    messages=message_user_model.objects.filter(title=table)
+    meta=user_meta.objects.get(uid=uid)
+    params={
+        'ttt':messages,
+        'afi_code': meta.afi_code,
+        'name':table.name,
+    }
+    return render(request,'tosou/line_contact.html',params)
+
+def ok_c_view(request,afi):
+    user=request.user
+    if not user.is_staff:
+        return redirect('index')
+    meta=user_meta.objects.get(afi_code=afi)
+    uid=meta.uid
+    u_m=message_user_model.objects.filter(uid=uid)
+    for u in u_m:
+        u.read=True
+        u.save()
+    return redirect('staff')
+
+def send_m_view(request,afi):
+    user=request.user
+    if not user.is_staff:
+        return redirect('index')
+    if request.method=='POST':
+        message=request.POST['send_message']
+        meta=user_meta.objects.get(afi_code=afi)
+        uid=meta.uid
+        if message=="":
+            return redirect('line_contact',meta.uid)
+        table=message_table_model.objects.get(title=uid)
+        message_user_model(title=table,uid='technext',read=True,message=message).save()
+        table.post_time=timezone.datetime.now()
+        table.save()
+    return redirect('line_contact',meta.uid)
+
+def staff_view(request):
+    user=request.user
+    if not user.is_staff:
+        return redirect('index')
+    rrr=message_user_model.objects.filter(read=False)
+    sss=message_table_model.objects.all().order_by('-post_time')
+    s_list=[]
+    for s in sss:
+        mu=message_user_model.objects.filter(title=s).order_by('-post_time')
+        for o in mu:
+            s_list.append(o)
+            break
+    params={
+        'rrr':rrr,
+        'sss':s_list,
+    }
+    return render(request,'tosou/staff.html',params)
+
+def ok_view(request,u_id):
+    user=request.user
+    if not user.is_staff:
+        return redirect('index')
+    u=message_user_model.objects.get(id=u_id)
+    u.read=True
+    u.save()
+
+    return redirect('staff')
+
+def search_afi_view(request):
+    user=request.user
+    if not user.is_staff:
+        return redirect('index')
+    if request.method=='POST':
+        code=request.POST['code']
+        meta=user_meta.objects.filter(afi_code=code)
+        if len(meta) > 0:
+
+            return redirect('line_contact',meta[0].uid)
+        else:
+            rrr=message_user_model.objects.filter(read=False)
+            sss=message_table_model.objects.all()
+            s_list=[]
+            for s in sss:
+                mu=message_user_model.objects.filter(title=s).order_by('-post_time')
+                for o in mu:
+                    s_list.append(o)
+                    break
+            params={
+                'rrr':rrr,
+                'sss':s_list,
+                'msg':'Not Found',
+            }
+            return render(request,'tosou/staff.html',params)
+    return redirect('staff')
 
 
 # Create your views here.

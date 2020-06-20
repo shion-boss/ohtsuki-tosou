@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/tosou/css/staff.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+  </head>
+  <body>
+    <div class="read_check_box">
+      <div class="read_grid">
+        <p>未読LIST</p>
+        {% for r in rrr %}
+        <div class="read">
+          <p>{{s.title.name}}|{{s.uid}}</p>
+          <p>{{r.message}}</p>
+          <a href="{% url 'ok' r.id %}" class='ok'>了解</a>
+          <a href="{% url 'line_contact' r.uid %}" class='re'>返信</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="search_box">
+      <p>検索と新着</p>
+      <p class='msg_p'>{{msg}}</p>
+      <form class="search_form" action="{% url 'search_afi'%}" method="post">
+        {% csrf_token %}
+        <input type="number" name="code" value="">
+        <button type="submit" name="button">検索</button>
+      </form>
+      <div class="search_grid">
+        {% for s in sss%}
+        <div class="search">
+          <p>{{s.title.name}}|{{s.uid}}</p>
+          <p>{{s.message}}</p>
+          <a href="{% url 'line_contact' s.title %}" class='talk_a'>トーク</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
