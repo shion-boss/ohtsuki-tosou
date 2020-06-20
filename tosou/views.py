@@ -127,13 +127,15 @@ def callback_view(request):
             #message to user
             replyToken=events[0]["replyToken"]
             line_bot_api.reply_message(str(replyToken), TextSendMessage(text=welcome))
+            table=message_table_model.objects.get(title=line_user_id)
+            u_m=message_user_model(title=table,uid='technext',message=welcome,read=True)
+            u_m.save()
 
             #message to staff
             message=str(name)+'さんが新規LINE登録しました！！！！'
             line_bot_api.push_message("Uff0e2cefe508240835a59e0f069e0922", TextSendMessage(text=message))
             line_bot_api.push_message("U0b64c93b9b15663616d71a057cd41b38", TextSendMessage(text=message))
             line_bot_api.push_message("U8d5974a689241759e8e95f05f161e9bb", TextSendMessage(text=message))
-            line_bot_api.push_message("U3ef4b863f370e1971bbc243ddc9d861c", TextSendMessage(text=message))
 
         # アカウントがブロックされたとき
         #elif events[0]['type'] == 'unfollow':

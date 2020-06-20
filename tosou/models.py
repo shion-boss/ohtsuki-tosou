@@ -65,7 +65,7 @@ class message_user_model(models.Model):
     uid=models.CharField(max_length=500,blank=True,null=True,default='technext')
     afi_code=models.IntegerField(default=000000)
     message=models.TextField(max_length=1000)
-    read=models.BooleanField(default=False,)
+    read=models.BooleanField(default=False)
     post_time=models.DateTimeField(default=timezone.datetime.now)
 
     def __str__(self):
