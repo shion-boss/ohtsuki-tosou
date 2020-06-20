@@ -184,6 +184,7 @@ def send_m_view(request,afi):
         message_user_model(title=table,uid='technext',read=True,message=message).save()
         table.post_time=timezone.datetime.now()
         table.save()
+        line_bot_api.push_message(str(uid), TextSendMessage(text=message))
     return redirect('line_contact',meta.uid)
 
 def staff_view(request):

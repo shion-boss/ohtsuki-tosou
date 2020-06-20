@@ -13,7 +13,7 @@
         <p>未読LIST</p>
         {% for r in rrr %}
         <div class="read">
-          <p>{{s.title.name}}|{{s.uid}}</p>
+          <p>{{r.title.name}}|{{r.uid}}</p>
           <p>{{r.message}}</p>
           <a href="{% url 'ok' r.id %}" class='ok'>了解</a>
           <a href="{% url 'line_contact' r.uid %}" class='re'>返信</a>
