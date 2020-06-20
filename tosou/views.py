@@ -53,7 +53,8 @@ def callback_view(request):
             r = requests.get(request_url, headers=headers)
             data = json.loads(r.text)
             name=data["displayName"]
-            message=name+'様から公式アカウントへお問い合わせがありました。\n'+'【お問い合わせ内容】\n'+text
+            meta=user_meta.objects.get(uid=liline_user_id)
+            message=name+'様('+str(meta.afi_code)+')から公式アカウントへお問い合わせがありました。\n'+'【お問い合わせ内容】\n'+text
             line_bot_api.push_message("U8d5974a689241759e8e95f05f161e9bb", TextSendMessage(text=message))
             table=message_table_model.objects.get(title=line_user_id)
             meta=user_meta.objects.get(uid=line_user_id)
