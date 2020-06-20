@@ -31,8 +31,8 @@ urlpatterns = [
     path('staff/',views.staff_view,name='staff'),
     path('line_contact/<str:uid>/',views.line_contact_view,name='line_contact'),
     path('ok/<int:u_id>/',views.ok_view,name='ok'),
-    path('ok_c/<int:afi>/',views.ok_c_view,name='ok_c'),
-    path('send_m/<int:afi>/<int:len_m>/',views.send_m_view,name='send_m'),
+    path('ok_c/<int:afi>/<int:len_m>/',views.ok_c_view,name='ok_c'),
+    path('send_m/<int:afi>/',views.send_m_view,name='send_m'),
     path('search_afi/',views.search_afi_view,name='search_afi'),
 
     ]

@@ -25,8 +25,8 @@
         {% endfor %}
       </div>
       <div class="send_fixed">
-        <a href="{% url 'ok_c' afi_code %}" class='kan_a'>完了</a>
-        <form class="send_form" action="{% url 'send_m' afi_code len_m %}" method="post">
+        <a href="{% url 'ok_c' afi_code len_m %}" class='kan_a'>完了</a>
+        <form class="send_form" action="{% url 'send_m' afi_code %}" method="post">
           {% csrf_token %}
           <textarea name="send_message" rows="8" cols="80"></textarea>
           <button type="submit" name="button">送信</button>
