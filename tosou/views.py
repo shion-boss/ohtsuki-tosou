@@ -152,12 +152,12 @@ def line_contact_view(request,uid):
     table=message_table_model.objects.get(title=uid)
     messages=message_user_model.objects.filter(title=table)
     meta=user_meta.objects.get(uid=uid)
-
+    m=message_user_model.objects.filter(uid=uid)
     params={
         'ttt':messages,
         'afi_code': meta.afi_code,
         'name':table.name,
-        'len_m':len(messages),
+        'len_m':len(m),
     }
     return render(request,'tosou/line_contact.html',params)
 
@@ -169,7 +169,7 @@ def ok_c_view(request,afi,len_m):
     uid=meta.uid
     u_m=message_user_model.objects.filter(uid=uid)
     len_u=len(u_m)
-    if len_m != len_u:
+    if int(len_m) != int(len_u):
         return redirect('line_contact',uid)
     for u in u_m:
         u.read=True
