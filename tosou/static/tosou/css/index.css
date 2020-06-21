@@ -212,6 +212,7 @@
 
 .v_text{
   width: 100%;
+  resize: none;
 }
 
 #pic_check{

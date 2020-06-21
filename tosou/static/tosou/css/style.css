@@ -173,6 +173,15 @@
   }
 }
 @media(max-width:450px) {
+  .voice-prof {
+    width: 20%;
+    text-align: left;
+  }
+  .voice-desc {
+    width: 80%;
+    display: flex;
+    align-items: center;
+  }
   .voice-toggle button {
     width: 40vw;
     height:8vw;
