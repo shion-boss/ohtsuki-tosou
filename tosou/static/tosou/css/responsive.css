@@ -337,10 +337,7 @@ element.style {
     font-family: source-han-sans-japanese, sans-serif;
     font-size: 1rem;
 }
-.voice-wrapper {
-    width: 80%;
-    margin: 0 auto;
-}
+
 .o_img_box {
     display: flex;
     justify-content: center;
