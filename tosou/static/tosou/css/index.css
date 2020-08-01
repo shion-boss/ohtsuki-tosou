@@ -5,9 +5,8 @@
   align-items: center;
   background-color: white;
 }
-.main_img img{
+.main_img video{
   width:95%;
-  opacity: 0.9;
 }
 
 .customer_voice_box{
