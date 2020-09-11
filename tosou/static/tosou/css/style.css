@@ -190,12 +190,18 @@
   .voice-toggle {
     margin-top: 50px;
   }
+  .voice-card {
+    margin-top: 100px;
+  }
   .voice-card img:last-child {
     width: 80%;
-    right: 0%;
+    right: -10%;
+    top:-150%;
+    transform:scale(1.6);
   }
   .voice-card:nth-child(even) img:last-child  {
-    left: 0%;
+    top:-150%;
+    left: -10%;
   }
   .voice-sbox {
     margin-top: 30px;
