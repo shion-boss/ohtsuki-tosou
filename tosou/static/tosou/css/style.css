@@ -87,7 +87,7 @@
   color: #eb610e;
   margin-top: 50px;
   position: relative;
-  z-index: 2;
+  z-index: -1;
   overflow: hidden;
   outline: none;
   background-color: #fff;
@@ -198,6 +198,9 @@
     right: -10%;
     top:-150%;
     transform:scale(1.6);
+  }
+  .voice-card:nth-child(odd) img:last-child {
+    top: -150%;
   }
   .voice-card:nth-child(even) img:last-child  {
     top:-150%;
