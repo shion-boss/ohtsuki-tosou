@@ -7,10 +7,6 @@
 <link rel="stylesheet" href="/static/tosou/css/style.css">
 {% endblock %}
 {% block body %}
-<div class="main_img">
-  <video src="https://res.cloudinary.com/hm9k6tunn/video/upload/v1596268599/617961307.742332_wznmhe.mp4" controls poster="{% static 'ohtsuki_manga.jpg' %}">
-  </video>
-</div>
 <div class="sikumi_box">
   <h1>仕組み<span>説</span>明</h1>
   <h1 class='new_sikumi'>あたらしいリフォームの仕組み</h1>
@@ -179,7 +175,11 @@
 
 
 </section>
-
+<div class="main_img">
+  <h2>仕組みをたった１分半で理解できる動画</h2>
+  <video src="https://res.cloudinary.com/hm9k6tunn/video/upload/v1596268599/617961307.742332_wznmhe.mp4" controls poster="{% static 'ohtsuki_manga.jpg' %}">
+  </video>
+</div>
 <form class="check_form" action="{% url 'check' %}" method="post">
   {% csrf_token %}
   <h1>あなたにも現金負担0円塗装のチャンス！</h1>
