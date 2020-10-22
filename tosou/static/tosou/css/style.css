@@ -68,7 +68,7 @@
   align-items: center;
 }
 .voice-desc p {
-  font-size: 16px;
+  font-size: 24px;
   line-height: 1.6;
 }
 .voice-prof img {
@@ -196,7 +196,11 @@
     margin-top: 50px;
   }
   .voice-card {
-    margin-top: 100px;
+    width:75%;
+    margin-top: 50%;
+  }
+  .voice-box .voice-card:first-child {
+    margin-top:40%;
   }
   .voice-card img:last-child {
     width: 80%;
@@ -215,7 +219,7 @@
     margin-top: 30px;
   }
   .voice-desc p {
-    font-size: 10px;
+    font-size: 3.6vw;
     padding-right: 20px;
   }
 }
