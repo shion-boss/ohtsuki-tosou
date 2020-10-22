@@ -7,6 +7,18 @@
 <link rel="stylesheet" href="/static/tosou/css/style.css">
 {% endblock %}
 {% block body %}
+<div class="taisyo_box">
+  <p class='taisyo_p'>スマートリノベーションの対象となる方</p>
+  <div class="taisyo_grid">
+    <div class="check_grid">
+      <p><i class="fas fa-check-square"></i>住宅ローンの残高が1000万以上</p>
+      <p><i class="fas fa-check-square"></i>住宅ローンの残期間が10年以上</p>
+      <p><i class="fas fa-check-square"></i>住宅ローンの金利が1.5%以上</p>
+      <p><i class="fas fa-check-square"></i>リフォームをご希望の方</p>
+    </div>
+    <p class="contact_p">以上全てに該当されない方も、現金負担なくリフォーム出来る可能性があります。現在お借入内容とご希望のリフォーム工事をお伝え頂ければ、現金負担０円の対象か無料で診断しております。<br>まずはお気軽にご相談ください！</p>
+  </div>
+</div>
 <div class="sikumi_box">
   <h1>仕組み<span>説</span>明</h1>
   <h1 class='new_sikumi'>あたらしいリフォームの仕組み</h1>
@@ -22,18 +34,7 @@
     <div class="sikumi_img">
       <img src="{% static 'shikumi.png' %}" alt="">
     </div>
-    <div class="taisyo_box">
-      <p class='taisyo_p'>スマートリノベーションの対象となる方</p>
-      <div class="taisyo_grid">
-        <div class="check_grid">
-          <p><i class="fas fa-check-square"></i>住宅ローンの残高が1000万以上</p>
-          <p><i class="fas fa-check-square"></i>住宅ローンの残期間が10年以上</p>
-          <p><i class="fas fa-check-square"></i>住宅ローンの金利が1.5%以上</p>
-          <p><i class="fas fa-check-square"></i>リフォームをご希望の方</p>
-        </div>
-        <p class="contact_p">以上全てに該当されない方も、現金負担なくリフォーム出来る可能性があります。現在お借入内容とご希望のリフォーム工事をお伝え頂ければ、現金負担０円の対象か無料で診断しております。<br>まずはお気軽にご相談ください！</p>
-      </div>
-    </div>
+
   </div>
   <div class="rino_manga taisyo_box">
     <p class='taisyo_p'>スマートリノベーションを漫画で知ろう</p>
@@ -70,11 +71,6 @@
       <div class="voice-card">
         <img src="/static/img-human003.svg" alt="">
         <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.4s" src="/static/voice03.svg" alt="">
-      </div>
-
-      <div class="voice-card">
-        <img src="/static/img-human004.svg" alt="">
-        <img class="animate" data-animate="fadeIn" data-duration="0.8s" data-delay="0.5s" src="/static/voice04.svg" alt="">
       </div>
 
       <div class="voice-card">

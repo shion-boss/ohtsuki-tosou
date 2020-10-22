@@ -11,10 +11,15 @@
   display: flex;
   flex-direction: column;
 }
+
 .voice-card {
-  width: 50%;
+  width: 90%;
   display: flex;
   position: relative;
+  margin-top: 30%;
+}
+.voice-box .voice-card:first-child {
+  margin-top:10%;
 }
 .voice-card img:first-child {
   width: 30%;
