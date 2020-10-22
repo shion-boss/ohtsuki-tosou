@@ -13,13 +13,13 @@
 }
 
 .voice-card {
-  width: 90%;
+  width: 80%;
   display: flex;
   position: relative;
-  margin-top: 30%;
+  margin-top: 20%;
 }
 .voice-box .voice-card:first-child {
-  margin-top:10%;
+  margin-top:15%;
 }
 .voice-card img:first-child {
   width: 30%;
