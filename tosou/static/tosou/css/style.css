@@ -138,6 +138,22 @@
 .fadeIn {
   animation-name: fadeIn;
 }
+.new-btn-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.new-btn-box a {
+  width: 45%;
+  transition: all .4s;
+}
+.new-btn-box a img{
+  width: 100%;
+}
+.new-btn-box a:hover {
+  opacity: 0.7;
+  transform:scale(.95);
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -175,6 +191,15 @@
   }
   .voice-desc p {
     line-height: 1.4;
+  }
+  .new-btn-box {
+    flex-direction: column;
+  }
+  .new-btn-box a {
+    width: 100%;
+  }
+  .new-btn-box a:first-child {
+    margin-bottom: 25px;
   }
 }
 @media(max-width:450px) {
