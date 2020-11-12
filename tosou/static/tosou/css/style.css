@@ -1,7 +1,7 @@
 .voice-sec {
   width: 100%;
   margin-top: 200px;
-  margin-bottom: 100px;
+  margin-bottom: 0px;
 }
 .voice-wrapper {
   width: 90%;
@@ -142,6 +142,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top:50px;
 }
 .new-btn-box a {
   width: 45%;
