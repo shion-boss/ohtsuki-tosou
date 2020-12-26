@@ -14,8 +14,6 @@
   <form class="o_form" action="{% url 'm_form' %}" method="post">
     {% csrf_token %}
     <div class="info">
-      <label for="hurigana" class='bold_p'>お名前(ふりがな)<span>必須</span></label>
-      <input type="text" name="hurigana" value="" id='hurigana' required pattern="[\u3041-\u3096]*" title="ひらがなでお名前を入力してください。">
       <label for="name" class='bold_p'>お名前<span>必須</span></label>
       <input type="text" name="name" value="" id='name' required>
       <label for="tel" class='bold_p'>お電話番号<span>必須</span></label>
