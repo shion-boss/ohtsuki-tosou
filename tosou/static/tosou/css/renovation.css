@@ -78,11 +78,13 @@
 
 .sikumi_img{
   width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sikumi_img img{
   width: 90%;
-  margin: 0 auto;
 }
 
 .taisyo_box{
