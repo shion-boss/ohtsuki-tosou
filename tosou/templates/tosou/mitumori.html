@@ -18,12 +18,6 @@
       <input type="text" name="hurigana" value="" id='hurigana' required pattern="[\u3041-\u3096]*" title="ひらがなでお名前を入力してください。">
       <label for="name" class='bold_p'>お名前<span>必須</span></label>
       <input type="text" name="name" value="" id='name' required>
-      <label for="yubin" class='bold_p'>郵便番号<span>必須</span></label>
-      <input type='tel' name="yubin" value="" id='yubin' required onKeyUp="AjaxZip3.zip2addr(this,'','stay','stay');" pattern="\d{3}-?\d{4}" title="123-1234">
-      <label for="stay" class='bold_p'>ご住所<span>必須</span></label>
-      <input type="text" name="stay" value="" id='stay' required pattern=".*?\d" title="番地まで入力してください。">
-      <label for="email" class='bold_p'>メールアドレス<span>必須</span></label>
-      <input type='email' name="email" value="" id='email' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='xxxxxxx@xxxxx.xxx'>
       <label for="tel" class='bold_p'>お電話番号<span>必須</span></label>
       <input type="tel" name="tel" value="" id='tel' required pattern="\d{2,4}-?\d{2,4}-?\d{3,4}" title='000-0000-0000'>
       <label for="one_day" class='bold_p'>連絡希望日時<span>必須</span></label>
@@ -47,8 +41,6 @@
       </div>
       <label for="question_area" class='bold_p'>ご質問等</label>
       <textarea name="question_area" rows="8" cols="80" id='question_area'></textarea>
-      <label for="afi" class='bold_p'>ご紹介コード</label>
-      <input type="tel" name="afi" value="" id='afi' pattern="\d{6}" title="数字6桁でご入力ください。">
     </div>
     <button type="submit" name="button" class='submit'>送信</button>
   </form>

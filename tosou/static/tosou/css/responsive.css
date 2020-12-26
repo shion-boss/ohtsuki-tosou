@@ -348,6 +348,12 @@ element.style {
 
 
 @media(max-width:600px) {
+  .pc_top{
+    display: none;
+  }
+  .sp_top{
+    display: block;
+  }
   .result_gaku span {
     color: orangered;
     font-size: 3rem;
