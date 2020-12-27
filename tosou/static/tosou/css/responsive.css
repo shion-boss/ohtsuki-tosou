@@ -352,7 +352,9 @@ element.style {
     display: none;
   }
   .sp_top{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .result_gaku span {
     color: orangered;

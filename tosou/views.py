@@ -1066,11 +1066,7 @@ def catalog_view(request):
 #見積依頼
 def m_form_view(request):
     if request.method=='POST':
-        afi=request.POST['afi']
-        hurigana=request.POST['hurigana']
         name=request.POST['name']
-        yubin=request.POST['yubin']
-        stay=request.POST['stay']
         email=request.POST['email']
         tel=request.POST['tel']
         question_area=request.POST['question_area']
@@ -1104,14 +1100,8 @@ def m_form_view(request):
             "=============================\n"
             "▽お問い合わせ内容\n"
             "=============================\n"
-            "【おなまえ】\n"
-            +str(hurigana)+
             "\n【お名前】\n"
             +str(name)+
-            "\n【郵便番号】\n"
-            +str(yubin)+
-            "\n【ご住所】\n"
-            +str(stay)+
             "\n【メールアドレス】\n"
             +str(email)+
             "\n【お電話番号】\n"
@@ -1123,8 +1113,6 @@ def m_form_view(request):
             +str(t_d.year)+'年'+str(t_d.month)+'月'+str(t_d.day)+'日'+str(two)+
             "\n【ご質問等】\n"
             +str(question_area)+
-            "\n【紹介コード】\n"
-            +str(afi)+
             "\n===========================\n"
             "このメールはお客様が大槻塗装工業のホームページから"
             "送信したものを自動でお送りしています。\n"
@@ -1163,14 +1151,8 @@ def m_form_view(request):
             "=============================\n"
             "▽お問い合わせ内容\n"
             "=============================\n"
-            "【おなまえ】\n"
-            +str(hurigana)+
             "\n【お名前】\n"
             +str(name)+
-            "\n【郵便番号】\n"
-            +str(yubin)+
-            "\n【ご住所】\n"
-            +str(stay)+
             "\n【メールアドレス】\n"
             +str(email)+
             "\n【お電話番号】\n"
@@ -1182,8 +1164,6 @@ def m_form_view(request):
             +str(t_d.year)+'年'+str(t_d.month)+'月'+str(t_d.day)+'日'+str(two)+
             "\n【ご質問等】\n"
             +str(question_area)+
-            "\n【紹介コード】\n"
-            +str(afi)+
             "\n=========================\n"
             "このメールはお客様が大槻塗装工業のホームページから"
             "送信したものを自動でお送りしています。\n"

@@ -78,6 +78,9 @@
 
 .sikumi_img{
   width:100%;
+}
+
+.pc_top{
   display: flex;
   justify-content: center;
   align-items: center;
